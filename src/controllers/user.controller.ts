@@ -51,6 +51,10 @@ export class UserController {
        this.userService.putUserById(req, res);
     }
 
+    async deleteUserById(req: Request, res: Response) {
+        this.userService.deleteUserById(req, res);
+    }
+
     buildRoutes(): Router {
         const router = express.Router();
         router.post('/register', express.json(), this.register.bind(this));
@@ -59,6 +63,7 @@ export class UserController {
         router.get('/admin', checkUserToken(), checkUserRole("admin"), this.admin.bind(this))
         router.get('/:id', checkUserToken(), checkUserRole("admin"), this.getUserById.bind(this));
         router.put('/:id',  express.json(), checkUserToken(), checkUserRole("admin"), this.putUserById.bind(this));
+        router.delete('/:id', checkUserToken(), checkUserRole("admin"), this.deleteUserById.bind(this));
         return router;
     }
 }
