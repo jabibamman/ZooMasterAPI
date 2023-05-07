@@ -4,6 +4,7 @@ import { UserLoginDto, UserRegisterDto } from "../models";
 import { checkUserToken } from "../middlewares";
 import { checkUserRole } from "../middlewares/role.middleware";
 import { UserService } from "../services/user.service";
+import { Roles, roles } from "../utils";
 
 export class UserController {
 
@@ -60,10 +61,10 @@ export class UserController {
         router.post('/register', express.json(), this.register.bind(this));
         router.post('/login', express.json(), this.login.bind(this));
         router.get('/me', checkUserToken(), this.me.bind(this));
-        router.get('/admin', checkUserToken(), checkUserRole("admin"), this.admin.bind(this))
-        router.get('/:id', checkUserToken(), checkUserRole("admin"), this.getUserById.bind(this));
-        router.put('/:id',  express.json(), checkUserToken(), checkUserRole("admin"), this.putUserById.bind(this));
-        router.delete('/:id', checkUserToken(), checkUserRole("admin"), this.deleteUserById.bind(this));
+        router.get('/admin', checkUserToken(), checkUserRole(Roles.ADMIN), this.admin.bind(this))
+        router.get('/:id', checkUserToken(), checkUserRole(Roles.ADMIN), this.getUserById.bind(this));
+        router.put('/:id',  express.json(), checkUserToken(), checkUserRole(Roles.ADMIN), this.putUserById.bind(this));
+        router.delete('/:id', checkUserToken(), checkUserRole(Roles.ADMIN), this.deleteUserById.bind(this));
         return router;
     }
 }
