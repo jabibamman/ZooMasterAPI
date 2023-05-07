@@ -5,7 +5,9 @@ import mongoose from "mongoose";
 import express = require("express");
 
 import { UserController } from './controllers';
-import { RoleModel } from "./models";
+import { RoleModel, UserModel } from "./models";
+import { Roles, roles } from "./utils";
+import { log } from "console";
 
 
 async function startServer(): Promise<void> {
@@ -17,7 +19,7 @@ async function startServer(): Promise<void> {
         authSource: "admin",
     });
 
-   //upsertRoles();
+   upsertRoles();
 
     const app = express();
     const userController = new UserController();
@@ -28,19 +30,22 @@ async function startServer(): Promise<void> {
 }   
 
 async function upsertRoles() {
-    //const countRoles = await AnimalModel.count().exec();
-     /*if(countRoles === 0) {
-         return;
-     }*/
-     const rolesNames = ["admin", "veterinarian", "animal_caretaker", "maintenance_worker", "ticket_seller", "reception_staff",  "guest"];
-     const rolesRequests = rolesNames.map((roleName) => {
-         return RoleModel.create({
-             name : roleName
-         });
-     });
- 
-     await Promise.all(rolesRequests);
- }
+    const countRoles = await RoleModel.countDocuments().exec();
+    if (countRoles === 0) {
+        return;
+    }
+    const rolesNames = roles.map((role) => role);
+    const rolesRequests = rolesNames.map((roleName) => {
+        return RoleModel.findOneAndUpdate(
+            { name: roleName },
+            { name: roleName },
+            { upsert: true, new: true }
+        ).exec();
+    });
+
+    await Promise.all(rolesRequests);
+}
+
 
 
 startServer().then(() =>
