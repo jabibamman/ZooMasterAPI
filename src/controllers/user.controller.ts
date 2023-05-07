@@ -43,12 +43,22 @@ export class UserController {
         this.userService.admin(req, res);
     }
 
+    async getUserById(req: Request, res: Response) {
+        this.userService.getUserById(req, res);
+    }
+
+    async putUserById(req: Request, res: Response) {
+       this.userService.putUserById(req, res);
+    }
+
     buildRoutes(): Router {
         const router = express.Router();
         router.post('/register', express.json(), this.register.bind(this));
         router.post('/login', express.json(), this.login.bind(this));
         router.get('/me', checkUserToken(), this.me.bind(this));
         router.get('/admin', checkUserToken(), checkUserRole("admin"), this.admin.bind(this))
+        router.get('/:id', checkUserToken(), checkUserRole("admin"), this.getUserById.bind(this));
+        router.put('/:id',  express.json(), checkUserToken(), checkUserRole("admin"), this.putUserById.bind(this));
         return router;
     }
 }

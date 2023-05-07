@@ -74,6 +74,54 @@ export class UserService {
         res.json(users);
     }
 
+
+    public async getUserById(req: Request, res: Response) {
+        const id = req.params.id;
+
+        if(!id) {
+            res.status(400).end();
+            return;
+        }
+
+        const user = await UserModel.findById(id).exec();
+
+        if(!user) {
+            res.status(404).end();
+            return;
+        }
+
+        res.json(user);
+
+    }
+
+
+    public async putUserById(req: Request, res: Response) {
+        const id = req.params.id;
+
+        if(!id) {
+            res.status(400).end();
+            return;
+        }
+
+        const user = await UserModel.findById(id).exec();
+
+        if(!user) {
+            res.status(404).end();
+            return;
+        }
+
+        if (typeof req.body.login === "string" && req.body.login.length > 4) {
+            user.login = req.body.login;
+        }
+
+        if (typeof req.body.password === "string" && req.body.password.length > 8) {
+            user.password = SecurityUtils.toSHA512(req.body.password);
+        }
+         
+        await user.save();
+        res.json(user);
+    }
+
     private async loadGuestRole(): Promise<void> {
         if(this.guestRole) {
             return;
