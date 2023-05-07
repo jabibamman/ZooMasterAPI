@@ -8,7 +8,6 @@ import { UserController } from './controllers';
 import { RoleModel, } from "./models";
 import { roles } from "./utils";
 
-
 async function startServer(): Promise<void> {
     const connect = await mongoose.connect(process.env.MONGO_URI as string, {
         auth: {
