@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { config } from "dotenv";
 config();
 
@@ -29,7 +30,7 @@ async function startServer(): Promise<void> {
 
 async function upsertRoles() {
     const countRoles = await RoleModel.countDocuments().exec();
-    if (countRoles === 0) {
+    if (countRoles != 0) {
         return;
     }
     const rolesNames = roles.map((role) => role);
@@ -39,6 +40,7 @@ async function upsertRoles() {
             { name: roleName },
             { upsert: true, new: true }
         ).exec();
+
     });
 
     await Promise.all(rolesRequests);
