@@ -47,7 +47,6 @@ export class StaffService {
             if(me["name"] === 'MongoServerError' && me["code"] === 11000) {
                 res.status(409).end(); // conflict
             } else {
-                console.log(me)
                 res.status(500).end(); // internal_server_error
             }
         }
@@ -75,7 +74,6 @@ export class StaffService {
             if(me["name"] === 'MongoServerError' && me["code"] === 11000) {
                 res.status(409).end(); // conflict
             } else {
-                console.log(me)
                 res.status(500).end(); // internal_server_error
             }
         }
