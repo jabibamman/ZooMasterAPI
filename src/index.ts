@@ -1,3 +1,4 @@
+import { log } from 'console';
 import { config } from "dotenv";
 config();
 
@@ -41,6 +42,7 @@ async function upsertRoles() {
             { name: roleName },
             { upsert: true, new: true }
         ).exec();
+
     });
 
     await Promise.all(rolesRequests);
