@@ -42,6 +42,25 @@ export class PassDayMonth extends Ticket {
         this.name = Pass.PASS_DAYMONTH;
         this.expiration = new Date(this.start.getFullYear() + 1, this.start.getMonth(), 1);
     }
+
+    validateTicket(): boolean {
+        const today = new Date();
+        if(this.start > today) {
+            throw new Error("This ticket is not usable for now");
+        }
+        if(this.expiration < today) {
+            throw new Error("This ticket is expired");
+        }
+        if(today.getHours() < 9 || today.getHours() > 19) {
+            throw new Error("You can't use this ticket at this hour")
+        }
+        if(today.getMonth() + 1 > 11) {
+            this.start = new Date(today.getFullYear() + 1, 0, 1);
+            return true;
+        }
+        this.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        return true;
+    }
 }
 
 export class PassEscapeGame extends PassDay {
@@ -55,5 +74,19 @@ export class PassNight extends PassDay {
     constructor(startYear: number, startMonth: number, startDay: number) {
         super(startYear, startMonth, startDay);
         this.name = Pass.PASS_NIGHT;
+    }
+
+    validateTicket(): boolean {
+        const today = new Date();
+        if(this.start > today) {
+            throw new Error("This ticket is not usable for now");
+        }
+        if(this.expiration < today) {
+            throw new Error("This ticket is expired");
+        }
+        if(today.getHours() < 21 || today.getHours() > 2) {
+            throw new Error("You can't use this ticket at this hour")
+        }
+        return true;
     }
 }
