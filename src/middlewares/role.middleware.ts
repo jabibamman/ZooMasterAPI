@@ -4,7 +4,6 @@ import {SessionModel, User} from "../models";
 
 export function checkUserRole(name:string): RequestHandler {
     return async function(req: Request, res, next) {
-        console.log(req)
         if(!req.user) {
             res.status(401).end();
             return;
