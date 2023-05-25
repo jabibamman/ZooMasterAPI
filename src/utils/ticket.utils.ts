@@ -9,64 +9,51 @@ export enum Pass {
     PASS_NIGHT = "PASS_NIGHT"
 }
 
-export class PassDay implements Ticket {
-    name: Pass;
-    start: Date;
-    expiration: Date;
-
-    constructor(start: Date) {
+export class PassDay extends Ticket {
+    constructor(startYear: number, startMonth: number, startDay: number) {
+        super(startYear, startMonth, startDay);
         this.name = Pass.PASS_DAY;
-        this.start = start;
-        this.expiration = new Date(Date.now());
+        this.expiration = new Date(this.start.getFullYear(), this.start.getMonth(), this.start.getDate() + 1);
     }
 }
 
-export class PassWeek implements Ticket {
-    expiration: Date;
-    name: Pass;
-    start: Date;
-
-    constructor(start: Date) {
+export class PassWeekend extends Ticket {
+    constructor(startYear: number, startMonth: number, startDay: number) {
+        super(startYear, startMonth, startDay);
+        if(this.start.getDay() != 6) {
+            throw new Error("The ticket is a PASS WEEKEND but it doesn't start on Saturday");
+        }
         this.name = Pass.PASS_WEEKEND;
-        this.start = start;
-        this.expiration = new Date(start.getFullYear(), start.getMonth(), start.getDay() + 1);
+        this.expiration = new Date(startYear, startMonth, startDay + 2);
     }
 }
 
-export class PassYear implements Ticket {
-    expiration: Date;
-    name: Pass;
-    start: Date;
-
-    constructor(year: number) {
+export class PassYear extends Ticket {
+    constructor(startYear: number, startMonth: number, startDay: number) {
+        super(startYear, startMonth, startDay);
         this.name = Pass.PASS_YEAR;
-        this.start = new Date(year, Date.now());
-        this.expiration = new Date(year + 1, Date.now());
+        this.expiration = new Date(this.start.getFullYear() + 1, this.start.getMonth(), this.start.getDate());
     }
 }
 
-export class PassDayMonth implements Ticket {
-    expiration: Date;
-    name: Pass;
-    start: Date;
-
-    constructor(year: number) {
+export class PassDayMonth extends Ticket {
+    constructor(startYear: number, startMonth: number, startDay: number) {
+        super(startYear, startMonth, startDay);
         this.name = Pass.PASS_DAYMONTH;
-        this.start = new Date(year, Date.now());
-        this.expiration = new Date(year + 1, Date.now());
+        this.expiration = new Date(this.start.getFullYear() + 1, this.start.getMonth(), 1);
     }
 }
 
 export class PassEscapeGame extends PassDay {
-    constructor(start: Date) {
-        super(start);
+    constructor(startYear: number, startMonth: number, startDay: number) {
+        super(startYear, startMonth, startDay);
         this.name = Pass.PASS_ESCAPEGAME;
     }
 }
 
 export class PassNight extends PassDay {
-    constructor(start: Date) {
-        super(start);
+    constructor(startYear: number, startMonth: number, startDay: number) {
+        super(startYear, startMonth, startDay);
         this.name = Pass.PASS_NIGHT;
     }
 }
