@@ -2,8 +2,6 @@ import { Role, RoleModel, SessionModel, User, UserLoginDto, UserModel, UserRegis
 import {Request, Response} from "express";
 import { SecurityUtils } from "../utils";
 import { Model } from "mongoose";
-import { log } from "console";
-
 
 export class UserService {
     guestRole: Role | null;
