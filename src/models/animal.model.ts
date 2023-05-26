@@ -17,8 +17,8 @@ export interface ISpecies extends Document {
 const speciesSchema = new Schema<ISpecies>({
   name: { type: String, required: true },
   lifespan: { type: Number, required: true },
-  diet: { type: String, required: true },
-  habitat: { type: String, required: true }
+  diet: { type: String, required: false },
+  habitat: { type: String, required: false }
 });
 
 const animalSchema = new Schema<IAnimal>({

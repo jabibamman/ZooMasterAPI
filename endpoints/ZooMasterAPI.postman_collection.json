@@ -300,11 +300,21 @@
 		{
 			"name": "/animal",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "647098de00c91b19982f02d4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"species\":\"Lion\",\n    \"name\":\"Simba\"\n}",
+					"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
