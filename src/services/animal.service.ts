@@ -10,13 +10,14 @@ export class AnimalService {
     }
 
     public async registerAnimal(req: Request, res: Response) {
-        const speciesName = req.body.species;
+        const speciesObj = req.body.species;
+        const speciesName = speciesObj.name;
         let species = await SpeciesModel.findOne({name: speciesName}).exec();
     
         if (!species) {
-            species = new SpeciesModel({name: speciesName});
+            species = new SpeciesModel(speciesObj);
             await species.save();
-        }
+        } 
      
         const animal = new AnimalModel({
             name: req.body.name,
