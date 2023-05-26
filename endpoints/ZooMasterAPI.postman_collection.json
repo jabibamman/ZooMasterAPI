@@ -42,7 +42,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
+					"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -58,6 +58,44 @@
 					"path": [
 						"user",
 						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/:id/role",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "647098de00c91b19982f02d4",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"roles\":\"ANIMAL_CARETAKER\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"user",
+						"64709840fc3d177fc2881429"
 					]
 				}
 			},
@@ -191,7 +229,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "6457a5746bfd430b7117ade3",
+							"value": "647098de00c91b19982f02d4",
 							"type": "string"
 						}
 					]
@@ -200,7 +238,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"login\":\"Marzqez\"\r\n}",
+					"raw": "{\r\n    \"login\":\"james\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -208,14 +246,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/6457a91d706eb219db128410",
+					"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
 					"host": [
 						"{{HOST}}"
 					],
 					"port": "{{PORT}}",
 					"path": [
 						"user",
-						"6457a91d706eb219db128410"
+						"64709840fc3d177fc2881429"
 					]
 				}
 			},
