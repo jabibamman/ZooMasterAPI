@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "3bb2686d-f61f-4a58-a6af-ae6d8d17d6ce",
+		"_postman_id": "6c09187c-6a19-43cf-ab3c-72765dca6926",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25694887",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-3bb2686d-f61f-4a58-a6af-ae6d8d17d6ce?action=share&creator=25694887&source=collection_link"
+		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-6c09187c-6a19-43cf-ab3c-72765dca6926?action=share&creator=25694887&source=collection_link"
 	},
 	"item": [
 		{
@@ -222,7 +222,7 @@
 			"response": []
 		},
 		{
-			"name": "/user/:id Copy",
+			"name": "/user/:id",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -254,6 +254,114 @@
 					"path": [
 						"user",
 						"6457b69367d1fb1ac77e3b2d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/animal",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"species\":\"Lion\",\n    \"name\":\"Simba\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/animal",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"animal"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/animal/:id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/animal/:id",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"animal",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/animal/:id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"species\":\"Lion\",\n    \"name\":\"Nala\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/animal/:id",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"animal",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/animal/:id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}:{{PORT}}/animal/:id",
+					"host": [
+						"{{HOST}}"
+					],
+					"port": "{{PORT}}",
+					"path": [
+						"animal",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id"
+						}
 					]
 				}
 			},
