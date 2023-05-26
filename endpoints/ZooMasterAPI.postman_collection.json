@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"roles\":\"ANIMAL_CARETAKER\"\n}",
+					"raw": "{\n    \"roles\":\"animal_caretaker\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,14 +88,15 @@
 					}
 				},
 				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
+					"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429/role",
 					"host": [
 						"{{HOST}}"
 					],
 					"port": "{{PORT}}",
 					"path": [
 						"user",
-						"64709840fc3d177fc2881429"
+						"64709840fc3d177fc2881429",
+						"role"
 					]
 				}
 			},
@@ -337,22 +338,27 @@
 		{
 			"name": "/animal/:id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "647098de00c91b19982f02d4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{HOST}}:{{PORT}}/animal/:id",
+					"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
 					"host": [
 						"{{HOST}}"
 					],
 					"port": "{{PORT}}",
 					"path": [
 						"animal",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id"
-						}
+						"6470a10d7a225e198ed84cd5"
 					]
 				}
 			},
@@ -361,11 +367,21 @@
 		{
 			"name": "/animal/:id",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "647098de00c91b19982f02d4",
+							"type": "string"
+						}
+					]
+				},
 				"method": "PUT",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"species\":\"Lion\",\n    \"name\":\"Nala\"\n}",
+					"raw": "{\n    \"species\": {\n        \"name\": \"\",\n        \"lifespan\": \"\"\n    },\n    \"name\":\"\",\n    \"age\":\"\",\n    \"healthStatus\":\"Not good\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -373,19 +389,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{HOST}}:{{PORT}}/animal/:id",
+					"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
 					"host": [
 						"{{HOST}}"
 					],
 					"port": "{{PORT}}",
 					"path": [
 						"animal",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id"
-						}
+						"6470a10d7a225e198ed84cd5"
 					]
 				}
 			},

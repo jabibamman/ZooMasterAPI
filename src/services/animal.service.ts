@@ -39,11 +39,17 @@ export class AnimalService {
 
     public async putAnimalById(req: Request, res: Response) {
         const animal = await this.checkAnimalExistence(req, res);
-    
-        if (animal) {
-            await animal.save();
-            res.json(animal);
-        }
+
+        if(!animal) {
+            res.status(404).json({ message: "Animal not found" }).end();
+            return;
+        } 
+        
+        animal.name = req.body.name ? req.body.name : animal.name;
+        animal.age = req.body.age ? req.body.age : animal.age;
+        animal.healthStatus = req.body.healthStatus ? req.body.healthStatus : animal.healthStatus;
+        await animal.save();
+        res.json(animal).status(200).end();
     }
 
     public async deleteAnimalById(req: Request, res: Response) {
