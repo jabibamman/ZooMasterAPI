@@ -123,7 +123,28 @@ export class UserService {
  
         await this.model.deleteOne({ _id: id }).exec();
         res.json(user);
-        res.status(204).end();
+        res.status(204).json({ message: "User deleted" }).end();
+    }
+
+    public async updateRoles(req: Request, res: Response) {
+        const id = req.params.id;
+        const user = await this.getUserByIdHelper(id);
+
+        if (!user) {
+            res.status(404).json({ message: "User not found" }).end();
+            return;
+        }
+
+        const roles = await RoleModel.findOne({ name: req.body.roles.toLowerCase() }).exec();
+
+        if (!roles) {
+            res.status(404).json({ message: "Role not found" }).end();
+            return;
+        }
+        
+        user.roles = roles;
+        await user.save();
+        res.status(200).json(user);
     }
     
 
