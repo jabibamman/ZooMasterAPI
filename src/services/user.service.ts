@@ -58,6 +58,11 @@ export class UserService {
             password: SecurityUtils.toSHA512(user.password)
         });
 
+        if(!newUser) {
+            res.status(401).end();
+            return;
+        }
+
         const platform = user.headers['user-agent'];
         const session = await SessionModel.create({
             user: newUser,
@@ -66,7 +71,7 @@ export class UserService {
         res.json({
             token: session._id
         });
-
+ 
     }
 
     public async admin(req: Request, res: Response) {
