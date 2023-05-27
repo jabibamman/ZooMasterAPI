@@ -76,8 +76,21 @@ export class EnclosureService {
     async removeAnimalFromEnclosure(req: Request, res: Response) {
         const { id, animalId } = req.params; 
         try {
+            SecurityUtils.checkIfIdIsCorrect(id);
+            SecurityUtils.checkIfIdIsCorrect(animalId);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        try {
             const enclosure = await Enclosure.findById(id);
             if (enclosure) {
+                if (enclosure.animals.filter(animal => animal._id == animalId).length == 0) {
+                    res.status(404).json({ error: "Animal not found in the enclosure" });
+                    return;
+                }
+
                 enclosure.animals = enclosure.animals.filter(animal => animal._id != animalId);
                 await enclosure.save();
                 res.status(200).json({ message: "Animal removed from the enclosure" });
@@ -105,6 +118,13 @@ export class EnclosureService {
 
     async deleteEnclosureById(req: Request, res: Response) {
         const { id } = req.params;
+        try {
+            SecurityUtils.checkIfIdIsCorrect(id);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
         try {
             const result = await Enclosure.findByIdAndDelete(id);
             if (result) {
