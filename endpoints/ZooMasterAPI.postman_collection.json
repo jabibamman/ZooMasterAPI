@@ -8,423 +8,442 @@
 	},
 	"item": [
 		{
-			"name": "/user/register",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+			"name": "/user",
+			"item": [
+				{
+					"name": "/user/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/register",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"register"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/register",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"register"
-					]
+				{
+					"name": "/user/login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/:id/role",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "647098de00c91b19982f02d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roles\":\"animal_caretaker\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429/role",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"64709840fc3d177fc2881429",
+								"role"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/me",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/login",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6457a5746bfd430b7117ade3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/admin",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6457a5746bfd430b7117ade3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "id",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/6457a91d706eb219db128410",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"6457a91d706eb219db128410"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "647098de00c91b19982f02d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\":\"james\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"64709840fc3d177fc2881429"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6457a5746bfd430b7117ade3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/6457b69367d1fb1ac77e3b2d",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"6457b69367d1fb1ac77e3b2d"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/login",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/:id/role",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "647098de00c91b19982f02d4",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"roles\":\"animal_caretaker\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429/role",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"64709840fc3d177fc2881429",
-						"role"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/me",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/login",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/admin",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "6457a5746bfd430b7117ade3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/admin",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"admin"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/:id",
-			"protocolProfileBehavior": {
-				"disableBodyPruning": true
-			},
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "6457a5746bfd430b7117ade3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "id",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/6457a91d706eb219db128410",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"6457a91d706eb219db128410"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/:id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "647098de00c91b19982f02d4",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"login\":\"james\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"64709840fc3d177fc2881429"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/user/:id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "6457a5746bfd430b7117ade3",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/user/6457b69367d1fb1ac77e3b2d",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"user",
-						"6457b69367d1fb1ac77e3b2d"
-					]
-				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "/animal",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "647098de00c91b19982f02d4",
-							"type": "string"
+			"item": [
+				{
+					"name": "/animal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "647098de00c91b19982f02d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "/animal/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "647098de00c91b19982f02d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal",
+								"6470a10d7a225e198ed84cd5"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/animal",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"animal"
-					]
+				{
+					"name": "/animal/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "647098de00c91b19982f02d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"species\": {\n        \"name\": \"\",\n        \"lifespan\": \"\"\n    },\n    \"name\":\"\",\n    \"age\":\"\",\n    \"healthStatus\":\"Not good\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal",
+								"6470a10d7a225e198ed84cd5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/animal/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal/6471c2ad52d043eb436ca56f",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal",
+								"6471c2ad52d043eb436ca56f"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "/animal/:id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "647098de00c91b19982f02d4",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"animal",
-						"6470a10d7a225e198ed84cd5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/animal/:id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "647098de00c91b19982f02d4",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"species\": {\n        \"name\": \"\",\n        \"lifespan\": \"\"\n    },\n    \"name\":\"\",\n    \"age\":\"\",\n    \"healthStatus\":\"Not good\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"animal",
-						"6470a10d7a225e198ed84cd5"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "/animal/:id",
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}:{{PORT}}/animal/:id",
-					"host": [
-						"{{HOST}}"
-					],
-					"port": "{{PORT}}",
-					"path": [
-						"animal",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id"
-						}
-					]
-				}
-			},
-			"response": []
+			"name": "/enclosure",
+			"item": []
 		}
 	]
 }
