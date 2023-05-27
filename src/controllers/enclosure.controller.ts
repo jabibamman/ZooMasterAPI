@@ -39,6 +39,10 @@ export class EnclosureController {
         this.enclosureService.deleteEnclosureById(req, res);
     }
 
+    async updateLogbook(req: Request, res: Response) {
+        this.enclosureService.updateLogBook(req, res);
+    }
+
     buildRoutes(): Router {
         const router = express.Router();
         router.post('/:id/animal', express.json(), checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER,Roles.ADMIN]), this.addAnimalToEnclosure.bind(this));
@@ -47,6 +51,7 @@ export class EnclosureController {
         router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.createEnclosure.bind(this));
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.getEnclosureById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteEnclosureById.bind(this));
+        router.put('/:id/logbook/:animalId', express.json(), checkUserToken(), checkUserRole([Roles.VETERINARIAN, Roles.ADMIN]), this.updateLogbook.bind(this));
         return router;
     }
 }

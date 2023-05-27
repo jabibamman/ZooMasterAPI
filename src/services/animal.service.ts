@@ -24,6 +24,7 @@ export class AnimalService {
             name: req.body.name,
             age: req.body.age,
             healthStatus: req.body.healthStatus,
+            logBook: req.body.logBook,
             species: species._id
         });
     

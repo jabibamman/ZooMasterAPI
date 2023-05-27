@@ -323,7 +323,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
+							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\",\n    \"logBook\":\"null\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -521,6 +521,46 @@
 								"enclosure",
 								"6471fd0eabb2e0f0f3a01c82",
 								"animal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id/logbook/:animalId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"logBook\":\"Drugs given to this animal\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/logbook/6471cff75821244161722c67",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								"6471fd0eabb2e0f0f3a01c82",
+								"logbook",
+								"6471cff75821244161722c67"
 							]
 						}
 					},
