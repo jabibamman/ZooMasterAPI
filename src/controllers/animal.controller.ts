@@ -34,10 +34,10 @@ export class AnimalController {
 
     buildRoutes(): Router {
         const router = express.Router();
-        router.post('/', express.json(), checkUserToken(), checkUserRole(Roles.ANIMAL_CARETAKER), this.registerAnimal.bind(this));
-        router.get('/:id', checkUserToken(), checkUserRole(Roles.ANIMAL_CARETAKER), this.getAnimalById.bind(this));
-        router.put('/:id',  express.json(), checkUserToken(), checkUserRole(Roles.ANIMAL_CARETAKER), this.putAnimalById.bind(this));
-        router.delete('/:id', checkUserToken(), checkUserRole(Roles.VETERINARIAN), this.deleteAnimalById.bind(this));
+        router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.registerAnimal.bind(this));
+        router.get('/:id', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN]), this.getAnimalById.bind(this));
+        router.put('/:id',  express.json(), checkUserToken(),checkUserRole([Roles.VETERINARIAN]), this.putAnimalById.bind(this));
+        router.delete('/:id', checkUserToken(), checkUserRole([Roles.VETERINARIAN, Roles.ADMIN]), this.deleteAnimalById.bind(this));
         return router;
     }
 }
