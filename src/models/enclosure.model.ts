@@ -1,7 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
 import { IAnimal } from './animal.model';
-import { AnimalModel } from './animal.model';
-
 export interface IEnclosure extends Document {
     name: string;
     maxCapacity: number;

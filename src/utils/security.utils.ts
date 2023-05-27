@@ -9,9 +9,7 @@ export class SecurityUtils {
     }
 
     public static checkIfIdIsCorrect(id: string): void {
-        if(!RegExp(/^[0-9a-fA-F]{24}$/).test(id)) {
-            console.log(id);
-            
+        if(!RegExp(/^[0-9a-fA-F]{24}$/).test(id)) {                        
             throw new Error("Id is not correct");
         }
     }
