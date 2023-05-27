@@ -72,7 +72,12 @@ export class AnimalService {
             return null;
         }
 
-        if(!SecurityUtils.checkIfIdIsCorrect(req.params.id, res)) return;
+        try {
+            SecurityUtils.checkIfIdIsCorrect(req.params.id);
+        } catch (error) {
+            res.status(400).json({message: error?.toString()}).end();
+        }
+
         const animal = await this.getAnimalByIdHelper(req.params.id);
         if (!animal) {
             res.status(404).end();
