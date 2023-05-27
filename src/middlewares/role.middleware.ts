@@ -1,8 +1,7 @@
-import { Role } from './../models/role.model';
 import {Request, RequestHandler} from "express";
-import {SessionModel, User} from "../models";
+import { User} from "../models";
 
-export function checkUserRole(name:string): RequestHandler {
+export function checkUserRole(roles: string[]): RequestHandler {
     return async function(req: Request, res, next) {
         if(!req.user) {
             res.status(401).end();
@@ -11,13 +10,12 @@ export function checkUserRole(name:string): RequestHandler {
 
         const user:User = req.user;
         for (let role of user.roles) {
-            if (typeof role === "object" && role.name === name) {
+            if (typeof role === "object" && roles.includes(role.name)) {
                 next();
                 return;
             }
         }
 
         res.status(403).end();
-
     }
 }
