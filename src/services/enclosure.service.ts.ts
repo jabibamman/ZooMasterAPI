@@ -36,19 +36,40 @@ export class EnclosureService {
 
     async addAnimalToEnclosure(req: Request, res: Response) {
         const { id } = req.params; 
-        const { animalId } = req.body;
+        const animalsId  = req.body.animals;
+
         try {
-            const enclosure = await Enclosure.findById(id);
-            const animal = await AnimalModel.findById(animalId);
-            if (enclosure && animal) {
-                enclosure.animals.push(animalId);
-                await enclosure.save();
-                res.status(200).json({ message: "Animal added to the enclosure" });
-            } else {
-                res.status(404).json({ error: "Enclosure or animal not found" });
+            SecurityUtils.checkIfIdIsCorrect(id);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        const enclosure = await Enclosure.findById(id);
+        try {                        
+            await this.validateAnimals(animalsId, res);
+        } catch (error) {
+            return;
+        } 
+
+        try {
+            for (let id of animalsId) {                                
+                const animal = await AnimalModel.findById(id);
+                if (!animal) {
+                    res.status(404).json({ error: "Animal not found" });
+                    return;
+                }
+ 
+                if (enclosure && animal) {
+                    enclosure.animals.push(id);
+                    await enclosure.save();
+                    res.status(200).json({ message: "Animal added to the enclosure" });
+                } else {
+                    res.status(404).json({ error: "Enclosure or animal not found" });
+                }
             }
         } catch (error) {
-            res.status(500).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() });
         }
     }
 
