@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
+							"raw": "{\n    \"login\":\"zoookeper\",\n    \"password\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -74,7 +74,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6471bf5c2b3272fb08a1468e",
 									"type": "string"
 								}
 							]
@@ -91,14 +91,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429/role",
+							"raw": "{{HOST}}:{{PORT}}/user/6471c753e1e2779b1ca09241/role",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"64709840fc3d177fc2881429",
+								"6471c753e1e2779b1ca09241",
 								"role"
 							]
 						}
@@ -314,7 +314,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6471bf5c2b3272fb08a1468e",
 									"type": "string"
 								}
 							]
@@ -389,7 +389,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"species\": {\n        \"name\": \"\",\n        \"lifespan\": \"\"\n    },\n    \"name\":\"\",\n    \"age\":\"\",\n    \"healthStatus\":\"Not good\"\n}",
+							"raw": "{\n    \"name\":\"Simba\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -426,14 +426,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6471c2ad52d043eb436ca56f",
+							"raw": "{{HOST}}:{{PORT}}/animal/:6471c2ad52d043eb436ca56f",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6471c2ad52d043eb436ca56f"
+								":6471c2ad52d043eb436ca56f"
+							],
+							"variable": [
+								{
+									"key": "6471c2ad52d043eb436ca56f",
+									"value": null
+								}
 							]
 						}
 					},
@@ -443,7 +449,138 @@
 		},
 		{
 			"name": "/enclosure",
-			"item": []
+			"item": [
+				{
+					"name": "/enclosure",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"HAITI\",\n    \"maxCapacity\":\"50\",\n    \"animals\":[\"6471bfb7aabfe4fd821d0516\"],\n    \"zooKeeper\":\"6471c753e1e2779b1ca09241\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id/animal/:animalId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "647098de00c91b19982f02d4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								":id",
+								"animal",
+								":animalId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								},
+								{
+									"key": "animalId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id/animal/:animalId Copy",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/animal/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								"6471c85a919f3b33271b0152",
+								"animal",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
