@@ -1,6 +1,7 @@
 import { AnimalModel, IAnimal, SpeciesModel } from "../models";
 import {Request, Response} from "express";
 import { Model } from "mongoose";
+import { SecurityUtils } from "../utils";
 
 export class AnimalService {
     readonly model: Model<IAnimal>;
@@ -54,7 +55,6 @@ export class AnimalService {
 
     public async deleteAnimalById(req: Request, res: Response) {
         const animal = await this.checkAnimalExistence(req, res);
-
         if (animal) {
             await this.model.deleteOne({ _id: req.params.id }).exec();
             res.json(animal);
@@ -72,6 +72,7 @@ export class AnimalService {
             return null;
         }
 
+        if(!SecurityUtils.checkIfIdIsCorrect(req.params.id, res)) return;
         const animal = await this.getAnimalByIdHelper(req.params.id);
         if (!animal) {
             res.status(404).end();
