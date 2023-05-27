@@ -52,6 +52,7 @@ export class EnclosureController {
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.getEnclosureById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteEnclosureById.bind(this));
         router.put('/:id/logbook/:animalId', express.json(), checkUserToken(), checkUserRole([Roles.VETERINARIAN, Roles.ADMIN]), this.updateLogbook.bind(this));
+        router.get('/:id/logbook/:animalId', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.enclosureService.getLogBook.bind(this.enclosureService));
         return router;
     }
 }

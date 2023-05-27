@@ -174,6 +174,41 @@ export class EnclosureService {
         }
     }
 
+    async getLogBook(req: Request, res: Response) {
+        const { id, animalId } = req.params;
+        try {
+            SecurityUtils.checkIfIdIsCorrect(id);
+            SecurityUtils.checkIfIdIsCorrect(animalId);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        try {
+            const enclosure = await Enclosure.findById(id);
+            if (enclosure) {
+                const animal = await AnimalModel.findById(animalId);
+                if (!animal) {
+                    res.status(404).json({ error: "Animal not found" });
+                    return;
+                }
+
+                if (enclosure.animals.filter(animal => animal._id == animalId).length == 0) {
+                    res.status(404).json({ error: "Animal not found in the enclosure" });
+                    return;
+                }
+
+                res.status(200).json({ logBook: animal.logBook });
+            } else {
+                res.status(404).json({ error: "Enclosure not found" });
+            }
+        } catch (error) {
+            res.status(500).json({ error: error?.toString() });
+        }
+
+    }
+
+    /* UTILS */
     private async validateAnimals(animals: string[], res?: Response) {    
         for (const element of animals) {
             try {
