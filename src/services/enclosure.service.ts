@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import { Enclosure } from "../models/enclosure.model";
 import { AnimalModel } from "../models/animal.model";
 import { SecurityUtils } from "../utils";
+import { Maintenance } from "../models";
+import { MaintenanceService } from "./maintenance.service";
 
 export class EnclosureService {
     async createEnclosure(req: Request, res: Response) {
@@ -208,6 +210,7 @@ export class EnclosureService {
 
     }
 
+    
     /* UTILS */
     private async validateAnimals(animals: string[], res?: Response) {    
         for (const element of animals) {
@@ -230,4 +233,19 @@ export class EnclosureService {
             }
         }
     }
+
+    static async isEnclosureExist(id: string) {
+        try {
+            SecurityUtils.checkIfIdIsCorrect(id);
+        } catch (error) {
+            return false;
+        }
+
+        const enclosure = await Enclosure.findById(id);
+        if (!enclosure) {
+            return false;
+        }
+        return true;
+    }
+
 }
