@@ -488,6 +488,45 @@
 					"response": []
 				},
 				{
+					"name": "/enclosure/:id/animal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"animals\":[\"6471cff75821244161722c65\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0151/animal",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								"6471c85a919f3b33271b0151",
+								"animal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/enclosure/:id/animal/:animalId",
 					"request": {
 						"auth": {
