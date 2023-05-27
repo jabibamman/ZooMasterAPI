@@ -1,5 +1,4 @@
 import * as crypto from "crypto";
-import { Response } from "express";
 
 export class SecurityUtils {
 
@@ -9,12 +8,12 @@ export class SecurityUtils {
         return hash.digest('hex');
     }
 
-    public static checkIfIdIsCorrect(id: string, res:Response): boolean {
-        if(!RegExp(/^[0-9a-fA-F]{24}$/).exec(id)) {
-            res.status(400).end();
-            return false;
+    public static checkIfIdIsCorrect(id: string): void {
+        if(!RegExp(/^[0-9a-fA-F]{24}$/).test(id)) {
+            console.log(id);
+            
+            throw new Error("Id is not correct");
         }
-        return true;
     }
 
 }
