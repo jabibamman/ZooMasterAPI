@@ -36,7 +36,7 @@ export class MaintenanceController {
         router.post('/enclosure/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.maintenanceService.registerMaintenance.bind(this.maintenanceService));
         router.get('/enclosure/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.maintenanceService.getMaintenancesByEnclosureId.bind(this.maintenanceService));
         router.get('/enclosure', checkUserToken(), checkUserRole([Roles.ADMIN]), this.maintenanceService.getAllMaintenances.bind(this.maintenanceService)); 
-        router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.maintenanceService.deleteMaintenanceById.bind(this.maintenanceService));
+        router.delete('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.maintenanceService.deleteMaintenanceById.bind(this.maintenanceService));
         router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.maintenanceService.updateMaintenance.bind(this.maintenanceService));
         
        return router;

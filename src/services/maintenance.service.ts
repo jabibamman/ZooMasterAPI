@@ -1,14 +1,11 @@
-import { log } from 'console';
-import { Enclosure } from './../models/enclosure.model';
 import { SecurityUtils } from '../utils';
 import { Maintenance } from './../models/maintenance.model';
 import { Request, Response } from 'express';
 import { EnclosureService } from './enclosure.service';
-import * as moment from 'moment';
+import { MaintenanceLog } from '../models/maintenanceLog.model';
 export class MaintenanceService {
     
-    constructor() {
-    }
+    constructor() { }
 
     private static instance: MaintenanceService;
 
@@ -61,24 +58,15 @@ export class MaintenanceService {
             enclosure: id 
         }); 
 
+        const maintenanceLog = new MaintenanceLog({
+            maintenance: maintenance._id,
+            createdBy: req.user?.login,
+            reason: req.body.reason ? req.body.description : "No reason"
+        });
+
+        await maintenanceLog.save();
         await maintenance.save();
         res.json(maintenance);
-    }
-
-    public async putMaintenanceById(req: Request, res: Response) {
-        const maintenance = await this.checkMaintenanceExistence(req, res);
-
-        if (!maintenance) {
-            res.status(404).json({ message: "Maintenance not found" }).end();
-            return;
-        }
-
-        maintenance.enclosure = req.body.enclosure ? req.body.enclosure : maintenance.enclosure;
-        maintenance.date = req.body.date ? req.body.date : maintenance.date;
-        maintenance.description = req.body.description ? req.body.description : maintenance.description;
-
-        await maintenance.save();
-        res.json(maintenance).status(200).end();
     }
 
     public async deleteMaintenanceById(req: Request, res: Response) {
@@ -91,8 +79,16 @@ export class MaintenanceService {
         }
         
         const maintenance = await this.getMaintenanceById(id)
-        if (maintenance) {
+        if (maintenance) {     
             await Maintenance.deleteOne({ _id: id }).exec();
+            const maintenanceLog = new MaintenanceLog({
+                maintenance: id,
+                deletedBy: req.user?.login,
+                reason: req.body.reason
+            });
+            await maintenanceLog.save();
+
+
             if (await this.getMaintenanceByIdHelper(id)) {
                 res.status(400).end();
                 return;
@@ -147,6 +143,13 @@ export class MaintenanceService {
         maintenance.date = req.body.date ? req.body.date : maintenance.date;
         maintenance.description = req.body.description ? req.body.description : maintenance.description;
 
+        const maintenanceLog = new MaintenanceLog({
+            maintenance: maintenance._id,
+            editedBy: req.user?.login,
+            reason: req.body.reason ? req.body.reason : "No reason"
+        });
+
+        await maintenanceLog.save();
         await maintenance.save();
         res.json(maintenance).status(200).end();
     }

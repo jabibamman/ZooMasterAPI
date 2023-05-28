@@ -6,3 +6,4 @@ export * from "./animal.model";
 export * from "./enclosure.model";
 export * from "./maintenance.model";
 export * from "./treatment.model";
+export * from "./maintenanceLog.model";

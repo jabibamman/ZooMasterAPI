@@ -844,7 +844,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "",
+							"raw": "{\r\n    \"reason\":\"Water fixed\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -852,14 +852,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/647232d28ff062798fe993b3",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/647370df8eb8fff7a4237001",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
-								"647232d28ff062798fe993b3"
+								"647370df8eb8fff7a4237001"
 							]
 						}
 					},
@@ -882,7 +882,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Alerte\",\r\n    \"description\":\"Attention eau par terre\",\r\n    \"enclosure\":\"\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Alerte\",\r\n    \"description\":\"Attention eau par terre\",\r\n    \"enclosure\":\"\",\r\n    \"reason\":\"I've lost my key\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -953,6 +953,47 @@
 				},
 				{
 					"name": "/treatment/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/647364b301c6ab734a1513db",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"647364b301c6ab734a1513db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
