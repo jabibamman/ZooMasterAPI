@@ -351,3 +351,5 @@ $RECYCLE.BIN/
 
 # Others
 package-lock.json
+
+.idea/

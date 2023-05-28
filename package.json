@@ -10,10 +10,12 @@
     "docker:up": "docker-compose up -d",
     "docker:down": "docker-compose down"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["api", "typescript", "express", "mongoose", "docker", "nodejs"],
+  "author": ["James ABIB", "Charles CRETOIS", "Ronan KIELT"],
   "license": "ISC",
   "devDependencies": {
+    "@typegoose/typegoose": "^11.1.0",
+    "@types/mongoose": "^5.11.97",
     "@types/express": "^4.17.17",
     "@types/node": "^20.0.0",
     "concurrently": "^8.0.1",
