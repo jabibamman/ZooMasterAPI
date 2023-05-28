@@ -5,7 +5,7 @@ config();
 import mongoose from "mongoose";
 import express = require("express");
 
-import {AnimalController, StaffController, UserController} from './controllers';
+import {AnimalController, StaffController, UserController, MaintenanceController} from './controllers';
 import { RoleModel, } from "./models";
 import { roles } from "./utils";
 
@@ -25,10 +25,12 @@ async function startServer(): Promise<void> {
     const staffController = new StaffController();
     const enclosureController = new EnclosureController();
     const animalController = new AnimalController();
+    const maintenanceController = new MaintenanceController();
     app.use(userController.path, userController.buildRoutes());
     app.use(staffController.path, staffController.buildRoutes());
     app.use(enclosureController.path, enclosureController.buildRoutes());
     app.use(animalController.path, animalController.buildRoutes());
+    app.use(maintenanceController.path, maintenanceController.buildRoutes());
     app.listen(process.env.PORT, () => {
         console.log(`Server started on port ${process.env.PORT}`);
     });
@@ -51,8 +53,6 @@ async function upsertRoles() {
 
     await Promise.all(rolesRequests);
 }
-
-
 
 startServer().then(() =>
     console.log("Connected to MongoDB")
