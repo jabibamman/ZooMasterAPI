@@ -3,7 +3,7 @@ import * as express from "express";
 import { checkUserToken } from "../middlewares";
 import { checkUserRole } from "../middlewares/role.middleware";
 import { EnclosureService } from "../services/enclosure.service";
-import { Roles, roles } from "../utils";
+import { Roles } from "../utils";
 
 export class EnclosureController {
 
@@ -39,10 +39,6 @@ export class EnclosureController {
         this.enclosureService.deleteEnclosureById(req, res);
     }
 
-    async updateLogbook(req: Request, res: Response) {
-        this.enclosureService.updateLogBook(req, res);
-    }
-
 
     buildRoutes(): Router {
         const router = express.Router();
@@ -54,9 +50,6 @@ export class EnclosureController {
         router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.createEnclosure.bind(this));
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.getEnclosureById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteEnclosureById.bind(this));
-        // Logbook
-        router.put('/:id/logbook/:animalId', express.json(), checkUserToken(), checkUserRole([Roles.VETERINARIAN, Roles.ADMIN]), this.updateLogbook.bind(this));
-        router.get('/:id/logbook/:animalId', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.enclosureService.getLogBook.bind(this.enclosureService));
-       return router;
+        return router;
     }
 }
