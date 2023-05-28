@@ -527,89 +527,6 @@
 					"response": []
 				},
 				{
-					"name": "/enclosure/:id/logbook/:animalId",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"logBook\":\"Drugs given to this animal\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/logbook/6471cff75821244161722c67",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82",
-								"logbook",
-								"6471cff75821244161722c67"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/enclosure/:id/logbook/:animalId",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"logBook\":\"Drugs given to this animal\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/logbook/6471cff75821244161722c67",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82",
-								"logbook",
-								"6471cff75821244161722c67"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "/enclosure/:id",
 					"request": {
 						"auth": {
@@ -805,7 +722,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Alerte\",\n    \"description\":\"Attention eau par haut\"\n}",
+							"raw": "{\n    \"name\":\"Alerte\",\n    \"description\":\"Attention eau par terre\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -813,7 +730,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/64722ebabc48aa330bcebc21",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/6471fd0eabb2e0f0f3a01c82",
 							"host": [
 								"{{HOST}}"
 							],
@@ -821,7 +738,7 @@
 							"path": [
 								"maintenance",
 								"enclosure",
-								"64722ebabc48aa330bcebc21"
+								"6471fd0eabb2e0f0f3a01c82"
 							]
 						}
 					},
@@ -987,6 +904,291 @@
 									"key": "id",
 									"value": null
 								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/treatment",
+			"item": [
+				{
+					"name": "/treatment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"animal\": \"6471bfb7aabfe4fd821d0516\",\r\n    \"veterinarian\": \"6471c753e1e2779b1ca09241\",\r\n    \"enclosure\": \"6471fd0eabb2e0f0f3a01c82\",\r\n    \"description\": \"The animal was suffering from a minor injury. Cleaned and applied medication.\",\r\n    \"medication\": [\r\n        {\r\n            \"name\": \"Pain Reliever\",\r\n            \"dosage\": \"2 pills per day for 5 days\"\r\n        },\r\n        {\r\n            \"name\": \"Antibiotics\",\r\n            \"dosage\": \"1 pill per day for 10 days\"\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/647364b301c6ab734a1513db",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"647364b301c6ab734a1513db"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"enclosure\": \"6471fd0eabb2e0f0f3a01c82\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/6473690c656502814d813e23",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"6473690c656502814d813e23"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/647366f1285ca5e33964bbdb",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"647366f1285ca5e33964bbdb"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/animal/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/animal/6471bfb7aabfe4fd821d0516",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"animal",
+								"6471bfb7aabfe4fd821d0516"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment/veterinarian/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/veterinarian/6471c753e1e2779b1ca09241",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"veterinarian",
+								"6471c753e1e2779b1ca09241"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment/enclosure/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"enclosure",
+								"6471fd0eabb2e0f0f3a01c82"
 							]
 						}
 					},
