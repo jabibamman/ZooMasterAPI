@@ -5,7 +5,6 @@ export interface IAnimal extends Document {
   age: number;
   healthStatus: string;
   species: ISpecies["_id"];
-  logBook: string;
 }
 
 export interface ISpecies extends Document {
@@ -26,7 +25,6 @@ const animalSchema = new Schema<IAnimal>({
   name: { type: String, required: true },
   age: { type: Number, required: true },
   healthStatus: { type: String, required: true },
-  logBook: { type: String, required: true },
   species: { type: mongoose.Schema.Types.ObjectId, ref: 'Species' }
 });
 

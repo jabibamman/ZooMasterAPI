@@ -7,8 +7,6 @@ export interface IMaintenance extends Document {
     enclosure: IEnclosure["_id"];
 }
 
-
-
 const EnclosureSchema: Schema = new Schema({
     name: { type: String, required: true },
     description: { type: String, required: true },
