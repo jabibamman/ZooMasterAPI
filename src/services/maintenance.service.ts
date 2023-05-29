@@ -61,7 +61,8 @@ export class MaintenanceService {
         const maintenanceLog = new MaintenanceLog({
             maintenance: maintenance._id,
             createdBy: req.user?.login,
-            reason: req.body.reason ? req.body.description : "No reason"
+            createdAt: new Date(),
+            reason: req.body.description ? req.body.description : "No description"
         });
 
         await maintenanceLog.save();
@@ -84,6 +85,7 @@ export class MaintenanceService {
             const maintenanceLog = new MaintenanceLog({
                 maintenance: id,
                 deletedBy: req.user?.login,
+                deletedAt: new Date(),
                 reason: req.body.reason
             });
             await maintenanceLog.save();
@@ -143,13 +145,13 @@ export class MaintenanceService {
         maintenance.date = req.body.date ? req.body.date : maintenance.date;
         maintenance.description = req.body.description ? req.body.description : maintenance.description;
 
-        const maintenanceLog = new MaintenanceLog({
-            maintenance: maintenance._id,
-            editedBy: req.user?.login,
+        const updatedMaintenanceLog = {
+            updatedBy: req.user?.login,
+            updatedAt: new Date(),
             reason: req.body.reason ? req.body.reason : "No reason"
-        });
+        };
 
-        await maintenanceLog.save();
+        await MaintenanceLog.updateOne({ maintenance: maintenance._id }, { $set: updatedMaintenanceLog }).exec();
         await maintenance.save();
         res.json(maintenance).status(200).end();
     }
