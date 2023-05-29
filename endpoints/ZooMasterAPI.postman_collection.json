@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "6c09187c-6a19-43cf-ab3c-72765dca6926",
+		"_postman_id": "a6349805-11e1-4ff7-ab69-50efbd140f4d",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25694887",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-6c09187c-6a19-43cf-ab3c-72765dca6926?action=share&creator=25694887&source=collection_link"
+		"_exporter_id": "25875093"
 	},
 	"item": [
 		{
@@ -1307,6 +1306,19 @@
 								"6471fd0eabb2e0f0f3a01c82"
 							]
 						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ticket",
+			"item": [
+				{
+					"name": "ticket/",
+					"request": {
+						"method": "GET",
+						"header": []
 					},
 					"response": []
 				}

@@ -1,4 +1,4 @@
-import {Ticket} from "../models/ticket.model";
+import {Ticket} from "../models";
 
 export enum Pass {
     PASS_DAY = "PASS_DAY",
@@ -9,6 +9,7 @@ export enum Pass {
     PASS_NIGHT = "PASS_NIGHT"
 }
 
+/*
 export class PassDay extends Ticket {
     constructor(startYear: number, startMonth: number, startDay: number) {
         super(startYear, startMonth, startDay);
@@ -90,3 +91,4 @@ export class PassNight extends PassDay {
         return true;
     }
 }
+*/

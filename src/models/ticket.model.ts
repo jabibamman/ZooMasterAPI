@@ -20,17 +20,20 @@ const ticketSchema = new Schema<Ticket>({
 });
 
 export class Ticket {
+    _id: string;
     name: Pass;
     start: Date;
     expiration: Date;
 
-    constructor(year: number, month: number, day: number) {
-        this.start = this.verifyDate(year, month, day);
-        this.name = Pass.PASS_DAY;
-        this.expiration = this.start;
+    constructor(name: Pass, year: number, month: number, day: number) {
+        this._id = new mongoose.Types.ObjectId().toString();
+        this.start = Ticket.verifyDate(year, month, day);
+        this.name = name;
+        this.expiration = this.start; //TODO: set expiration date
     }
 
-    verifyDate(year: number, month: number, day: number): Date {
+    static verifyDate(year: number, month: number, day: number): Date {
+        console.log(year, month-1, day);
         const date = new Date(year, month-1, day);
 
         if (isNaN(date.valueOf()) || date.getFullYear() !== year || date.getMonth()+1 !== month || date.getDate() !== day) {
@@ -59,6 +62,10 @@ export class Ticket {
         }
         return true;
     }
+}
+
+export interface TicketRequest {
+    name: Pass;
 }
 
 export const TicketModel: Model<Ticket> = mongoose.model("Ticket", ticketSchema);

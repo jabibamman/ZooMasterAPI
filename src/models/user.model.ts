@@ -29,10 +29,11 @@ const userSchema = new Schema<User>({
 });
 
 export interface User extends Document {
+    _id: string;
     login: string;
     password: string;
     roles: string[] | Role[];
-    tickets: Ticket[]
+    tickets: Ticket["_id"];
 }
 
 export interface UserRegisterDto {
