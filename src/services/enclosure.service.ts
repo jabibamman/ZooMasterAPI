@@ -2,8 +2,9 @@ import { Request, Response } from "express";
 import { Enclosure } from "../models/enclosure.model";
 import { AnimalModel } from "../models/animal.model";
 import { SecurityUtils } from "../utils";
-import { Maintenance } from "../models";
-import { MaintenanceService } from "./maintenance.service";
+import { MaintenanceLog } from "../models";
+import mongoose from "mongoose";
+import { ObjectId } from 'mongodb';
 
 export class EnclosureService {
     async createEnclosure(req: Request, res: Response) {
@@ -140,6 +141,25 @@ export class EnclosureService {
             res.status(500).json({ error: error?.toString() });
         }
     }
+
+    async getBestMonthForMaintenance(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            SecurityUtils.checkIfIdIsCorrect(id);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        try {
+            const bestMonthForRepairs = await this.determineBestMonth(id);            
+            res.status(200).json(bestMonthForRepairs);
+        } catch (error) {
+            res.status(500).json({ error: error?.toString() });
+        }
+    }
+
+
     
     /* UTILS */
     private async validateAnimals(animals: string[], res?: Response) {    
@@ -177,5 +197,61 @@ export class EnclosureService {
         }
         return true;
     }
+
+    private async groupAndCountByMonth(enclosureId: string): Promise<{ _id: { month: number; year: number; }; count: number; }[]> {
+        try {            
+            const groupAndCountByMonth = await MaintenanceLog.aggregate([
+                { $match: { enclosure: new mongoose.Types.ObjectId(enclosureId) } },
+                { $group: {
+                        _id: {
+                            month: { $month: "$createdAt" },
+                            year: { $year: "$createdAt" }
+                        },
+                        count: { $sum: 1 }
+                    }
+                },
+                { $sort: { "_id.year": 1, "_id.month": 1 } }
+            ]);
+                    
+            return groupAndCountByMonth;
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
+    }
+    
+
+    private async determineBestMonth(enclosureId: string): Promise<{ bestMonth: string; maintenances: number; }[]> {
+        try {
+            const logsByMonth = await this.groupAndCountByMonth(enclosureId);
+            const date = new Date();
+            const currentYear = date.getFullYear();
+            const possibleMonths = Array.from({length: 12}, (_, i) => ({month: i+1, year: currentYear}));
+    
+            const monthsWithNoMaintenance = possibleMonths.filter(m => !logsByMonth.find((log: { _id: { month: number; year: number; }; }) => log._id.month === m.month && log._id.year === m.year));
+
+            if(monthsWithNoMaintenance.length > 0) {
+                return monthsWithNoMaintenance.map(m => ({ bestMonth: `${m.month}-${m.year}`, maintenances: 0 }));
+            } else {
+                let minCount = Infinity;
+                let bestMonths: { bestMonth: string; maintenances: number; }[] = [];
+        
+                for (let log of logsByMonth) {                    
+                    if (log.count < minCount) {                        
+                        minCount = log.count;
+                        bestMonths = [{ bestMonth: `${log._id.month}-${log._id.year}`, maintenances: minCount }];
+                    } else if (log.count === minCount) {
+                        bestMonths.push({ bestMonth: `${log._id.month}-${log._id.year}`, maintenances: minCount });
+                    }
+                }
+        
+                return bestMonths;
+            }
+
+        } catch (err) {
+            console.error(err);
+            throw err;
+        }
+    }    
 
 }

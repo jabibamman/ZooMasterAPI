@@ -699,6 +699,49 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "/enclosure/:id/best-month-for-maintenance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/best-month-for-maintenance/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								"6471fd0eabb2e0f0f3a01c82",
+								"best-month-for-maintenance",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -722,7 +765,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Alerte\",\n    \"description\":\"Attention eau par terre\",\n}",
+							"raw": "{\n    \"name\":\"Alerte\",\n    \"description\":\"Attention eau par terre\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"

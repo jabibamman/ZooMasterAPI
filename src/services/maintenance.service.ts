@@ -60,6 +60,7 @@ export class MaintenanceService {
 
         const maintenanceLog = new MaintenanceLog({
             maintenance: maintenance._id,
+            enclosure: id,
             createdBy: req.user?.login,
             createdAt: new Date(),
             reason: req.body.description ? req.body.description : "No description"
@@ -84,6 +85,7 @@ export class MaintenanceService {
             await Maintenance.deleteOne({ _id: id }).exec();
             const maintenanceLog = new MaintenanceLog({
                 maintenance: id,
+                enclosure: maintenance.enclosure,
                 deletedBy: req.user?.login,
                 deletedAt: new Date(),
                 reason: req.body.reason
@@ -146,6 +148,8 @@ export class MaintenanceService {
         maintenance.description = req.body.description ? req.body.description : maintenance.description;
 
         const updatedMaintenanceLog = {
+            maintenance: maintenance._id,
+            enclosure: maintenance.enclosure,
             updatedBy: req.user?.login,
             updatedAt: new Date(),
             reason: req.body.reason ? req.body.reason : "No reason"
