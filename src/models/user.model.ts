@@ -28,7 +28,7 @@ const userSchema = new Schema<User>({
     collection: "Users"
 });
 
-export interface User {
+export interface User extends Document {
     login: string;
     password: string;
     roles: string[] | Role[];
