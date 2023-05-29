@@ -1,5 +1,5 @@
 import mongoose, {Model, Schema} from "mongoose";
-import {Pass} from "../utils/ticket.utils";
+import {Pass} from "../utils";
 
 const ticketSchema = new Schema<Ticket>({
     name: {
@@ -27,12 +27,12 @@ export class Ticket {
 
     constructor(name: Pass, year: number, month: number, day: number) {
         this._id = new mongoose.Types.ObjectId().toString();
-        this.start = this.verifyDate(year, month, day);
         this.name = name;
-        this.expiration = this.start; //TODO: set expiration date
+        this.start = this.verifyDate(year, month, day);
+        this.expiration = this.setExpirationDate();
     }
 
-    verifyDate(year: number, month: number, day: number): Date {
+    private verifyDate(year: number, month: number, day: number): Date {
         const date = new Date();
         date.setUTCFullYear(year);
         date.setUTCMonth(month - 1);
@@ -49,8 +49,34 @@ export class Ticket {
         if (date < today) {
             throw new Error("The ticket is already expired");
         }
+        if (this.name == Pass.PASS_DAYMONTH) {
+            date.setUTCDate(1);
+        }
         return date;
     }
+
+
+    private setExpirationDate(): Date {
+        const date = new Date(this.start);
+        date.setUTCHours(23,59,59,999);
+
+        if (this.name == Pass.PASS_DAY || this.name == Pass.PASS_ESCAPEGAME || this.name == Pass.PASS_NIGHT) {
+            return date;
+        }
+        if (this.name == Pass.PASS_WEEKEND) {
+            if(this.start.getUTCDay() != 6) {
+                throw new Error("The ticket is a PASS WEEKEND but it doesn't start on Saturday");
+            }
+            date.setUTCDate(date.getUTCDate() + 1);
+            return date;
+        }
+        if (this.name == Pass.PASS_YEAR || this.name == Pass.PASS_DAYMONTH) {
+            date.setUTCFullYear(date.getUTCFullYear() + 1);
+            return date;
+        }
+        throw new Error("The ticket is invalid");
+    }
+
 
     validateTicket(): boolean {
         const today = new Date();
