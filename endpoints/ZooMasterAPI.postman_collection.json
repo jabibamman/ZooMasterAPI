@@ -722,7 +722,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Alerte\",\n    \"description\":\"Attention eau par terre\"\n}",
+							"raw": "{\n    \"name\":\"Alerte\",\n    \"description\":\"Attention eau par terre\",\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -882,7 +882,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Alerte\",\r\n    \"description\":\"Attention eau par terre\",\r\n    \"enclosure\":\"\",\r\n    \"reason\":\"I've lost my key\"\r\n}",
+							"raw": "{\r\n    \"name\":\"Alerte\",\r\n    \"description\":\"Attention eau par haut\",\r\n    \"enclosure\":\"\",\r\n    \"reason\":\"\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -890,20 +890,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/:id",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/64745ec2b75ec23f0fa0c4dd",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": null
-								}
+								"64745ec2b75ec23f0fa0c4dd"
 							]
 						}
 					},
