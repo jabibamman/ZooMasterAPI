@@ -265,22 +265,21 @@ export class EnclosureService {
 
             if(monthsWithNoMaintenance.length > 0) {
                 return monthsWithNoMaintenance.map(m => ({ bestMonth: `${m.month}-${m.year}`, maintenances: 0 }));
-            } else {
-                let minCount = Infinity;
-                let bestMonths: { bestMonth: string; maintenances: number; }[] = [];
-        
-                for (let log of logsByMonth) {                    
-                    if (log.count < minCount) {                        
-                        minCount = log.count;
-                        bestMonths = [{ bestMonth: `${log._id.month}-${log._id.year}`, maintenances: minCount }];
-                    } else if (log.count === minCount) {
-                        bestMonths.push({ bestMonth: `${log._id.month}-${log._id.year}`, maintenances: minCount });
-                    }
-                }
-        
-                return bestMonths;
             }
 
+            let minCount = Infinity;
+            let bestMonths: { bestMonth: string; maintenances: number; }[] = [];
+    
+            for (let log of logsByMonth) {                    
+                if (log.count < minCount) {                        
+                    minCount = log.count;
+                    bestMonths = [{ bestMonth: `${log._id.month}-${log._id.year}`, maintenances: minCount }];
+                } else if (log.count === minCount) {
+                    bestMonths.push({ bestMonth: `${log._id.month}-${log._id.year}`, maintenances: minCount });
+                }
+            }
+    
+            return bestMonths;
         } catch (err) {
             console.error(err);
             throw err;
