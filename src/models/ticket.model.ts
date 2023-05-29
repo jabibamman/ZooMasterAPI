@@ -27,21 +27,24 @@ export class Ticket {
 
     constructor(name: Pass, year: number, month: number, day: number) {
         this._id = new mongoose.Types.ObjectId().toString();
-        this.start = Ticket.verifyDate(year, month, day);
+        this.start = this.verifyDate(year, month, day);
         this.name = name;
         this.expiration = this.start; //TODO: set expiration date
     }
 
-    static verifyDate(year: number, month: number, day: number): Date {
-        console.log(year, month-1, day);
-        const date = new Date(year, month-1, day);
+    verifyDate(year: number, month: number, day: number): Date {
+        const date = new Date();
+        date.setUTCFullYear(year);
+        date.setUTCMonth(month - 1);
+        date.setUTCDate(day);
+        date.setUTCHours(0,0,0,0);
 
-        if (isNaN(date.valueOf()) || date.getFullYear() !== year || date.getMonth()+1 !== month || date.getDate() !== day) {
+        if (isNaN(date.valueOf()) || date.getUTCFullYear() != year || date.getUTCMonth() != (month - 1) || date.getUTCDate() != day) {
             throw new Error("The input date is invalid");
         }
 
         const today = new Date();
-        date.setHours(0,0,0,0);
+        today.setUTCHours(0,0,0,0);
 
         if (date < today) {
             throw new Error("The ticket is already expired");
