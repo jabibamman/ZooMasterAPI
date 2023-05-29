@@ -15,12 +15,12 @@ export interface IMaintenanceLog extends Document {
 
 const MaintenanceLogSchema: Schema = new Schema({
     maintenance: { type: Schema.Types.ObjectId, ref: 'Maintenance', required: true },
-    deletedAt: { type: Date, default: Date.now },
+    deletedAt: { type: Date, required: false },
     deletedBy: { type: String, required: false },
     updatedBy: { type: String, required: false },
-    updatedAt: { type: Date, default: Date.now },
-    createdBy: { type: String, required: true },
-    createdAt: { type: Date, default: Date.now },
+    updatedAt: { type: Date, required: false },
+    createdBy: { type: String, required: false },
+    createdAt: { type: Date, required: false },
     reason: { type: String, default: "No reason" }
 });
 
