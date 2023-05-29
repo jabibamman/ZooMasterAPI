@@ -19,6 +19,10 @@ export class EnclosureController {
         this.enclosureService.createEnclosure(req, res);
     }
 
+    async updateEnclosure(req: Request, res: Response) {
+        this.enclosureService.updateEnclosureById(req, res);
+    }
+
     async getEnclosureById(req: Request, res: Response) {
         this.enclosureService.getEnclosureById(req, res);
     }
@@ -52,6 +56,7 @@ export class EnclosureController {
         router.get('/:id/animal', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.ADMIN]), this.getAnimalsInEnclosure.bind(this));
         // Enclosure
         router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.createEnclosure.bind(this));
+        router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.updateEnclosure.bind(this));
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.getEnclosureById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteEnclosureById.bind(this));
         // Maintenance
