@@ -25,6 +25,7 @@ export class EnclosureService {
 
     async getEnclosureById(req: Request, res: Response) {
         const { id } = req.params;
+        
         try {
             const enclosure = await Enclosure.findById(id);
             if (enclosure) {
@@ -37,6 +38,38 @@ export class EnclosureService {
             res.status(500).json({ error: error?.toString() });
         }
 
+    }
+
+    async updateEnclosureById(req: Request, res: Response) {
+        const { id } = req.params;
+        try {
+            SecurityUtils.checkIfIdIsCorrect(id);
+        } catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        try {
+            const enclosure = await Enclosure.findById(id);
+            if (enclosure) {
+                enclosure.name = req.body.name || enclosure.name;
+                enclosure.description = req.body.description || enclosure.description;
+                enclosure.maxCapacity = req.body.maxCapacity || enclosure.maxCapacity;
+                enclosure.images = req.body.images || enclosure.images;
+                enclosure.type = req.body.type || enclosure.type;
+                enclosure.duration = req.body.duration || enclosure.duration;
+                enclosure.openingHours = req.body.openingHours || enclosure.openingHours;
+                enclosure.accessibility = req.body.accessibility || enclosure.accessibility;
+                enclosure.animals = req.body.animals || enclosure.animals;
+                enclosure.zooKeeper = req.body.zooKeeper || enclosure.zooKeeper;
+                await enclosure.save();
+                res.status(200).json({ message: "Enclosure updated" });
+            } else {
+                res.status(404).json({ error: "Enclosure not found" });
+            }
+        } catch (error) {
+            res.status(400).json({ error: error?.toString() });
+        }
     }
 
     async addAnimalToEnclosure(req: Request, res: Response) {

@@ -467,7 +467,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"HAITI\",\n    \"maxCapacity\":\"50\",\n    \"animals\":[\"6471bfb7aabfe4fd821d0516\"],\n    \"zooKeeper\":\"6471c753e1e2779b1ca09241\"\n}",
+							"raw": "{\n  \"name\": \"Enclos des lions\",\n  \"description\": \"Cet enclos abrite les majestueux lions.\",\n  \"maxCapacity\": 10,\n  \"images\": [\n    \"https://example.com/image1.jpg\",\n    \"https://example.com/image2.jpg\"\n  ],\n  \"type\": \"Savane\",\n  \"duration\": \"120\",\n  \"openingHours\": \"9:00 - 18:00\",\n  \"accessibility\": true,\n  \"animals\": [\"6471bfb7aabfe4fd821d0516\"],\n  \"zooKeeper\": \"6471c753e1e2779b1ca09241\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -482,6 +482,44 @@
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\",\n  \"description\": \".\",\n  \"maxCapacity\": 50,\n  \"images\": [],\n  \"type\": \"\",\n  \"duration\": \"\",\n  \"openingHours\": \"\",\n  \"accessibility\": false,\n  \"animals\": [\"6471bfb7aabfe4fd821d0516\"],\n  \"zooKeeper\": \"6471c753e1e2779b1ca09241\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/647470d341ad733fd2b32dda",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								"647470d341ad733fd2b32dda"
 							]
 						}
 					},
