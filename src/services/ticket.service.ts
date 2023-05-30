@@ -78,7 +78,7 @@ export class TicketService {
         try {
             const ticket = await this.ticketModel.findById(id);
             if (ticket) {
-                const bodyTicket = new Ticket(ticket.name || req.body.name, req.body.year, req.body.month, req.body.day);
+                const bodyTicket = new Ticket(req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
                 ticket.name = bodyTicket.name;
                 ticket.start = bodyTicket.start;
                 ticket.expiration = bodyTicket.expiration;
