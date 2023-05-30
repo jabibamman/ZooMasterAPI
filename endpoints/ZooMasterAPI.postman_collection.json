@@ -2,9 +2,7 @@
 	"info": {
 		"_postman_id": "6c09187c-6a19-43cf-ab3c-72765dca6926",
 		"name": "ZooMasterAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25694887",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-6c09187c-6a19-43cf-ab3c-72765dca6926?action=share&creator=25694887&source=collection_link"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -1305,6 +1303,199 @@
 								"treatment",
 								"enclosure",
 								"6471fd0eabb2e0f0f3a01c82"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/staff",
+			"item": [
+				{
+					"name": "/staff/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hosts\":[\"646d14703e3301e68e01c58c\"],\r\n    \"healers\":[\"646d14743e3301e68e01c58e\"],\r\n    \"sellers\":[\"646d14703e3301e68e01c58c\"],\r\n    \"cleaners\":[\"646d147d3e3301e68e01c592\"],\r\n    \"date\":\"2020-05-20T22:36:22.353+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/staff/open",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-05-20T22:36:22.353+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/open",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"open"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/staff/open/night/646d14703e3301e68e01c58c",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "646e9739407019a64c0613b1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-05-20T07:00:00.000+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/open/night/646d14703e3301e68e01c58c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"open",
+								"night",
+								"646d14703e3301e68e01c58c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/visitor",
+			"item": [
+				{
+					"name": "/visitor/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ronan\",\r\n    \"email\":\"ronan.crampte@gmail.com\",\r\n    \"ticketType\":\"PASS_DAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visitorID\":\"6474b1fcef12bc086ba71da2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/remove",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/rate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/rate",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"rate"
 							]
 						}
 					},
