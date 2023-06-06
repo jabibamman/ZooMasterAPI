@@ -10,7 +10,8 @@ import {
     StaffController,
     UserController,
     MaintenanceController,
-    TicketController
+    TicketController,
+    VisitorController
 } from './controllers';
 import { RoleModel, } from "./models";
 import { roles } from "./utils";
@@ -30,6 +31,7 @@ async function startServer(): Promise<void> {
     const app = express();
     const userController = new UserController();
     const staffController = new StaffController();
+    const visitorController = new VisitorController();
     const enclosureController = new EnclosureController();
     const animalController = new AnimalController();
     const maintenanceController = new MaintenanceController();
@@ -37,6 +39,7 @@ async function startServer(): Promise<void> {
     const ticketController = new TicketController();
     app.use(userController.path, userController.buildRoutes());
     app.use(staffController.path, staffController.buildRoutes());
+    app.use(visitorController.path, visitorController.buildRoutes());
     app.use(enclosureController.path, enclosureController.buildRoutes());
     app.use(animalController.path, animalController.buildRoutes());
     app.use(maintenanceController.path, maintenanceController.buildRoutes());

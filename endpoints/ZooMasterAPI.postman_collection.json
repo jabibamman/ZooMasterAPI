@@ -2,8 +2,7 @@
 	"info": {
 		"_postman_id": "a6349805-11e1-4ff7-ab69-50efbd140f4d",
 		"name": "ZooMasterAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25875093"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -1312,55 +1311,16 @@
 			]
 		},
 		{
-			"name": "ticket",
+			"name": "/staff",
 			"item": [
 				{
-					"name": "/ticket/",
+					"name": "/staff/register",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6474d65ef40a40dde1fefba4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"ticket",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/ticket/",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6474d65ef40a40dde1fefba4",
-									"type": "string"
-								}
-							]
-						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"ticket\": {\r\n        \"name\": \"PASS_DAYMONTH\",\r\n        \"year\": \"2023\",\r\n        \"month\": \"5\",\r\n        \"day\": \"29\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"hosts\":[\"646d14703e3301e68e01c58c\"],\r\n    \"healers\":[\"646d14743e3301e68e01c58e\"],\r\n    \"sellers\":[\"646d14703e3301e68e01c58c\"],\r\n    \"cleaners\":[\"646d147d3e3301e68e01c592\"],\r\n    \"date\":\"2020-05-20T22:36:22.353+00:00\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1368,63 +1328,56 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"raw": "localhost:3000/staff/register",
 							"host": [
-								"{{HOST}}"
+								"localhost"
 							],
-							"port": "{{PORT}}",
+							"port": "3000",
 							"path": [
-								"ticket",
-								""
+								"staff",
+								"register"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/ticket/:id",
+					"name": "/staff/open",
 					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6474d65ef40a40dde1fefba4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"ticket",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "6475178d84eeb505e88141f8"
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-05-20T22:36:22.353+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/open",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"open"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/ticket/:id",
+					"name": "/staff/open/night/646d14703e3301e68e01c58c",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6474d65ef40a40dde1fefba4",
+									"value": "646e9739407019a64c0613b1",
 									"type": "string"
 								}
 							]
@@ -1433,23 +1386,116 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"PASS_NIGHT\",\r\n    \"year\": \"2023\",\r\n    \"month\": \"05\",\r\n    \"day\": \"29\"\r\n}"
+							"raw": "{\r\n    \"date\":\"2023-05-20T07:00:00.000+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"raw": "localhost:3000/staff/open/night/646d14703e3301e68e01c58c",
 							"host": [
-								"{{HOST}}"
+								"localhost"
 							],
-							"port": "{{PORT}}",
+							"port": "3000",
 							"path": [
-								"ticket",
-								":id"
-							],
-							"variable": [
-								{
-									"key": "id",
-									"value": "6474ec55fcf3e62d4adf1b83"
+								"staff",
+								"open",
+								"night",
+								"646d14703e3301e68e01c58c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/visitor",
+			"item": [
+				{
+					"name": "/visitor/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ronan\",\r\n    \"email\":\"ronan.crampte@gmail.com\",\r\n    \"ticketType\":\"PASS_DAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
 								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visitorID\":\"6474b1fcef12bc086ba71da2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/remove",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/rate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/rate",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"rate"
 							]
 						}
 					},
