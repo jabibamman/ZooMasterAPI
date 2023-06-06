@@ -1,8 +1,9 @@
 {
 	"info": {
-		"_postman_id": "a6349805-11e1-4ff7-ab69-50efbd140f4d",
+		"_postman_id": "b5f8ff6c-4e6c-4376-b977-25392c56208f",
 		"name": "ZooMasterAPI",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "25875093"
 	},
 	"item": [
 		{
@@ -1496,6 +1497,152 @@
 							"path": [
 								"visitor",
 								"rate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/ticket",
+			"item": [
+				{
+					"name": "/ticket/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticket\": {\r\n        \"name\": \"PASS_DAYMONTH\",\r\n        \"year\": \"2023\",\r\n        \"month\": \"5\",\r\n        \"day\": \"29\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6475178d84eeb505e88141f8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"PASS_NIGHT\",\r\n    \"year\": \"2023\",\r\n    \"month\": \"05\",\r\n    \"day\": \"29\"\r\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6474ec55fcf3e62d4adf1b83"
+								}
 							]
 						}
 					},

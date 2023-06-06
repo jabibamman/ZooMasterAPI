@@ -1,5 +1,3 @@
-import {Ticket} from "../models";
-
 export enum Pass {
     PASS_DAY = "PASS_DAY",
     PASS_WEEKEND = "PASS_WEEKEND",
