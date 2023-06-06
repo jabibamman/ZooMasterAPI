@@ -32,4 +32,4 @@ export interface VisitorRequest {
     ticketType: string;
 }
 
-export const VisitorModel: Model<Visitor> = mongoose.model("Visitor", visitorSchema);
+export const VisitorModel: Model<Visitor> = mongoose.model("Visitor", visitorSchema, "Visitors");
