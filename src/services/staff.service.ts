@@ -104,4 +104,3 @@ export class StaffService {
         else res.json("Le parc est ouvert cette nuit !");
     }
 }
- 

@@ -10,6 +10,7 @@ import {
     StaffController,
     UserController,
     MaintenanceController,
+    TicketController,
     VisitorController
 } from './controllers';
 import { RoleModel, } from "./models";
@@ -35,6 +36,7 @@ async function startServer(): Promise<void> {
     const animalController = new AnimalController();
     const maintenanceController = new MaintenanceController();
     const treatmentController = new TreatmentController();
+    const ticketController = new TicketController();
     app.use(userController.path, userController.buildRoutes());
     app.use(staffController.path, staffController.buildRoutes());
     app.use(visitorController.path, visitorController.buildRoutes());
@@ -42,10 +44,11 @@ async function startServer(): Promise<void> {
     app.use(animalController.path, animalController.buildRoutes());
     app.use(maintenanceController.path, maintenanceController.buildRoutes());
     app.use(treatmentController.path, treatmentController.buildRoutes());
+    app.use(ticketController.path, ticketController.buildRoutes());
     app.listen(process.env.PORT, () => {
         console.log(`Server started on port ${process.env.PORT}`);
     });
-}   
+}
 
 async function upsertRoles() {
     const countRoles = await RoleModel.countDocuments().exec();

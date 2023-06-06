@@ -158,7 +158,7 @@ export class UserService {
         }).exec();
     }
 
-    private async getUserByIdHelper(id: string): Promise<typeof UserModel.prototype | null> {
+    public async getUserByIdHelper(id: string): Promise<typeof UserModel.prototype | null> {
         if (!id) {
             return null;
         }
