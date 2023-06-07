@@ -1,6 +1,6 @@
 import {Request, Response, Router} from "express";
 import * as express from "express";
-import {Staff, StaffRequest, User} from "../models";
+import {StaffRequest} from "../models";
 import {StaffService} from "../services";
 import {checkUserRole, checkUserToken} from "../middlewares";
 import {Roles} from "../utils";

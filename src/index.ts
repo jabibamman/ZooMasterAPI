@@ -1,4 +1,4 @@
-import { EnclosureController } from './controllers/enclosure.controller';
+import { EnclosureController } from './controllers';
 import { config } from "dotenv";
 config();
 
@@ -18,7 +18,7 @@ import { roles } from "./utils";
 import { TreatmentController } from './controllers/treatment.controller';
 
 async function startServer(): Promise<void> {
-    const connect = await mongoose.connect(process.env.MONGO_URI as string, {
+    await mongoose.connect(process.env.MONGO_URI as string, {
         auth: {
             username: process.env.MONGO_ROOT_USERNAME,
             password: process.env.MONGO_ROOT_PASSWORD,
@@ -26,7 +26,7 @@ async function startServer(): Promise<void> {
         authSource: "admin",
     });
 
-   upsertRoles();
+   await upsertRoles();
 
     const app = express();
     const userController = new UserController();
@@ -62,7 +62,6 @@ async function upsertRoles() {
             { name: roleName },
             { upsert: true, new: true }
         ).exec();
-
     });
 
     await Promise.all(rolesRequests);

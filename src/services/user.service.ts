@@ -144,7 +144,7 @@ export class UserService {
         
         user.roles = roles;
         await user.save();
-        res.status(200).json(user);
+        res.status(200).json(user).end();
     }
     
 

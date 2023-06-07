@@ -1,4 +1,4 @@
-import {UserModel, Visitor, VisitorModel, VisitorRequest} from "../models";
+import {Visitor, VisitorModel, VisitorRequest} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
 import {SecurityUtils, Pass} from "../utils";

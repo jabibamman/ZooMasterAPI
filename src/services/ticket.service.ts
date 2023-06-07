@@ -1,4 +1,4 @@
-import {Request, Response, Router} from "express";
+import {Request, Response} from "express";
 import {Model} from "mongoose";
 import {Ticket, TicketModel, User, UserModel} from "../models";
 import {UserService} from "./user.service";

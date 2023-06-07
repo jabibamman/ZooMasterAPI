@@ -2,7 +2,6 @@ import {Request, Response, Router} from "express";
 import * as express from "express";
 import {VisitorRequest} from "../models";
 import {VisitorService} from "../services";
-import {checkUserToken} from "../middlewares";
 
 export class VisitorController {
 

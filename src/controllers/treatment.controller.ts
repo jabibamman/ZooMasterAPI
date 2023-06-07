@@ -14,35 +14,35 @@ export class TreatmentController {
     }
 
     async createTreatment(req: Request, res: Response) {
-        this.treatmentService.registerTreatment(req, res);
+        await this.treatmentService.registerTreatment(req, res);
     }
     
     async getTreatmentById(req: Request, res: Response) {
-        this.treatmentService.getTreatmentById(req, res);
+        await this.treatmentService.getTreatmentById(req, res);
     }
 
     async putTreatmentById(req: Request, res: Response) {
-        this.treatmentService.putTreatmentById(req, res);
+        await this.treatmentService.putTreatmentById(req, res);
     }
 
     async deleteTreatmentById(req: Request, res: Response) {
-        this.treatmentService.deleteTreatmentById(req, res);
+        await this.treatmentService.deleteTreatmentById(req, res);
     }
 
     async getTreatmentByAnimalId(req: Request, res: Response) {
-        this.treatmentService.getTreatmentsByAnimalId(req, res);
+        await this.treatmentService.getTreatmentsByAnimalId(req, res);
     }
 
     async getTreatmentByVeterinarianId(req: Request, res: Response) {
-        this.treatmentService.getTreatmentsByVeterinarianId(req, res);
+        await this.treatmentService.getTreatmentsByVeterinarianId(req, res);
     }
 
     async getTreatmentByEnclosureId(req: Request, res: Response) {
-        this.treatmentService.getTreatmentByEnclosureId(req, res);
+        await this.treatmentService.getTreatmentByEnclosureId(req, res);
     }
 
     async getTreatments(req: Request, res: Response) {
-        this.treatmentService.getTreatments(req, res);
+        await this.treatmentService.getTreatments(req, res);
     }
 
     buildRoutes() {
@@ -56,6 +56,5 @@ export class TreatmentController {
         router.get('/veterinarian/:id', checkUserToken(), checkUserRole([Roles.VETERINARIAN, Roles.ADMIN]), this.getTreatmentByVeterinarianId.bind(this));
         router.get('/enclosure/:id', checkUserToken(), checkUserRole([Roles.VETERINARIAN, Roles.ADMIN]), this.getTreatmentByEnclosureId.bind(this));
         return router;
-
     }
 }

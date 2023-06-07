@@ -93,8 +93,4 @@ export class Ticket {
     }
 }
 
-export interface TicketRequest {
-    name: Pass;
-}
-
 export const TicketModel: Model<Ticket> = mongoose.model("Ticket", ticketSchema);

@@ -1,8 +1,7 @@
 import {Request, Response, Router} from "express";
 import * as express from "express";
-import { checkUserToken } from "../middlewares";
-import { checkUserRole } from "../middlewares/role.middleware";
-import { AnimalService } from "../services/animal.service";
+import { checkUserToken, checkUserRole } from "../middlewares";
+import { AnimalService } from "../services";
 import { Roles } from "../utils";
 
 export class AnimalController {

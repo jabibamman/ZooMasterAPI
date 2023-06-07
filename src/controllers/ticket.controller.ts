@@ -26,7 +26,7 @@ export class TicketController {
     }
 
 
-    buildRoutes() {
+    buildRoutes(): Router {
         const router = express.Router();
         router.get('/', checkUserToken(), this.getTickets.bind(this));
         router.post('/', express.json(), checkUserToken(), this.buyTicket.bind(this));
