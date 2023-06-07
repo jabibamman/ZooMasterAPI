@@ -86,8 +86,22 @@ export class Ticket {
         if(this.expiration < today) {
             throw new Error("This ticket is expired");
         }
+
+        if (this.name == Pass.PASS_NIGHT) {
+            if(today.getHours() < 21 || today.getHours() > 2) {
+                throw new Error("You can't use this ticket at this hour")
+            }
+            return true;
+        }
         if(today.getHours() < 9 || today.getHours() > 19) {
             throw new Error("You can't use this ticket at this hour")
+        }
+        if (this.name == Pass.PASS_DAYMONTH) {
+            if(today.getMonth() + 1 > 11) {
+                this.start = new Date(today.getFullYear() + 1, 0, 1);
+                return true;
+            }
+            this.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
         }
         return true;
     }

@@ -1,12 +1,8 @@
 import {Visitor, VisitorModel, VisitorRequest} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
-import {SecurityUtils, Pass} from "../utils";
+import {SecurityUtils} from "../utils";
 
-
-function isValidPass(pass: string): boolean {
-    return Object.keys(Pass).some((key) => Pass[key as keyof typeof Pass] === pass);
-}
 
 export class VisitorService {
     readonly model: Model<Visitor>;

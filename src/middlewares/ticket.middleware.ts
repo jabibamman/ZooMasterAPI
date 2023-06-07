@@ -1,40 +1,32 @@
 import {Request, RequestHandler} from "express";
+import {Pass} from "../utils";
 
-export function checkUserTicket(name: string): RequestHandler {
+export function checkUserTicket(name: string, start: Date, expiration: Date): RequestHandler {
     return async function(req: Request, res, next) {
-        /*
-        if(!req.user) {
-            res.status(401).end();
-            return;
+        const today = new Date();
+        if(start > today) {
+            throw new Error("This ticket is not usable for now");
+        }
+        if(expiration < today) {
+            throw new Error("This ticket is expired");
         }
 
-        const user:User = req.user;
-        for (let role of user.roles) {
-            if (typeof role === "object" && role.name === name) {
-                next();
-                return;
+        if (name == Pass.PASS_NIGHT) {
+            if(today.getHours() < 21 || today.getHours() > 2) {
+                throw new Error("You can't use this ticket at this hour")
             }
+            return true;
         }
-
-        res.status(403).end();
-
-         */
+        if(today.getHours() < 9 || today.getHours() > 19) {
+            throw new Error("You can't use this ticket at this hour")
+        }
+        if (name == Pass.PASS_DAYMONTH) {
+            if(today.getMonth() + 1 > 11) {
+                start = new Date(today.getFullYear() + 1, 0, 1);
+                return true;
+            }
+            start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        }
+        return true;
     }
-}
-
-
-export function verifyDate(year: number, month: number, day: number): Date {
-    const date = new Date(year, month-1, day);
-
-    if (isNaN(date.valueOf()) || date.getFullYear() !== year || date.getMonth()+1 !== month || date.getDate() !== day) {
-        throw new Error("The input date is invalid");
-    }
-
-    const today = new Date();
-    date.setHours(0,0,0,0);
-
-    if (date < today) {
-        throw new Error("The ticket is already expired");
-    }
-    return date;
 }
