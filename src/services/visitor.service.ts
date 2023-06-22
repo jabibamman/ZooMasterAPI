@@ -2,6 +2,7 @@ import {Ticket, UserModel, Visitor, VisitorModel, VisitorRequest} from "../model
 import {Response} from "express";
 import { Model } from "mongoose";
 import {Pass, SecurityUtils} from "../utils";
+import {StaffService} from "./staff.service";
 
 export class VisitorService {
     readonly model: Model<Visitor>;
@@ -108,7 +109,6 @@ export class VisitorService {
         }
     }
 
-    //TODO: check staff.service.ts for pass night
     public isValidPass(ticket: Ticket) {
         const today = new Date();
         if(ticket.start > today) {
@@ -118,13 +118,13 @@ export class VisitorService {
             throw new Error("This ticket is expired");
         }
 
-        if (ticket.name == Pass.PASS_NIGHT) {
-            if(today.getHours() < 21 || today.getHours() > 2) {
+        if(ticket.name == Pass.PASS_NIGHT) {
+            if(StaffService.isNight(new Date())) {
                 throw new Error("You can't use this ticket at this hour")
             }
             return true;
         }
-        if(today.getHours() < 9 || today.getHours() > 19) {
+        if(!StaffService.isNight(new Date())) {
             throw new Error("You can't use this ticket at this hour")
         }
         if (ticket.name == Pass.PASS_DAYMONTH) {
