@@ -34,11 +34,32 @@ export class VisitorController {
         return this.visitorService.getAttendanceRate(res);
     }
 
+    async getMonthlyAttendanceRate(req: Request, res: Response) {
+        const date : Date = new Date(req.body.date)
+        return this.visitorService.getMonthlyAttendanceRate(res,date);
+    }
+    async getWeeklyAttendanceRate(req: Request, res: Response) {
+        const date : Date = new Date(req.body.date)
+        return this.visitorService.getWeeklyAttendanceRate(res,date);
+    }
+    async getDailyAttendanceRate(req: Request, res: Response) {
+        const date : Date = new Date(req.body.date)
+        return this.visitorService.getDailyAttendanceRate(res,date);
+    }
+    async getHourlyAttendanceRate(req: Request, res: Response) {
+        const date : Date = new Date(req.body.date)
+        return this.visitorService.getHourlyAttendanceRate(res,date);
+    }
+
     buildRoutes(): Router {
         const router = express.Router();
         router.post('/add', express.json(), this.addVisitor.bind(this));
         router.delete('/remove', express.json(), this.removeVisitor.bind(this));
         router.get('/rate', express.json(), this.getAttendanceRate.bind(this));
+        router.post('/month', express.json(), this.getMonthlyAttendanceRate.bind(this));
+        router.post('/week', express.json(), this.getWeeklyAttendanceRate.bind(this));
+        router.post('/day', express.json(), this.getDailyAttendanceRate.bind(this));
+        router.post('/hour', express.json(), this.getHourlyAttendanceRate.bind(this));
         return router;
     }
 }
