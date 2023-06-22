@@ -1,28 +1,33 @@
 import {Request, Response} from "express";
 import {Model} from "mongoose";
-import {BuyTicketDto, Ticket, TicketModel, User, UserModel, VisitorModel} from "../models";
+import {BuyTicketDto, Ticket, TicketModel, Visitor, VisitorModel} from "../models";
 import {SecurityUtils} from "../utils";
 import {VisitorService} from "./visitor.service";
 
 export class TicketService {
     readonly ticketModel: Model<Ticket>;
-    readonly userModel: Model<User>;
+    readonly visitorModel: Model<Visitor>;
     readonly visitorService: VisitorService;
 
     constructor() {
         this.ticketModel = TicketModel;
-        this.userModel = UserModel;
+        this.visitorModel = VisitorModel;
         this.visitorService = new VisitorService()
     }
 
-    //TODO: get all tickets of a visitor by id or email idk
     async getTickets(req: Request, res: Response) {
-        if(!req.user) {
-            return res.status(401).json({message: "Unauthorized"}).end();
+        if(!req.body.email) {
+            return res.status(400).json().end();
         }
-        res.json(req.user.tickets).status(200).end();
+
+        const visitor = await this.visitorService.getVisitorByEmail(req.body.email);
+        if (!visitor) {
+            return res.status(400).json({message: "No visitor with this email"}).end();
+        }
+
+        return res.json(visitor.tickets).status(200).end();
     }
-    
+
     async buyTicket(buyDto: BuyTicketDto, res: Response) {
         if(buyDto.name.trim().length === 0) {
             res.status(400).end();
@@ -44,7 +49,7 @@ export class TicketService {
             const visitor = await this.visitorService.getVisitorByEmail(buyDto.email);
 
             if (!visitor) {
-                const newVisitor = await VisitorModel.create({
+                const newVisitor = await this.visitorModel.create({
                     name: buyDto.name,
                     email: buyDto.email,
                     tickets: [ticket]
@@ -63,7 +68,6 @@ export class TicketService {
     }
 
 
-    //TODO: idk if this is needed
     async getTicketById(req: Request, res: Response) {
         const { id } = req.params;
         try {
@@ -99,7 +103,7 @@ export class TicketService {
         try {
             const ticket = await this.ticketModel.findById(id);
             if (ticket) {
-                const bodyTicket = new Ticket(req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
+                const bodyTicket = new Ticket(req.body.email, req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
                 ticket.name = bodyTicket.name;
                 ticket.start = bodyTicket.start;
                 ticket.expiration = bodyTicket.expiration;
