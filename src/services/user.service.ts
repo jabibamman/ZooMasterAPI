@@ -42,7 +42,7 @@ export class UserService {
             if(me["name"] === 'MongoServerError' && me["code"] === 11000) {
                 res.status(409).end(); // conflict
             } else {
-                console.log(me)
+                console.log(me, "\nERROR ", me["code"])
                 res.status(500).end(); // internal_server_error
             }
         }
@@ -71,7 +71,6 @@ export class UserService {
         res.json({
             token: session._id
         });
- 
     }
 
     public async admin(req: Request, res: Response) {

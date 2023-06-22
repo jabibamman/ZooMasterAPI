@@ -29,15 +29,15 @@ export class TicketService {
     }
 
     async buyTicket(buyDto: BuyTicketDto, res: Response) {
-        if(buyDto.name.trim().length === 0) {
+        if(buyDto.name === undefined || buyDto.name.trim().length === 0) {
             res.status(400).end();
             return;
         }
-        if(buyDto.email.trim().length === 0) {
+        if(buyDto.email === undefined || buyDto.email.trim().length === 0) {
             res.status(400).end();
             return;
         }
-        if(buyDto.pass.trim().length === 0) {
+        if(buyDto.pass === undefined || buyDto.pass.trim().length === 0) {
             res.status(400).end();
             return;
         }

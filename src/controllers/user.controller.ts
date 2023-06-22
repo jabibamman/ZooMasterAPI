@@ -47,7 +47,7 @@ export class UserController {
     }
 
     async putUserById(req: Request, res: Response) {
-       await this.userService.putUserById(req, res);
+        await this.userService.putUserById(req, res);
     }
 
     async deleteUserById(req: Request, res: Response) {

@@ -18,7 +18,7 @@ export class VisitorController {
         const visitor : VisitorRequest = {
             name: req.body.name,
             email: req.body.email,
-            ticketType: req.body.ticketType,
+            tickets: req.body.tickets,
         }
 
         return this.visitorService.addVisitor(visitor, res);
