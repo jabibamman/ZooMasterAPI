@@ -5,8 +5,7 @@ export enum Roles {
     ANIMAL_CARETAKER = "animal_caretaker",
     MAINTENANCE_WORKER = "maintenance_worker",
     TICKET_SELLER = "ticket_seller",
-    RECEPTION_STAFF = "reception_staff",
-    GUEST = "guest"
+    RECEPTION_STAFF = "reception_staff"
 }
 
 
@@ -16,6 +15,5 @@ export const roles = [
     Roles.ANIMAL_CARETAKER,
     Roles.MAINTENANCE_WORKER,
     Roles.TICKET_SELLER,
-    Roles.RECEPTION_STAFF,
-    Roles.GUEST
+    Roles.RECEPTION_STAFF
 ];

@@ -1,13 +1,11 @@
-import {Visitor, VisitorModel, VisitorRequest} from "../models";
+import {Ticket, UserModel, Visitor, VisitorModel, VisitorRequest} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
-import {SecurityUtils} from "../utils";
-
+import {Pass, SecurityUtils} from "../utils";
 
 export class VisitorService {
     readonly model: Model<Visitor>;
     readonly maxVisitors: number;
-
 
     constructor() {
         this.model = VisitorModel;
@@ -30,19 +28,21 @@ export class VisitorService {
             return;
         }
 
-        if(visitor.ticketType.trim().length === 0) {
-            res.status(400).end();
-            return;
+        let isATicketValid = false;
+        for(let i = 0; i < visitor.tickets.length; i++) {
+            if(this.isValidPass(visitor.tickets[i])){
+                isATicketValid = true;
+                break;
+            }
         }
-
-        if(!isValidPass(visitor.ticketType)){
+        if(!isATicketValid){
             res.status(400).end();
             return;
         }
 
         const name: string = visitor.name;
         const email: string = visitor.email;
-        const ticketType: string = visitor.ticketType;
+        const tickets: Ticket[] = visitor.tickets;
 
         try {
             const visitorCount = await VisitorModel.countDocuments();
@@ -54,7 +54,7 @@ export class VisitorService {
             const visitor = await VisitorModel.create({
                 name,
                 email,
-                ticketType
+                tickets
             });
             res.json(visitor);
         } catch(err: unknown) {
@@ -107,5 +107,40 @@ export class VisitorService {
             }
         }
     }
+
+    //TODO: check staff.service.ts for pass night
+    public isValidPass(ticket: Ticket) {
+        const today = new Date();
+        if(ticket.start > today) {
+            throw new Error("This ticket is not usable for now");
+        }
+        if(ticket.expiration < today) {
+            throw new Error("This ticket is expired");
+        }
+
+        if (ticket.name == Pass.PASS_NIGHT) {
+            if(today.getHours() < 21 || today.getHours() > 2) {
+                throw new Error("You can't use this ticket at this hour")
+            }
+            return true;
+        }
+        if(today.getHours() < 9 || today.getHours() > 19) {
+            throw new Error("You can't use this ticket at this hour")
+        }
+        if (ticket.name == Pass.PASS_DAYMONTH) {
+            if(today.getMonth() + 1 > 11) {
+                ticket.start = new Date(today.getFullYear() + 1, 0, 1);
+                return true;
+            }
+            ticket.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        }
+        return true;
+    }
+
+    public async getVisitorByEmail(visitorEmail: string): Promise<typeof VisitorModel.prototype | null> {
+        if(!visitorEmail) {
+            return null;
+        }
+        return await VisitorModel.findOne({email: visitorEmail}).exec();
+    }
 }
- 

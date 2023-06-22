@@ -164,7 +164,4 @@ export class UserService {
         }
         return await UserModel.findById(id).exec();
     }
-    
-
 }
- 

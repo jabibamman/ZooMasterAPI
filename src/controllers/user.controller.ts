@@ -13,7 +13,6 @@ export class UserController {
     constructor() {
         this.path = "/user";
         this.userService = new UserService();
-
     }
 
     async register(req: Request, res: Response) {
@@ -55,7 +54,7 @@ export class UserController {
         await this.userService.deleteUserById(req, res);
     }
 
-     updateRole(req: Request, res: Response) {
+    updateRole(req: Request, res: Response) {
          this.userService.updateRoles(req, res);
     }
 

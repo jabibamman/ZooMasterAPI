@@ -1,41 +1,61 @@
 import {Request, Response} from "express";
 import {Model} from "mongoose";
-import {Ticket, TicketModel, User, UserModel} from "../models";
-import {UserService} from "./user.service";
+import {BuyTicketDto, Ticket, TicketModel, User, UserModel, VisitorModel} from "../models";
 import {SecurityUtils} from "../utils";
+import {VisitorService} from "./visitor.service";
 
 export class TicketService {
     readonly ticketModel: Model<Ticket>;
     readonly userModel: Model<User>;
-    readonly userService: UserService;
+    readonly visitorService: VisitorService;
 
     constructor() {
         this.ticketModel = TicketModel;
         this.userModel = UserModel;
-        this.userService = new UserService();
+        this.visitorService = new VisitorService()
     }
 
+    //TODO: get all tickets of a visitor by id or email idk
     async getTickets(req: Request, res: Response) {
         if(!req.user) {
             return res.status(401).json({message: "Unauthorized"}).end();
         }
         res.json(req.user.tickets).status(200).end();
     }
-
-    async buyTicket(req: Request, res: Response) {
-        const reqUser = req.user;
-        if (!reqUser) {
-            return res.status(401).json({message: "Unauthorized"}).end();
+    
+    async buyTicket(buyDto: BuyTicketDto, res: Response) {
+        if(buyDto.name.trim().length === 0) {
+            res.status(400).end();
+            return;
         }
+        if(buyDto.email.trim().length === 0) {
+            res.status(400).end();
+            return;
+        }
+        if(buyDto.pass.trim().length === 0) {
+            res.status(400).end();
+            return;
+        }
+
         try {
-            const ticketBody = req.body.ticket;
-            const ticket = new Ticket(ticketBody.name, ticketBody.year, ticketBody.month, ticketBody.day);
+            const ticket = new Ticket(buyDto.email, buyDto.pass, buyDto.year, buyDto.month, buyDto.day);
             await this.ticketModel.create(ticket);
 
-            const user = await this.userService.getUserByIdHelper(reqUser._id as string);
-            user.tickets.push(ticket);
-            await user.save();
-            return res.json(ticket).status(201).end();
+            const visitor = await this.visitorService.getVisitorByEmail(buyDto.email);
+
+            if (!visitor) {
+                const newVisitor = await VisitorModel.create({
+                    name: buyDto.name,
+                    email: buyDto.email,
+                    tickets: [ticket]
+                });
+                res.json(newVisitor).status(201).end();
+                return;
+            }
+
+            visitor.tickets.push(ticket);
+            await visitor.save();
+            return res.json(visitor).status(201).end();
         }
         catch (error) {
             return res.status(400).json({error: error?.toString()});
@@ -43,6 +63,7 @@ export class TicketService {
     }
 
 
+    //TODO: idk if this is needed
     async getTicketById(req: Request, res: Response) {
         const { id } = req.params;
         try {

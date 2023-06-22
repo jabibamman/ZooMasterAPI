@@ -3,6 +3,7 @@ import * as express from "express";
 import {checkUserRole, checkUserToken} from "../middlewares";
 import {Roles} from "../utils";
 import {TicketService} from "../services";
+import {BuyTicketDto} from "../models";
 
 export class TicketController {
     readonly path;
@@ -16,7 +17,16 @@ export class TicketController {
         await this.ticketService.getTickets(req, res);
     }
     async buyTicket(req: Request, res: Response) {
-        await this.ticketService.buyTicket(req, res);
+        const visitorBody: BuyTicketDto = {
+            name: req.body.name,
+            email: req.body.email,
+            pass: req.body.pass,
+            year: req.body.year,
+            month: req.body.month,
+            day: req.body.day
+        }
+
+        await this.ticketService.buyTicket(visitorBody, res);
     }
     async getTicketById(req: Request, res: Response) {
         await this.ticketService.getTicketById(req, res);
