@@ -1,8 +1,7 @@
 import { SecurityUtils } from '../utils';
-import { Maintenance } from './../models/maintenance.model';
+import { Maintenance, MaintenanceLog } from '../models';
 import { Request, Response } from 'express';
 import { EnclosureService } from './enclosure.service';
-import { MaintenanceLog } from '../models/maintenanceLog.model';
 export class MaintenanceService {
     
     constructor() { }

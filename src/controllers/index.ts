@@ -4,3 +4,4 @@ export * from "./visitor.controller";
 export * from "./animal.controller";
 export * from "./enclosure.controller";
 export * from "./maintenance.controller";
+export * from "./ticket.controller";

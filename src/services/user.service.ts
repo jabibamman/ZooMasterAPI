@@ -144,7 +144,7 @@ export class UserService {
         
         user.roles = roles;
         await user.save();
-        res.status(200).json(user);
+        res.status(200).json(user).end();
     }
     
 
@@ -158,7 +158,7 @@ export class UserService {
         }).exec();
     }
 
-    private async getUserByIdHelper(id: string): Promise<typeof UserModel.prototype | null> {
+    public async getUserByIdHelper(id: string): Promise<typeof UserModel.prototype | null> {
         if (!id) {
             return null;
         }

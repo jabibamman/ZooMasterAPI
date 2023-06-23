@@ -1,4 +1,4 @@
-import {Staff, StaffModel, StaffRequest, User, UserModel} from "../models";
+import {Staff, StaffModel, StaffRequest} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
 
@@ -10,11 +10,7 @@ function isNight(dateString: Date): boolean {
 
     const hour = date.getUTCHours();
 
-    if (hour >= startNightHour || hour < endNightHour) {
-        return true;
-    }
-
-    return false;
+    return hour >= startNightHour || hour < endNightHour;
 }
 
 export class StaffService {
@@ -104,4 +100,3 @@ export class StaffService {
         else res.json("Le parc est ouvert cette nuit !");
     }
 }
- 

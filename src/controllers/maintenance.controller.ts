@@ -1,14 +1,13 @@
-import { MaintenanceService } from './../services/maintenance.service';
+import { MaintenanceService } from '../services/maintenance.service';
 import {Request, Response, Router} from "express";
 import * as express from "express";
-import { checkUserToken } from "../middlewares";
-import { checkUserRole } from "../middlewares/role.middleware";
+import { checkUserToken, checkUserRole } from "../middlewares";
 import { Roles } from "../utils";
 
 export class MaintenanceController {
 
     readonly path: string;
-    private maintenanceService: MaintenanceService;
+    private readonly maintenanceService: MaintenanceService;
 
     constructor() {
         this.path = "/maintenance";
@@ -16,19 +15,19 @@ export class MaintenanceController {
     }
 
     async getAllMaintenance(req: Request, res: Response) {
-        this.maintenanceService.getAllMaintenances(req, res);
+        await this.maintenanceService.getAllMaintenances(req, res);
     }
 
     async createMaintenance(req: Request, res: Response) {
-        this.maintenanceService.registerMaintenance(req, res);
+        await this.maintenanceService.registerMaintenance(req, res);
     }
 
     async deleteMaintenance(req: Request, res: Response) {
-        this.maintenanceService.deleteMaintenanceById(req, res);
+        await this.maintenanceService.deleteMaintenanceById(req, res);
     }
 
     async updateMaintenance(req: Request, res: Response) {
-        this.maintenanceService.updateMaintenance(req, res);
+        await this.maintenanceService.updateMaintenance(req, res);
     }
 
     buildRoutes(): Router {

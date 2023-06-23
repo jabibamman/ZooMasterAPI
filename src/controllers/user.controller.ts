@@ -1,9 +1,8 @@
 import {Request, Response, Router} from "express";
 import * as express from "express";
 import { UserLoginDto, UserRegisterDto } from "../models";
-import { checkUserToken } from "../middlewares";
-import { checkUserRole } from "../middlewares/role.middleware";
-import { UserService } from "../services/user.service";
+import { checkUserToken, checkUserRole } from "../middlewares";
+import { UserService } from "../services";
 import { Roles } from "../utils";
 
 export class UserController {
@@ -41,19 +40,19 @@ export class UserController {
     }
 
     async admin(req: Request, res: Response) {
-        this.userService.admin(req, res);
+        await this.userService.admin(req, res);
     }
 
     async getUserById(req: Request, res: Response) {
-        this.userService.getUserById(req, res);
+        await this.userService.getUserById(req, res);
     }
 
     async putUserById(req: Request, res: Response) {
-       this.userService.putUserById(req, res);
+       await this.userService.putUserById(req, res);
     }
 
     async deleteUserById(req: Request, res: Response) {
-        this.userService.deleteUserById(req, res);
+        await this.userService.deleteUserById(req, res);
     }
 
      updateRole(req: Request, res: Response) {

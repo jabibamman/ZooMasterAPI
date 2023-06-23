@@ -1,10 +1,7 @@
-import { Request, Response } from "express";
-import { Enclosure } from "../models/enclosure.model";
-import { AnimalModel } from "../models/animal.model";
-import { SecurityUtils } from "../utils";
-import { MaintenanceLog } from "../models";
+import {Request, Response} from "express";
+import {AnimalModel, Enclosure, MaintenanceLog} from "../models";
+import {SecurityUtils} from "../utils";
 import mongoose from "mongoose";
-import { ObjectId } from 'mongodb';
 
 export class EnclosureService {
     async createEnclosure(req: Request, res: Response) {
@@ -223,30 +220,24 @@ export class EnclosureService {
         } catch (error) {
             return false;
         }
-
-        const enclosure = await Enclosure.findById(id);
-        if (!enclosure) {
-            return false;
-        }
-        return true;
+        return Enclosure.findById(id);
     }
 
     private async groupAndCountByMonth(enclosureId: string): Promise<{ _id: { month: number; year: number; }; count: number; }[]> {
-        try {            
-            const groupAndCountByMonth = await MaintenanceLog.aggregate([
-                { $match: { enclosure: new mongoose.Types.ObjectId(enclosureId) } },
-                { $group: {
+        try {
+            return await MaintenanceLog.aggregate([
+                {$match: {enclosure: new mongoose.Types.ObjectId(enclosureId)}},
+                {
+                    $group: {
                         _id: {
-                            month: { $month: "$createdAt" },
-                            year: { $year: "$createdAt" }
+                            month: {$month: "$createdAt"},
+                            year: {$year: "$createdAt"}
                         },
-                        count: { $sum: 1 }
+                        count: {$sum: 1}
                     }
                 },
-                { $sort: { "_id.year": 1, "_id.month": 1 } }
+                {$sort: {"_id.year": 1, "_id.month": 1}}
             ]);
-                    
-            return groupAndCountByMonth;
         } catch (err) {
             console.error(err);
             throw err;
@@ -284,6 +275,5 @@ export class EnclosureService {
             console.error(err);
             throw err;
         }
-    }    
-
+    }
 }

@@ -1,14 +1,13 @@
 import {Request, Response, Router} from "express";
 import * as express from "express";
-import { checkUserToken } from "../middlewares";
-import { checkUserRole } from "../middlewares/role.middleware";
-import { EnclosureService } from "../services/enclosure.service";
+import { checkUserToken, checkUserRole } from "../middlewares";
+import { EnclosureService } from "../services";
 import { Roles } from "../utils";
 
 export class EnclosureController {
 
     readonly path: string;
-    private enclosureService: EnclosureService;
+    private readonly enclosureService: EnclosureService;
 
     constructor() {
         this.path = "/enclosure";
@@ -16,35 +15,35 @@ export class EnclosureController {
     }
 
     async createEnclosure(req: Request, res: Response) {
-        this.enclosureService.createEnclosure(req, res);
+        await this.enclosureService.createEnclosure(req, res);
     }
 
     async updateEnclosure(req: Request, res: Response) {
-        this.enclosureService.updateEnclosureById(req, res);
+        await this.enclosureService.updateEnclosureById(req, res);
     }
 
     async getEnclosureById(req: Request, res: Response) {
-        this.enclosureService.getEnclosureById(req, res);
+        await this.enclosureService.getEnclosureById(req, res);
     }
 
     async addAnimalToEnclosure(req: Request, res: Response) {
-        this.enclosureService.addAnimalToEnclosure(req, res);
+        await this.enclosureService.addAnimalToEnclosure(req, res);
     }
 
     async removeAnimalFromEnclosure(req: Request, res: Response) {
-        this.enclosureService.removeAnimalFromEnclosure(req, res);
+        await this.enclosureService.removeAnimalFromEnclosure(req, res);
     }
 
     async getAnimalsInEnclosure(req: Request, res: Response) {
-        this.enclosureService.getAnimalsInEnclosure(req, res);
+        await this.enclosureService.getAnimalsInEnclosure(req, res);
     }
  
     async deleteEnclosureById(req: Request, res: Response) {
-        this.enclosureService.deleteEnclosureById(req, res);
+        await this.enclosureService.deleteEnclosureById(req, res);
     }
 
     async getBestMonthForMaintenance(req: Request, res: Response) {        
-        this.enclosureService.getBestMonthForMaintenance(req, res);
+        await this.enclosureService.getBestMonthForMaintenance(req, res);
     }
 
 

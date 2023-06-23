@@ -1,4 +1,4 @@
-import { EnclosureController } from './controllers/enclosure.controller';
+import { EnclosureController } from './controllers';
 import { config } from "dotenv";
 config();
 
@@ -10,6 +10,7 @@ import {
     StaffController,
     UserController,
     MaintenanceController,
+    TicketController,
     VisitorController
 } from './controllers';
 import { RoleModel, } from "./models";
@@ -17,7 +18,7 @@ import { roles } from "./utils";
 import { TreatmentController } from './controllers/treatment.controller';
 
 async function startServer(): Promise<void> {
-    const connect = await mongoose.connect(process.env.MONGO_URI as string, {
+    await mongoose.connect(process.env.MONGO_URI as string, {
         auth: {
             username: process.env.MONGO_ROOT_USERNAME,
             password: process.env.MONGO_ROOT_PASSWORD,
@@ -25,7 +26,7 @@ async function startServer(): Promise<void> {
         authSource: "admin",
     });
 
-   upsertRoles();
+   await upsertRoles();
 
     const app = express();
     const userController = new UserController();
@@ -35,6 +36,7 @@ async function startServer(): Promise<void> {
     const animalController = new AnimalController();
     const maintenanceController = new MaintenanceController();
     const treatmentController = new TreatmentController();
+    const ticketController = new TicketController();
     app.use(userController.path, userController.buildRoutes());
     app.use(staffController.path, staffController.buildRoutes());
     app.use(visitorController.path, visitorController.buildRoutes());
@@ -42,10 +44,11 @@ async function startServer(): Promise<void> {
     app.use(animalController.path, animalController.buildRoutes());
     app.use(maintenanceController.path, maintenanceController.buildRoutes());
     app.use(treatmentController.path, treatmentController.buildRoutes());
+    app.use(ticketController.path, ticketController.buildRoutes());
     app.listen(process.env.PORT, () => {
         console.log(`Server started on port ${process.env.PORT}`);
     });
-}   
+}
 
 async function upsertRoles() {
     const countRoles = await RoleModel.countDocuments().exec();
@@ -59,7 +62,6 @@ async function upsertRoles() {
             { name: roleName },
             { upsert: true, new: true }
         ).exec();
-
     });
 
     await Promise.all(rolesRequests);
