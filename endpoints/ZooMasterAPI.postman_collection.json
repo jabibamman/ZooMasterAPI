@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b5f8ff6c-4e6c-4376-b977-25392c56208f",
+		"_postman_id": "4ec6b4d3-0882-4f35-9f5f-65c8b395824f",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25875093"
@@ -1450,7 +1450,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"visitorID\":\"6474b1fcef12bc086ba71da2\"\r\n}",
+							"raw": "{\r\n    \"visitorID\":\"64949053aebb0cdde0f8692b\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1497,6 +1497,118 @@
 							"path": [
 								"visitor",
 								"rate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/month",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/month",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"month"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/week",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/week",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"week"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/day",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/day",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"day"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/hour",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/hour",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"hour"
 							]
 						}
 					},
@@ -1649,6 +1761,16 @@
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "localhost"
+		},
+		{
+			"key": "PORT",
+			"value": "3000"
 		}
 	]
 }
