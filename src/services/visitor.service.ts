@@ -1,14 +1,9 @@
-import {Attendance, AttendanceModel, StaffModel, Visitor, VisitorModel, VisitorRequest} from "../models";
-import {Ticket, UserModel, Visitor, VisitorModel, VisitorRequest} from "../models";
+import {Ticket, Attendance, AttendanceModel, Visitor, VisitorModel, VisitorRequest} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
 import {Pass, SecurityUtils} from "../utils";
 import {StaffService} from "./staff.service";
 
-
-function isValidPass(pass: string): boolean {
-    return Object.keys(Pass).some((key) => Pass[key as keyof typeof Pass] === pass);
-}
 
 export class VisitorService {
     readonly model: Model<Visitor>;
@@ -309,5 +304,4 @@ export class VisitorService {
     }
 }
 
-startHourlyAttendanceRate()
- 
+//startHourlyAttendanceRate()
