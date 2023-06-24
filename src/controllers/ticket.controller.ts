@@ -34,12 +34,16 @@ export class TicketController {
     async updateTicketById(req: Request, res: Response) {
         await this.ticketService.updateTicketById(req, res);
     }
+    async admin(req: Request, res: Response) {
+        await this.ticketService.admin(req, res);
+    }
 
 
     buildRoutes(): Router {
         const router = express.Router();
         router.get('/', express.json(), checkUserToken(), this.getTicketsByEmail.bind(this));
         router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN, Roles.TICKET_SELLER]), this.buyTicket.bind(this));
+        router.get('/admin', checkUserToken(), checkUserRole([Roles.ADMIN]), this.admin.bind(this));
         router.get('/:id', checkUserToken(), this.getTicketById.bind(this));
         router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN, Roles.TICKET_SELLER]), this.updateTicketById.bind(this));
         return router;

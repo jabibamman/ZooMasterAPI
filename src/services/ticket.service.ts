@@ -1,6 +1,6 @@
 import {Request, Response} from "express";
 import {Model} from "mongoose";
-import {BuyTicketDto, Ticket, TicketModel, Visitor, VisitorModel} from "../models";
+import {BuyTicketDto, Ticket, TicketModel, UserModel, Visitor, VisitorModel} from "../models";
 import {SecurityUtils} from "../utils";
 import {VisitorService} from "./visitor.service";
 
@@ -44,7 +44,7 @@ export class TicketService {
             return res.json(result).status(201).end();
         }
         catch (error) {
-            return res.status(400).json({error: error?.toString()});
+            return res.status(400).json({error: error?.toString()}).end();
         }
     }
 
@@ -54,20 +54,20 @@ export class TicketService {
         try {
             SecurityUtils.checkIfIdIsCorrect(id);
         } catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
             return;
         }
 
         try {
             const ticket = await this.ticketModel.findById(id);
-            if (ticket) {
-                res.status(200).json(ticket);
-            } else {
-                res.status(404).json({ error: "Ticket not found" });
+            if (!ticket) {
+                res.status(404).json({ error: "Ticket not found" }).end();
+                return;
             }
+            res.status(200).json(ticket).end();
         }
         catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
         }
     }
 
@@ -77,7 +77,7 @@ export class TicketService {
         try {
             SecurityUtils.checkIfIdIsCorrect(id);
         } catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
             return;
         }
 
@@ -94,7 +94,18 @@ export class TicketService {
                 res.status(404).json({ error: "Ticket not found" });
             }
         } catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
+        }
+    }
+
+
+    public async admin(req: Request, res: Response) {
+        try {
+            const tickets = await this.ticketModel.find().exec();
+            res.json(tickets).end();
+        }
+        catch(error) {
+            res.status(404).json({ error: error?.toString() }).end();
         }
     }
 }

@@ -74,8 +74,13 @@ export class UserService {
     }
 
     public async admin(req: Request, res: Response) {
-        const users = await UserModel.find().exec();
-        res.json(users);
+        try {
+            const users = await UserModel.find().exec();
+            res.json(users).end();
+        }
+        catch(error) {
+            res.status(404).json({ error: error?.toString() }).end();
+        }
     }
     
     public async getUserById(req: Request, res: Response) {
