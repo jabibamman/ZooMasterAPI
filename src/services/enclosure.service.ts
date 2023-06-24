@@ -1,10 +1,33 @@
 import {Request, Response} from "express";
-import {AnimalModel, Enclosure, MaintenanceLog} from "../models";
-import {SecurityUtils} from "../utils";
+import {AnimalModel, Enclosure, MaintenanceLog, UserModel} from "../models";
+import {Roles, SecurityUtils, checkUserRole} from "../utils";
 import mongoose from "mongoose";
 
 export class EnclosureService {
+
+    
     async createEnclosure(req: Request, res: Response) {
+        const zookeeperId = req.body.zooKeeper;
+
+        try {
+            SecurityUtils.checkIfIdIsCorrect(zookeeperId);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        const zookeeper = await UserModel.findById(zookeeperId).populate('roles');
+        
+        if (!zookeeper) {
+            res.status(400).json({ error: 'Zookeeper not found.' });
+            return;
+        }
+     
+        if(!checkUserRole(zookeeper, Roles.ANIMAL_CARETAKER)) {
+            res.status(403).json({ error: 'Zookeeper does not have the required role.' });
+            return;
+        }
+
         const newEnclosure = new Enclosure(req.body);
         try {
             await this.validateAnimals(req.body.animals, res);
@@ -38,6 +61,27 @@ export class EnclosureService {
     }
 
     async updateEnclosureById(req: Request, res: Response) {
+        const zookeeperId = req.body.zooKeeper;
+
+        try {
+            SecurityUtils.checkIfIdIsCorrect(zookeeperId);
+        }catch (error) {
+            res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        const zookeeper = await UserModel.findById(zookeeperId).populate('roles');
+        
+        if (!zookeeper) {
+            res.status(400).json({ error: 'Zookeeper not found.' });
+            return;
+        }
+     
+        if(!checkUserRole(zookeeper, Roles.ANIMAL_CARETAKER)) {
+            res.status(403).json({ error: 'Zookeeper does not have the required role.' });
+            return;
+        } 
+
         const { id } = req.params;
         try {
             SecurityUtils.checkIfIdIsCorrect(id);
