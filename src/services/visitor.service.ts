@@ -1,4 +1,4 @@
-import {Ticket, Attendance, AttendanceModel, Visitor, VisitorModel, VisitorRequest} from "../models";
+import {Ticket, Attendance, AttendanceModel, Visitor, VisitorModel, AddVisitorDto, TicketModel} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
 import {Pass, SecurityUtils} from "../utils";
@@ -6,35 +6,46 @@ import {StaffService} from "./staff.service";
 
 
 export class VisitorService {
-    readonly model: Model<Visitor>;
+    readonly visitorModel: Model<Visitor>;
+    readonly ticketModel: Model<Ticket>;
     readonly attendanceModel: Model<Attendance>;
     readonly maxVisitors: number;
 
     constructor() {
-        this.model = VisitorModel;
+        this.visitorModel = VisitorModel;
+        this.ticketModel = TicketModel;
         this.attendanceModel = AttendanceModel;
         this.maxVisitors = 40;
     }
 
-    public async addVisitor(visitor: VisitorRequest, res : Response) {
-        if(!visitor) {
+    public async addVisitor(visitor: AddVisitorDto, res : Response) {
+        if(typeof visitor.email !== "string" || visitor.email.trim().length === 0) {
+            res.status(400).end();
+            return;
+        }
+        if(typeof visitor.name !== "string" || visitor.name.trim().length === 0) {
             res.status(400).end();
             return;
         }
 
-        if(visitor.name.trim().length === 0) {
-            res.status(400).end();
-            return;
+        let tickets: Ticket[] = [];
+        try {
+            const result = await this.ticketModel.findOne({email: visitor.email}).exec();
+            if (result === null) {
+                res.status(409).end();
+                return;
+            }
+            console.log(result)
+            //tickets = result;
         }
-
-        if(visitor.email.trim().length === 0) {
-            res.status(400).end();
+        catch(err: unknown) {
+            res.status(404).end();
             return;
         }
 
         let isATicketValid = false;
-        for(let i = 0; i < visitor.tickets.length; i++) {
-            if(this.isValidPass(visitor.tickets[i])){
+        for(let i = 0; i < tickets.length; i++) {
+            if(this.isValidPass(tickets[i])) {
                 isATicketValid = true;
                 break;
             }
@@ -44,25 +55,23 @@ export class VisitorService {
             return;
         }
 
-        const name: string = visitor.name;
-        const email: string = visitor.email;
-        const tickets: Ticket[] = visitor.tickets;
-
         try {
-            const visitorCount = await VisitorModel.countDocuments();
+            const visitorCount = await this.visitorModel.countDocuments();
             if (visitorCount >= this.maxVisitors) {
                 res.status(409).end();
                 return;
             }
 
-            const visitor = await VisitorModel.create({
+            const name = visitor.name;
+            const email = visitor.email;
+            const createdVisitor = await this.visitorModel.create({
                 name,
                 email,
                 tickets
             });
             console.log(await this.getCurrentAttendanceRate() + "%")
             await this.updateHourlyAttendanceRate(await this.getCurrentAttendanceRate())
-            res.json(visitor);
+            res.json(createdVisitor);
         } catch(err: unknown) {
             const me = err as {[key: string]: unknown};
             if(me["name"] === 'MongoServerError' && me["code"] === 11000) {

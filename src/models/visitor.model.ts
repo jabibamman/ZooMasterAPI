@@ -34,4 +34,9 @@ export interface VisitorRequest {
     tickets: Ticket[];
 }
 
+export interface AddVisitorDto {
+    name: string,
+    email: string;
+}
+
 export const VisitorModel: Model<Visitor> = mongoose.model("Visitor", visitorSchema, "Visitors");

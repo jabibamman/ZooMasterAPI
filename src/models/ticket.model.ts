@@ -2,9 +2,13 @@ import mongoose, {Model, Schema} from "mongoose";
 import {Pass} from "../utils";
 
 const ticketSchema = new Schema<Ticket>({
+    visitorEmail: {
+        type: Schema.Types.String,
+        required: true
+    },
     name: {
         type: Schema.Types.String,
-        required: false
+        required: true
     },
     start: {
         type: Schema.Types.Date,
@@ -110,7 +114,6 @@ export class Ticket {
 }
 
 export interface BuyTicketDto {
-    name: string,
     email: string,
     pass: Pass,
     year: number,

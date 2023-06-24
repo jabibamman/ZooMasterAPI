@@ -134,14 +134,14 @@ export class UserService {
             return;
         }
 
-        const roles = await RoleModel.findOne({ name: req.body.roles.toLowerCase() }).exec();
+        const role = await RoleModel.findOne({ name: req.body.roles.toLowerCase() }).exec();
 
-        if (!roles) {
+        if (!role) {
             res.status(404).json({ message: "Role not found" }).end();
             return;
         }
         
-        user.roles = roles;
+        user.roles.push(role);
         await user.save();
         res.status(200).json(user).end();
     }

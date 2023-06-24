@@ -29,38 +29,19 @@ export class TicketService {
     }
 
     async buyTicket(buyDto: BuyTicketDto, res: Response) {
-        if(buyDto.name === undefined || buyDto.name.trim().length === 0) {
+        if(!buyDto.email || buyDto.email.trim().length === 0) {
             res.status(400).end();
             return;
         }
-        if(buyDto.email === undefined || buyDto.email.trim().length === 0) {
-            res.status(400).end();
-            return;
-        }
-        if(buyDto.pass === undefined || buyDto.pass.trim().length === 0) {
+        if(!buyDto.pass || buyDto.pass.trim().length === 0) {
             res.status(400).end();
             return;
         }
 
         try {
             const ticket = new Ticket(buyDto.email, buyDto.pass, buyDto.year, buyDto.month, buyDto.day);
-            await this.ticketModel.create(ticket);
-
-            const visitor = await this.visitorService.getVisitorByEmail(buyDto.email);
-
-            if (!visitor) {
-                const newVisitor = await this.visitorModel.create({
-                    name: buyDto.name,
-                    email: buyDto.email,
-                    tickets: [ticket]
-                });
-                res.json(newVisitor).status(201).end();
-                return;
-            }
-
-            visitor.tickets.push(ticket);
-            await visitor.save();
-            return res.json(visitor).status(201).end();
+            const result = await this.ticketModel.create(ticket);
+            return res.json(result).status(201).end();
         }
         catch (error) {
             return res.status(400).json({error: error?.toString()});
