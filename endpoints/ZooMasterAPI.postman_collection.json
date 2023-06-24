@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "e2f8d45d-b8bd-41bc-8288-51e6f740a0aa",
+		"_postman_id": "8a7eb2ce-bf63-461b-825e-007b0ad7a45c",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25694887",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25875093-e2f8d45d-b8bd-41bc-8288-51e6f740a0aa?action=share&creator=25694887&source=collection_link"
+		"_exporter_id": "25875093",
+		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25875093-8a7eb2ce-bf63-461b-825e-007b0ad7a45c?action=share&creator=25875093&source=collection_link"
 	},
 	"item": [
 		{
@@ -1907,6 +1907,144 @@
 							"path": [
 								"user",
 								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/species",
+			"item": [
+				{
+					"name": "/animal Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/animal/:id Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal",
+								"6496f784834d73200b5e9e53"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/animal/:id Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Simbas\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\",\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\",\n        \"diet\": \"mcdo\",\n        \"habitat\": \"etampes\"\n    }\n    \n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal/6496f8bd858483c2d45ab0df",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal",
+								"6496f8bd858483c2d45ab0df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/animal/:id Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"animal",
+								"6496f784834d73200b5e9e53"
 							]
 						}
 					},
