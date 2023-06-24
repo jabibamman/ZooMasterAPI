@@ -3,8 +3,8 @@
 		"_postman_id": "e2f8d45d-b8bd-41bc-8288-51e6f740a0aa",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25875093",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25875093-e2f8d45d-b8bd-41bc-8288-51e6f740a0aa?action=share&creator=25875093&source=collection_link"
+		"_exporter_id": "25694887",
+		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25875093-e2f8d45d-b8bd-41bc-8288-51e6f740a0aa?action=share&creator=25694887&source=collection_link"
 	},
 	"item": [
 		{
@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\":\"zoookeper\",\n    \"password\":\"password\"\n}",
+							"raw": "{\n    \"login\":\"s\",\n    \"password\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -314,7 +314,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -323,7 +323,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\",\n    \"logBook\":\"null\"\n}",
+							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -351,7 +351,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -359,14 +359,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
+							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6470a10d7a225e198ed84cd5"
+								"6496f784834d73200b5e9e53"
 							]
 						}
 					},
@@ -380,7 +380,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -389,7 +389,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Simba\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\"\n}",
+							"raw": "{\n    \"name\":\"Simbas\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\",\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\",\n        \"diet\": \"mcdo\",\n        \"habitat\": \"etampes\"\n    }\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,14 +397,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
+							"raw": "{{HOST}}:{{PORT}}/animal/6496f8bd858483c2d45ab0df",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6470a10d7a225e198ed84cd5"
+								"6496f8bd858483c2d45ab0df"
 							]
 						}
 					},
@@ -418,7 +418,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -426,20 +426,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/:6471c2ad52d043eb436ca56f",
+							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								":6471c2ad52d043eb436ca56f"
-							],
-							"variable": [
-								{
-									"key": "6471c2ad52d043eb436ca56f",
-									"value": null
-								}
+								"6496f784834d73200b5e9e53"
 							]
 						}
 					},
@@ -458,7 +452,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -467,7 +461,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"Enclos des lions\",\n  \"description\": \"Cet enclos abrite les majestueux lions.\",\n  \"maxCapacity\": 10,\n  \"images\": [\n    \"https://example.com/image1.jpg\",\n    \"https://example.com/image2.jpg\"\n  ],\n  \"type\": \"Savane\",\n  \"duration\": \"120\",\n  \"openingHours\": \"9:00 - 18:00\",\n  \"accessibility\": true,\n  \"animals\": [\"6471bfb7aabfe4fd821d0516\"],\n  \"zooKeeper\": \"6471c753e1e2779b1ca09241\"\n}",
+							"raw": "{\n  \"name\": \"Enclos des lions\",\n  \"description\": \"Cet enclos abrite les majestueux lions.\",\n  \"maxCapacity\": 10,\n  \"images\": [\n    \"https://example.com/image1.jpg\",\n    \"https://example.com/image2.jpg\"\n  ],\n  \"type\": \"Savane\",\n  \"duration\": \"120\",\n  \"openingHours\": \"9:00 - 18:00\",\n  \"accessibility\": true,\n  \"animals\": [\"6496f8bd858483c2d45ab0df\"],\n  \"zooKeeper\": \"6496f723834d73200b5e9e48\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -475,13 +469,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
-								"enclosure"
+								"enclosure",
+								""
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "gg",
+									"disabled": true
+								}
 							]
 						}
 					},
@@ -495,7 +497,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -504,123 +506,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"name\": \"\",\n  \"description\": \".\",\n  \"maxCapacity\": 50,\n  \"images\": [],\n  \"type\": \"\",\n  \"duration\": \"\",\n  \"openingHours\": \"\",\n  \"accessibility\": false,\n  \"animals\": [\"6471bfb7aabfe4fd821d0516\"],\n  \"zooKeeper\": \"6471c753e1e2779b1ca09241\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/647470d341ad733fd2b32dda",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"enclosure",
-								"647470d341ad733fd2b32dda"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/enclosure/:id/animal",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"animals\":[\"6471cff75821244161722c67\"]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/animal",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82",
-								"animal"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/enclosure/:id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"enclosure",
-								"6471c85a919f3b33271b0152",
-								""
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/enclosure/:id/animal/:animalId",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "647098de00c91b19982f02d4",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
+							"raw": "{\n  \"name\": \"\",\n  \"description\": \".\",\n  \"maxCapacity\": 50,\n  \"images\": [],\n  \"type\": \"\",\n  \"duration\": \"\",\n  \"openingHours\": \"\",\n  \"accessibility\": false,\n  \"animals\": [\"6496f8bd858483c2d45ab0df\", \"6496f784834d73200b5e9e51\"],\n  \"zooKeeper\": \"6496f723834d73200b5e9e48\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -654,6 +540,146 @@
 					"response": []
 				},
 				{
+					"name": "/enclosure/:id/animal",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6471bf5c2b3272fb08a1468e",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"animals\":[\"6471cff75821244161722c67\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								":id",
+								"animal"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								":id",
+								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id/animal/:animalId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"species\":{\n        \"name\": \"lion\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Simba\",\n    \"age\":\"15\",\n    \"healthStatus\":\"Good\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								":id",
+								"animal",
+								":animalId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								},
+								{
+									"key": "animalId",
+									"value": "6496f784834d73200b5e9e51"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "/enclosure/:id/animal/:animalId",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
@@ -664,7 +690,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -681,16 +707,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/animal/",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471c85a919f3b33271b0152",
+								":id",
 								"animal",
 								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								}
 							]
 						}
 					},
@@ -707,7 +739,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -724,15 +756,26 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471c85a919f3b33271b0152",
-								""
+								":id",
+								"animal",
+								":animalId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								},
+								{
+									"key": "animalId",
+									"value": null
+								}
 							]
 						}
 					},
@@ -749,7 +792,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -766,16 +809,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/best-month-for-maintenance/",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/best-month-for-maintenance/",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82",
+								":id",
 								"best-month-for-maintenance",
 								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6496f72a834d73200b5e9e4b"
+								}
 							]
 						}
 					},
@@ -787,14 +836,14 @@
 			"name": "/maintenance",
 			"item": [
 				{
-					"name": "/maintenance/enclosure",
+					"name": "/maintenance/enclosure/:id",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -811,7 +860,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
@@ -819,7 +868,13 @@
 							"path": [
 								"maintenance",
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								}
 							]
 						}
 					},
@@ -836,7 +891,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -853,7 +908,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
@@ -861,7 +916,13 @@
 							"path": [
 								"maintenance",
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								}
 							]
 						}
 					},
@@ -878,7 +939,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -916,7 +977,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -933,14 +994,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/647370df8eb8fff7a4237001",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
-								"647370df8eb8fff7a4237001"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649703a47af121b2100ccf94"
+								}
 							]
 						}
 					},
@@ -954,7 +1021,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -971,14 +1038,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/64745ec2b75ec23f0fa0c4dd",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
-								"64745ec2b75ec23f0fa0c4dd"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497041f7af121b2100ccfb1"
+								}
 							]
 						}
 					},
@@ -997,7 +1070,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -1006,7 +1079,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"animal\": \"6471bfb7aabfe4fd821d0516\",\r\n    \"veterinarian\": \"6471c753e1e2779b1ca09241\",\r\n    \"enclosure\": \"6471fd0eabb2e0f0f3a01c82\",\r\n    \"description\": \"The animal was suffering from a minor injury. Cleaned and applied medication.\",\r\n    \"medication\": [\r\n        {\r\n            \"name\": \"Pain Reliever\",\r\n            \"dosage\": \"2 pills per day for 5 days\"\r\n        },\r\n        {\r\n            \"name\": \"Antibiotics\",\r\n            \"dosage\": \"1 pill per day for 10 days\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"animal\": \"6496f8bd858483c2d45ab0df\",\r\n    \"veterinarian\": \"6496f723834d73200b5e9e48\",\r\n    \"enclosure\": \"6497091172faed7aa4046a03\",\r\n    \"description\": \"The animal was suffering from a minor injury. Cleaned and applied medication.\",\r\n    \"medication\": [\r\n        {\r\n            \"name\": \"Pain Reliever\",\r\n            \"dosage\": \"2 pills per day for 5 days\"\r\n        },\r\n        {\r\n            \"name\": \"Antibiotics\",\r\n            \"dosage\": \"1 pill per day for 10 days\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1037,7 +1110,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -1054,14 +1127,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/647364b301c6ab734a1513db",
+							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"treatment",
-								"647364b301c6ab734a1513db"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497094d72faed7aa4046a0d"
+								}
 							]
 						}
 					},
@@ -1078,166 +1157,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/647364b301c6ab734a1513db",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"647364b301c6ab734a1513db"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/treatment/:id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"enclosure\": \"6471fd0eabb2e0f0f3a01c82\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/6473690c656502814d813e23",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"6473690c656502814d813e23"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/treatment/:id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/647366f1285ca5e33964bbdb",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"647366f1285ca5e33964bbdb"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/treatment/animal/:id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/animal/6471bfb7aabfe4fd821d0516",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"animal",
-								"6471bfb7aabfe4fd821d0516"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "treatment/veterinarian/:id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -1269,7 +1189,95 @@
 					"response": []
 				},
 				{
-					"name": "treatment/enclosure/:id",
+					"name": "/treatment/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"description\": \"prout\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497094d72faed7aa4046a0d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649709ed28acd919b0bb9e6f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/animal/:id",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1279,7 +1287,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -1296,7 +1304,103 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"raw": "{{HOST}}:{{PORT}}/treatment/animal/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"animal",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6496f8bd858483c2d45ab0df"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment/veterinarian/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/veterinarian/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"veterinarian",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497092872faed7aa4046a08"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment/enclosure/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
@@ -1304,7 +1408,13 @@
 							"path": [
 								"treatment",
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497091172faed7aa4046a03"
+								}
 							]
 						}
 					},
@@ -1756,6 +1866,47 @@
 									"key": "id",
 									"value": "6474ec55fcf3e62d4adf1b83"
 								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6457a5746bfd430b7117ade3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/admin",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"admin"
 							]
 						}
 					},

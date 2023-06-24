@@ -11,6 +11,11 @@ export class AnimalService {
     }
 
     public async registerAnimal(req: Request, res: Response) {
+        if (!req.body.name || !req.body.age || !req.body.healthStatus || !req.body.species) {
+            res.status(400).end();
+            return;
+        }
+
         const speciesObj = req.body.species;
         const speciesName = speciesObj.name;
         let species = await SpeciesModel.findOne({name: speciesName}).exec();
@@ -24,35 +29,43 @@ export class AnimalService {
             name: req.body.name,
             age: req.body.age,
             healthStatus: req.body.healthStatus,
-            logBook: req.body.logBook,
             species: species._id
         });
     
-        await animal.save();
+        await animal.save(); 
         res.json(animal);
     }
     
 
     public async getAnimalById(req: Request, res: Response) {
         const animal = await this.checkAnimalExistence(req, res);
-
         if (animal) res.json(animal);
     }
 
     public async putAnimalById(req: Request, res: Response) {
         const animal = await this.checkAnimalExistence(req, res);
 
-        if(!animal) {
-            res.status(404).json({ message: "Animal not found" }).end();
-            return;
-        } 
+        if(animal) {
+            animal.name = req.body.name ? req.body.name : animal.name;
+            animal.age = req.body.age ? req.body.age : animal.age;
+            animal.healthStatus = req.body.healthStatus ? req.body.healthStatus : animal.healthStatus;
+            if(req.body.species && typeof req.body.species === 'object') {
+                const species = await SpeciesModel.findOneAndUpdate(
+                    { name: req.body.species.name }, 
+                    req.body.species, 
+                    { new: true, upsert: true }
+                );
+                animal.species = species._id;
+            }
+            else {
+                animal.species = req.body.species ? req.body.species : animal.species;
+            }
+            await animal.save();
+            res.json(animal).status(200).end();
+        }
         
-        animal.name = req.body.name ? req.body.name : animal.name;
-        animal.age = req.body.age ? req.body.age : animal.age;
-        animal.healthStatus = req.body.healthStatus ? req.body.healthStatus : animal.healthStatus;
-        await animal.save();
-        res.json(animal).status(200).end();
-    }
+
+    } 
 
     public async deleteAnimalById(req: Request, res: Response) {
         const animal = await this.checkAnimalExistence(req, res);
@@ -77,8 +90,10 @@ export class AnimalService {
             SecurityUtils.checkIfIdIsCorrect(req.params.id);
         } catch (error) {
             res.status(400).json({message: error?.toString()}).end();
+            return null;
         }
 
+        
         const animal = await this.getAnimalByIdHelper(req.params.id);
         if (!animal) {
             res.status(404).end();
