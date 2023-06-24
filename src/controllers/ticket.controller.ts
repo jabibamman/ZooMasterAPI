@@ -13,8 +13,9 @@ export class TicketController {
         this.path = "/ticket";
         this.ticketService = new TicketService();
     }
-    async getTickets(req: Request, res: Response) {
-        await this.ticketService.getTickets(req, res);
+    async getTicketsByEmail(req: Request, res: Response) {
+        const email: string = req.body.email as string;
+        await this.ticketService.getTicketsByEmail(email, res);
     }
     async buyTicket(req: Request, res: Response) {
         const visitorBody: BuyTicketDto = {
@@ -37,7 +38,7 @@ export class TicketController {
 
     buildRoutes(): Router {
         const router = express.Router();
-        router.get('/', checkUserToken(), this.getTickets.bind(this));
+        router.get('/', express.json(), checkUserToken(), this.getTicketsByEmail.bind(this));
         router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN, Roles.TICKET_SELLER]), this.buyTicket.bind(this));
         router.get('/:id', checkUserToken(), this.getTicketById.bind(this));
         router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN, Roles.TICKET_SELLER]), this.updateTicketById.bind(this));

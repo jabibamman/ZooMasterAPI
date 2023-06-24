@@ -15,17 +15,17 @@ export class TicketService {
         this.visitorService = new VisitorService()
     }
 
-    async getTickets(req: Request, res: Response) {
-        if(!req.body.email) {
+    async getTicketsByEmail(email: string, res: Response) {
+        if(!email || typeof email !== "string") {
             return res.status(400).json().end();
         }
 
-        const visitor = await this.visitorService.getVisitorByEmail(req.body.email);
-        if (!visitor) {
-            return res.status(400).json({message: "No visitor with this email"}).end();
+        const tickets = await this.ticketModel.find({visitorEmail: email}).exec();
+        if (!tickets || tickets.length === 0) {
+            return res.status(404).end();
         }
 
-        return res.json(visitor.tickets).status(200).end();
+        return res.json(tickets).status(200).end();
     }
 
     async buyTicket(buyDto: BuyTicketDto, res: Response) {
