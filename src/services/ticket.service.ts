@@ -83,17 +83,19 @@ export class TicketService {
 
         try {
             const ticket = await this.ticketModel.findById(id);
-            if (ticket) {
-                const bodyTicket = new Ticket(req.body.email, req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
-                ticket.name = bodyTicket.name;
-                ticket.start = bodyTicket.start;
-                ticket.expiration = bodyTicket.expiration;
-                await ticket.save();
-                res.status(200).json({ message: "Ticket exchanged" });
-            } else {
-                res.status(404).json({ error: "Ticket not found" });
+            if (!ticket) {
+                res.status(404).json({error: "Ticket not found"}).end();
+                return;
             }
-        } catch (error) {
+            const bodyTicket = new Ticket(req.body.email, req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
+            ticket.visitorEmail = bodyTicket.visitorEmail;
+            ticket.name = bodyTicket.name;
+            ticket.start = bodyTicket.start;
+            ticket.expiration = bodyTicket.expiration;
+            await ticket.save();
+            res.json(ticket).status(200).end();
+        }
+        catch (error) {
             res.status(400).json({ error: error?.toString() }).end();
         }
     }
