@@ -1,3 +1,4 @@
+import { SpeciesController } from './controllers/species.controller';
 import { EnclosureController } from './controllers';
 import { config } from "dotenv";
 config();
@@ -37,6 +38,7 @@ async function startServer(): Promise<void> {
     const maintenanceController = new MaintenanceController();
     const treatmentController = new TreatmentController();
     const ticketController = new TicketController();
+    const speciesController = new SpeciesController();
     app.use(userController.path, userController.buildRoutes());
     app.use(staffController.path, staffController.buildRoutes());
     app.use(visitorController.path, visitorController.buildRoutes());
@@ -45,6 +47,7 @@ async function startServer(): Promise<void> {
     app.use(maintenanceController.path, maintenanceController.buildRoutes());
     app.use(treatmentController.path, treatmentController.buildRoutes());
     app.use(ticketController.path, ticketController.buildRoutes());
+    app.use(speciesController.path, speciesController.buildRoutes());
     app.listen(process.env.PORT, () => {
         console.log(`Server started on port ${process.env.PORT}`);
     });
