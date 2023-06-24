@@ -3,8 +3,8 @@
 		"_postman_id": "8a7eb2ce-bf63-461b-825e-007b0ad7a45c",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25875093",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25875093-8a7eb2ce-bf63-461b-825e-007b0ad7a45c?action=share&creator=25875093&source=collection_link"
+		"_exporter_id": "25694887",
+		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25875093-8a7eb2ce-bf63-461b-825e-007b0ad7a45c?action=share&creator=25694887&source=collection_link"
 	},
 	"item": [
 		{
@@ -91,15 +91,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/6471c753e1e2779b1ca09241/role",
+							"raw": "{{HOST}}:{{PORT}}/user/:id/role",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"6471c753e1e2779b1ca09241",
+								":id",
 								"role"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -212,14 +218,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/6457a91d706eb219db128410",
+							"raw": "{{HOST}}:{{PORT}}/user/:",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"6457a91d706eb219db128410"
+								":"
 							]
 						}
 					},
@@ -250,14 +256,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
+							"raw": "{{HOST}}:{{PORT}}/user/:",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"64709840fc3d177fc2881429"
+								":"
 							]
 						}
 					},
@@ -288,14 +294,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/6457b69367d1fb1ac77e3b2d",
+							"raw": "{{HOST}}:{{PORT}}/user/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"6457b69367d1fb1ac77e3b2d"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -323,7 +335,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\"\n}",
+							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"corbisord\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -359,14 +371,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
+							"raw": "{{HOST}}:{{PORT}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6496f784834d73200b5e9e53"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -389,7 +407,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Simbas\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\",\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\",\n        \"diet\": \"mcdo\",\n        \"habitat\": \"etampes\"\n    }\n    \n}",
+							"raw": "{\n    \"name\":\"Simbas\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\",\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\",\n        \"diet\": \"grain\",\n        \"habitat\": \"mountains\"\n    }\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,14 +415,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6496f8bd858483c2d45ab0df",
+							"raw": "{{HOST}}:{{PORT}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6496f8bd858483c2d45ab0df"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -426,14 +450,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
+							"raw": "{{HOST}}:{{PORT}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6496f784834d73200b5e9e53"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -514,24 +544,18 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								":id",
-								"animal",
-								":animalId"
+								":id"
 							],
 							"variable": [
 								{
 									"key": "id",
-									"value": null
-								},
-								{
-									"key": "animalId",
 									"value": null
 								}
 							]
@@ -1205,7 +1229,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n        \"description\": \"prout\"\r\n}",
+							"raw": "{\r\n        \"description\": \"anything\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1918,7 +1942,7 @@
 			"name": "/species",
 			"item": [
 				{
-					"name": "/animal Copy",
+					"name": "/species",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1934,7 +1958,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\"\n}",
+							"raw": "{\n    \"name\": \"birdo\",\n    \"lifespan\": \"20\",\n    \"habitat\":\"mountains\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -1942,20 +1966,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal",
+							"raw": "{{HOST}}:{{PORT}}/species",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
-								"animal"
+								"species"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/animal/:id Copy",
+					"name": "/species/:id",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1970,21 +1994,27 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
+							"raw": "{{HOST}}:{{PORT}}/species/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
-								"animal",
-								"6496f784834d73200b5e9e53"
+								"species",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/animal/:id Copy",
+					"name": "/species/:id",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2000,7 +2030,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Simbas\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\",\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\",\n        \"diet\": \"mcdo\",\n        \"habitat\": \"etampes\"\n    }\n    \n}",
+							"raw": "{\n    \"name\":\"Simbas\",\n    \"lifespan\": \"20\",\n    \"diet\": \"meat\",\n    \"habitat\": \"jungle\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -2008,21 +2038,27 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6496f8bd858483c2d45ab0df",
+							"raw": "{{HOST}}:{{PORT}}/species/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
-								"animal",
-								"6496f8bd858483c2d45ab0df"
+								"species",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "/animal/:id Copy",
+					"name": "/species/:id",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -2037,14 +2073,20 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6496f784834d73200b5e9e53",
+							"raw": "{{HOST}}:{{PORT}}/species/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
-								"animal",
-								"6496f784834d73200b5e9e53"
+								"species",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},

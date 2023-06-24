@@ -5,3 +5,4 @@ export * from "./animal.controller";
 export * from "./enclosure.controller";
 export * from "./maintenance.controller";
 export * from "./ticket.controller";
+export * from "./species.controller";
