@@ -1607,6 +1607,14 @@
 					"response": []
 				},
 				{
+					"name": "/visitor/admin",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
 					"name": "/visitor/rate",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true

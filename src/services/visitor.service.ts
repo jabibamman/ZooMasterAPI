@@ -1,8 +1,18 @@
-import {Ticket, Attendance, AttendanceModel, Visitor, VisitorModel, AddVisitorDto, TicketModel} from "../models";
+import {
+    Ticket,
+    Attendance,
+    AttendanceModel,
+    Visitor,
+    VisitorModel,
+    AddVisitorDto,
+    TicketModel,
+    UserModel
+} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
 import {Pass, SecurityUtils} from "../utils";
 import {StaffService} from "./staff.service";
+import {VisitorController} from "../controllers";
 
 
 export class VisitorService {
@@ -45,7 +55,7 @@ export class VisitorService {
 
         let isATicketValid = false;
         for(let i = 0; i < tickets.length; i++) {
-            if(this.isValidPass(tickets[i])) {
+            if(await this.isValidPass(tickets[i])) {
                 isATicketValid = true;
                 break;
             }
@@ -277,7 +287,17 @@ export class VisitorService {
         }
     }
 
-    public isValidPass(ticket: Ticket) {
+    public async admin(res: Response) {
+        try {
+            const visitors = await VisitorModel.find().exec();
+            res.json(visitors).end();
+        }
+        catch(error) {
+            res.status(404).json({ error: error?.toString() }).end();
+        }
+    }
+
+    public async isValidPass(ticket: Ticket) {
         const today = new Date();
         if(ticket.start > today || ticket.expiration < today) {
             return false;
@@ -290,12 +310,42 @@ export class VisitorService {
             return false;
         }
         if (ticket.name == Pass.PASS_DAYMONTH) {
-            if(today.getMonth() + 1 > 11) {
-                ticket.start = new Date(today.getFullYear() + 1, 0, 1);
-                return true;
+            try {
+                const result = await this.getTicketHelper(ticket);
+                if(!result) {
+                    return false;
+                }
+
+                if(today.getMonth() + 1 > 11) {
+                    ticket.start = new Date(today.getFullYear() + 1, 0, 1);
+                    return true;
+                }
+                ticket.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+
+                result.start = ticket.start;
+                await result.save();
             }
-            ticket.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+            catch (err) {
+                return false;
+            }
         }
         return true;
+    }
+
+    private async getTicketHelper(ticket: Ticket): Promise<typeof TicketModel.prototype | null> {
+        if (!ticket) {
+            return null;
+        }
+        try {
+            return await TicketModel.findOne({
+                visitorEmail: ticket.visitorEmail,
+                name: Pass.PASS_DAYMONTH,
+                start: ticket.start,
+                expiration: ticket.expiration
+            }).exec();
+        }
+        catch (err: unknown) {
+            return null;
+        }
     }
 }

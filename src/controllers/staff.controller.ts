@@ -41,9 +41,9 @@ export class StaffController {
 
     buildRoutes(): Router {
         const router = express.Router();
-        router.post('/register', express.json(), this.registerStaff.bind(this));
-        router.post('/open', express.json(), this.openZoo.bind(this));
-        router.put('/open/night/:id', express.json(),checkUserToken(), checkUserRole([Roles.ADMIN]), this.openNightZoo.bind(this));
+        router.post('/register', express.json(), checkUserToken(), this.registerStaff.bind(this));
+        router.post('/open', express.json(), checkUserToken(), this.openZoo.bind(this));
+        router.put('/open/night/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.openNightZoo.bind(this));
         return router;
     }
 }

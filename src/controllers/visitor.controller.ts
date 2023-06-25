@@ -31,6 +31,10 @@ export class VisitorController {
         return this.visitorService.removeVisitor(visitorID, res);
     }
 
+    async admin(req: Request, res: Response) {
+        return this.visitorService.admin(res);
+    }
+
     async getAttendanceRate(req: Request, res: Response) {
         return this.visitorService.getAttendanceRate(res);
     }
@@ -55,12 +59,13 @@ export class VisitorController {
     buildRoutes(): Router {
         const router = express.Router();
         router.post('/add', express.json(), checkUserToken(), checkUserRole([Roles.RECEPTION_STAFF]), this.addVisitor.bind(this));
-        router.delete('/remove', express.json(), this.removeVisitor.bind(this));
-        router.get('/rate', express.json(), this.getAttendanceRate.bind(this));
-        router.post('/month', express.json(), this.getMonthlyAttendanceRate.bind(this));
-        router.post('/week', express.json(), this.getWeeklyAttendanceRate.bind(this));
-        router.post('/day', express.json(), this.getDailyAttendanceRate.bind(this));
-        router.post('/hour', express.json(), this.getHourlyAttendanceRate.bind(this));
+        router.delete('/remove', express.json(), checkUserToken(), checkUserRole([Roles.RECEPTION_STAFF]), this.removeVisitor.bind(this));
+        router.get('/admin', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.admin.bind(this));
+        router.get('/rate', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.getAttendanceRate.bind(this));
+        router.post('/month', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.getMonthlyAttendanceRate.bind(this));
+        router.post('/week', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.getWeeklyAttendanceRate.bind(this));
+        router.post('/day', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.getDailyAttendanceRate.bind(this));
+        router.post('/hour', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.getHourlyAttendanceRate.bind(this));
         return router;
     }
 }
