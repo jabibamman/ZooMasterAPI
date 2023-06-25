@@ -79,7 +79,6 @@ export class StaffService {
     }
 
     public async openNightZoo(date: Date, res : Response) {
-
         if(!date) {
             res.status(400).end();
             return;
@@ -95,7 +94,7 @@ export class StaffService {
 
         const date = new Date(dateString);
 
-        const hour = date.getUTCHours();
+        const hour = date.getHours();
 
         return hour >= startNightHour || hour < endNightHour;
     }

@@ -286,7 +286,7 @@ export class VisitorService {
         if(ticket.name == Pass.PASS_NIGHT) {
             return !StaffService.isNight(new Date());
         }
-        if(!StaffService.isNight(new Date())) {
+        if(StaffService.isNight(new Date())) {
             return false;
         }
         if (ticket.name == Pass.PASS_DAYMONTH) {
@@ -298,13 +298,4 @@ export class VisitorService {
         }
         return true;
     }
-
-    public async getVisitorByEmail(visitorEmail: string): Promise<typeof VisitorModel.prototype | null> {
-        if(!visitorEmail) {
-            return null;
-        }
-        return await VisitorModel.findOne({email: visitorEmail}).exec();
-    }
 }
-
-//startHourlyAttendanceRate()
