@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 import {Model} from "mongoose";
 import {BuyTicketDto, Ticket, TicketModel, UserModel, Visitor, VisitorModel} from "../models";
-import {SecurityUtils} from "../utils";
+import {checkConversionToPass, SecurityUtils} from "../utils";
 import {VisitorService} from "./visitor.service";
 
 export class TicketService {
@@ -29,11 +29,23 @@ export class TicketService {
     }
 
     async buyTicket(buyDto: BuyTicketDto, res: Response) {
-        if(!buyDto.email || buyDto.email.trim().length === 0) {
+        if(!buyDto.email || typeof buyDto.email !== "string" || buyDto.email.trim().length === 0) {
             res.status(400).end();
             return;
         }
-        if(!buyDto.pass || buyDto.pass.trim().length === 0) {
+        if(!buyDto.pass || typeof buyDto.pass !== "string" || buyDto.pass.trim().length === 0) {
+            res.status(400).end();
+            return;
+        }
+        if(!buyDto.year || typeof buyDto.year !== "number") {
+            res.status(400).end();
+            return;
+        }
+        if(!buyDto.month || typeof buyDto.month !== "number") {
+            res.status(400).end();
+            return;
+        }
+        if(!buyDto.day || typeof buyDto.day !== "number") {
             res.status(400).end();
             return;
         }
@@ -73,7 +85,7 @@ export class TicketService {
 
 
     async updateTicketById(req: Request, res: Response) {
-        const { id } = req.params;
+        const id = req.params.id;
         try {
             SecurityUtils.checkIfIdIsCorrect(id);
         } catch (error) {
@@ -81,23 +93,32 @@ export class TicketService {
             return;
         }
 
-        try {
-            const ticket = await this.ticketModel.findById(id);
-            if (!ticket) {
-                res.status(404).json({error: "Ticket not found"}).end();
+        const ticket = await this.getTicketByIdHelper(id);
+        if (!ticket) {
+            res.status(404).end();
+            return;
+        }
+
+        if(typeof req.body.email === "string" && req.body.email.trim().length !== 0) {
+            ticket.visitorEmail = req.body.email;
+        }
+        if(typeof req.body.pass === "string" && req.body.pass.trim().length !== 0 && checkConversionToPass(req.body.pass)) {
+            ticket.name = req.body.pass;
+        }
+        if(typeof req.body.year === "number" && typeof req.body.month === "number" && typeof req.body.day === "number") {
+            try {
+                const bodyTicket = new Ticket(ticket.visitorEmail, ticket.name, req.body.year, req.body.month, req.body.day);
+                ticket.start = bodyTicket.start;
+                ticket.expiration = bodyTicket.expiration;
+            }
+            catch (error) {
+                res.status(400).json({ error: error?.toString() }).end();
                 return;
             }
-            const bodyTicket = new Ticket(req.body.email, req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
-            ticket.visitorEmail = bodyTicket.visitorEmail;
-            ticket.name = bodyTicket.name;
-            ticket.start = bodyTicket.start;
-            ticket.expiration = bodyTicket.expiration;
-            await ticket.save();
-            res.json(ticket).status(200).end();
         }
-        catch (error) {
-            res.status(400).json({ error: error?.toString() }).end();
-        }
+
+        await ticket.save();
+        res.json(ticket).status(200).end();
     }
 
 
@@ -108,6 +129,19 @@ export class TicketService {
         }
         catch(error) {
             res.status(404).json({ error: error?.toString() }).end();
+        }
+    }
+
+
+    private async getTicketByIdHelper(id: string): Promise<typeof TicketModel.prototype | null> {
+        if (!id) {
+            return null;
+        }
+        try {
+            return await TicketModel.findById(id).exec();
+        }
+        catch (err: unknown) {
+            return null;
         }
     }
 }

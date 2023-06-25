@@ -65,7 +65,7 @@ export class UserController {
         router.get('/me', checkUserToken(), this.me.bind(this));
         router.get('/admin', checkUserToken(), checkUserRole([Roles.ADMIN]), this.admin.bind(this));
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.getUserById.bind(this));
-        router.put('/:id',  express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.putUserById.bind(this));
+        router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.putUserById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteUserById.bind(this));
         router.put('/:id/role', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.updateRole.bind(this));
         return router;

@@ -2,6 +2,8 @@ import {Request, Response, Router} from "express";
 import * as express from "express";
 import {VisitorRequest} from "../models";
 import {VisitorService} from "../services";
+import {checkUserRole, checkUserToken} from "../middlewares";
+import {Roles} from "../utils";
 
 export class VisitorController {
 
@@ -52,7 +54,7 @@ export class VisitorController {
 
     buildRoutes(): Router {
         const router = express.Router();
-        router.post('/add', express.json(), this.addVisitor.bind(this));
+        router.post('/add', express.json(), checkUserToken(), checkUserRole([Roles.RECEPTION_STAFF]), this.addVisitor.bind(this));
         router.delete('/remove', express.json(), this.removeVisitor.bind(this));
         router.get('/rate', express.json(), this.getAttendanceRate.bind(this));
         router.post('/month', express.json(), this.getMonthlyAttendanceRate.bind(this));

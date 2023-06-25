@@ -16,6 +16,6 @@ export function checkUserRole(roles: string[]): RequestHandler {
             }
         }
 
-        res.status(403).end();
+        res.status(401).end();
     }
 }

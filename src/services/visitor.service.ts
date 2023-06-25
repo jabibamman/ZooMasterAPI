@@ -30,13 +30,13 @@ export class VisitorService {
 
         let tickets: Ticket[] = [];
         try {
-            const result = await this.ticketModel.findOne({email: visitor.email}).exec();
-            if (result === null) {
-                res.status(409).end();
+            const result = await this.ticketModel.find({visitorEmail: visitor.email}).lean().exec();
+            if (!result || result.length === 0) {
+                res.status(404).end();
                 return;
             }
-            console.log(result)
-            //tickets = result;
+
+            tickets = result as Ticket[];
         }
         catch(err: unknown) {
             res.status(404).end();
@@ -279,21 +279,15 @@ export class VisitorService {
 
     public isValidPass(ticket: Ticket) {
         const today = new Date();
-        if(ticket.start > today) {
-            throw new Error("This ticket is not usable for now");
-        }
-        if(ticket.expiration < today) {
-            throw new Error("This ticket is expired");
+        if(ticket.start > today || ticket.expiration < today) {
+            return false;
         }
 
         if(ticket.name == Pass.PASS_NIGHT) {
-            if(StaffService.isNight(new Date())) {
-                throw new Error("You can't use this ticket at this hour")
-            }
-            return true;
+            return !StaffService.isNight(new Date());
         }
         if(!StaffService.isNight(new Date())) {
-            throw new Error("You can't use this ticket at this hour")
+            return false;
         }
         if (ticket.name == Pass.PASS_DAYMONTH) {
             if(today.getMonth() + 1 > 11) {
