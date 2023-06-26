@@ -1,6 +1,5 @@
 import mongoose, {Model, Schema} from "mongoose";
 import {Role} from "./role.model";
-import {Ticket} from "./ticket.model";
 
 const userSchema = new Schema<User>({
     login: {
@@ -17,11 +16,6 @@ const userSchema = new Schema<User>({
         type: Schema.Types.ObjectId,
         ref: "Role",
         required: true
-    }],
-    tickets: [{
-        type: Schema.Types.ObjectId,
-        ref: "Ticket",
-        required: false
     }]
 }, {
     versionKey: false,
@@ -33,7 +27,6 @@ export interface User extends Document {
     login: string;
     password: string;
     roles: string[] | Role[];
-    tickets: Ticket["_id"];
 }
 
 export interface UserRegisterDto {

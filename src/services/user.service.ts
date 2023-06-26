@@ -36,13 +36,13 @@ export class UserService {
                 password: SecurityUtils.toSHA512(password),
                 roles: [this.guestRole]
             });
-            res.json(user);
+            res.json(user).end();
         } catch(err: unknown) {
             const me = err as {[key: string]: unknown};
             if(me["name"] === 'MongoServerError' && me["code"] === 11000) {
-                res.status(409).end(); // conflict
+                res.status(409).end();
             } else {
-                console.log(me)
+                console.log(me, "\nERROR ", me["code"])
                 res.status(500).end(); // internal_server_error
             }
         }
@@ -71,12 +71,16 @@ export class UserService {
         res.json({
             token: session._id
         });
- 
     }
 
     public async admin(req: Request, res: Response) {
-        const users = await UserModel.find().exec();
-        res.json(users);
+        try {
+            const users = await UserModel.find().exec();
+            res.json(users).end();
+        }
+        catch(error) {
+            res.status(404).json({ error: error?.toString() }).end();
+        }
     }
     
     public async getUserById(req: Request, res: Response) {
@@ -87,7 +91,6 @@ export class UserService {
             res.status(404).end();
             return;
         }
-    
         res.json(user);
     }
 
@@ -106,7 +109,7 @@ export class UserService {
     
         if (typeof req.body.password === "string" && req.body.password.length > 8) {
             user.password = SecurityUtils.toSHA512(req.body.password);
-        }        
+        }
     
         await user.save();
         res.json(user);
@@ -114,16 +117,17 @@ export class UserService {
 
     public async deleteUserById(req: Request, res: Response) {
         const id = req.params.id;
-        const user = await this.getUserByIdHelper(id);
-
-        if (!user) {
+        if (!id) {
             res.status(404).end();
             return;
         }
- 
-        await this.model.deleteOne({ _id: id }).exec();
-        res.json(user);
-        res.status(204).json({ message: "User deleted" }).end();
+        try {
+            await this.model.deleteOne({ _id: id }).exec();
+            res.json({ message: "User deleted" }).status(204).end();
+        }
+        catch (err: unknown) {
+            res.status(404).end();
+        }
     }
 
     public async updateRoles(req: Request, res: Response) {
@@ -135,14 +139,14 @@ export class UserService {
             return;
         }
 
-        const roles = await RoleModel.findOne({ name: req.body.roles.toLowerCase() }).exec();
+        const role = await RoleModel.findOne({ name: req.body.roles.toLowerCase() }).exec();
 
-        if (!roles) {
+        if (!role) {
             res.status(404).json({ message: "Role not found" }).end();
             return;
         }
         
-        user.roles = roles;
+        user.roles.push(role);
         await user.save();
         res.status(200).json(user).end();
     }
@@ -162,9 +166,11 @@ export class UserService {
         if (!id) {
             return null;
         }
-        return await UserModel.findById(id).exec();
+        try {
+            return await UserModel.findById(id).exec();
+        }
+        catch (err: unknown) {
+            return null;
+        }
     }
-    
-
 }
- 

@@ -20,18 +20,24 @@ export function checkUserToken(): RequestHandler {
             return;
         }
         const token = parts[1];
-        // populate permet de faire une jointure sur la collection qui est deriere le champs user
-        const session = await SessionModel.findById(token).populate({
-            path: "user",
-            populate: {
-                path: "roles"
+
+        try {
+            // populate permet de faire une jointure sur la collection qui est deriere le champs user
+            const session = await SessionModel.findById(token).populate({
+                path: "user",
+                populate: {
+                    path: "roles"
+                }
+            }).exec();
+            if(session === null) {
+                res.status(401).end(); // unauthorized
+                return;
             }
-        }).exec();
-        if(session === null) { 
-            res.status(401).end(); // unauthorized
-            return;
+            req.user = session.user as User;
+            next();
         }
-        req.user = session.user as User;
-        next();
+        catch (e) {
+            res.status(401).end(); // unauthorized
+        }
     };
 }

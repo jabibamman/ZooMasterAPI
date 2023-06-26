@@ -2,9 +2,13 @@ import mongoose, {Model, Schema} from "mongoose";
 import {Pass} from "../utils";
 
 const ticketSchema = new Schema<Ticket>({
+    visitorEmail: {
+        type: Schema.Types.String,
+        required: true
+    },
     name: {
         type: Schema.Types.String,
-        required: false
+        required: true
     },
     start: {
         type: Schema.Types.Date,
@@ -21,12 +25,14 @@ const ticketSchema = new Schema<Ticket>({
 
 export class Ticket {
     _id: string;
+    visitorEmail: string;
     name: Pass;
     start: Date;
     expiration: Date;
 
-    constructor(name: Pass, year: number, month: number, day: number) {
+    constructor(email: string, name: Pass, year: number, month: number, day: number) {
         this._id = new mongoose.Types.ObjectId().toString();
+        this.visitorEmail = email;
         this.name = name;
         this.start = this.verifyDate(year, month, day);
         this.expiration = this.setExpirationDate();
@@ -86,11 +92,33 @@ export class Ticket {
         if(this.expiration < today) {
             throw new Error("This ticket is expired");
         }
+
+        if (this.name == Pass.PASS_NIGHT) {
+            if(today.getHours() < 21 || today.getHours() > 2) {
+                throw new Error("You can't use this ticket at this hour")
+            }
+            return true;
+        }
         if(today.getHours() < 9 || today.getHours() > 19) {
             throw new Error("You can't use this ticket at this hour")
         }
+        if (this.name == Pass.PASS_DAYMONTH) {
+            if(today.getMonth() + 1 > 11) {
+                this.start = new Date(today.getFullYear() + 1, 0, 1);
+                return true;
+            }
+            this.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+        }
         return true;
     }
+}
+
+export interface BuyTicketDto {
+    email: string,
+    pass: Pass,
+    year: number,
+    month: number,
+    day: number
 }
 
 export const TicketModel: Model<Ticket> = mongoose.model("Ticket", ticketSchema);

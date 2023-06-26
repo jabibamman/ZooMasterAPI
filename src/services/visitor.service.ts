@@ -1,81 +1,87 @@
-import {Attendance, AttendanceModel, StaffModel, Visitor, VisitorModel, VisitorRequest} from "../models";
+import {
+    Ticket,
+    Attendance,
+    AttendanceModel,
+    Visitor,
+    VisitorModel,
+    AddVisitorDto,
+    TicketModel,
+    UserModel
+} from "../models";
 import {Response} from "express";
-import {Model} from "mongoose";
+import { Model } from "mongoose";
 import {Pass, SecurityUtils} from "../utils";
+import {StaffService} from "./staff.service";
+import {VisitorController} from "../controllers";
 
-
-function isValidPass(pass: string): boolean {
-    return Object.keys(Pass).some((key) => Pass[key as keyof typeof Pass] === pass);
-}
-
-async function runHourlyAttendanceRate() {
-    const visitorService = new VisitorService();
-    const currentRate = await visitorService.getCurrentAttendanceRate();
-    await visitorService.updateHourlyAttendanceRate(currentRate);
-}
-
-async function startHourlyAttendanceRate() {
-    await runHourlyAttendanceRate();
-    setInterval(runHourlyAttendanceRate, 60 * 60 * 1000);
-}
 
 export class VisitorService {
-    readonly model: Model<Visitor>;
+    readonly visitorModel: Model<Visitor>;
+    readonly ticketModel: Model<Ticket>;
     readonly attendanceModel: Model<Attendance>;
     readonly maxVisitors: number;
 
-
     constructor() {
-        this.model = VisitorModel;
+        this.visitorModel = VisitorModel;
+        this.ticketModel = TicketModel;
         this.attendanceModel = AttendanceModel;
         this.maxVisitors = 40;
     }
 
-    public async addVisitor(visitor: VisitorRequest, res : Response) {
-        if(!visitor) {
+    public async addVisitor(visitor: AddVisitorDto, res : Response) {
+        if(typeof visitor.email !== "string" || visitor.email.trim().length === 0) {
+            res.status(400).end();
+            return;
+        }
+        if(typeof visitor.name !== "string" || visitor.name.trim().length === 0) {
             res.status(400).end();
             return;
         }
 
-        if(visitor.name.trim().length === 0) {
-            res.status(400).end();
+        let tickets: Ticket[] = [];
+        try {
+            const result = await this.ticketModel.find({visitorEmail: visitor.email}).lean().exec();
+            if (!result || result.length === 0) {
+                res.status(404).end();
+                return;
+            }
+
+            tickets = result as Ticket[];
+        }
+        catch(err: unknown) {
+            res.status(404).end();
             return;
         }
 
-        if(visitor.email.trim().length === 0) {
+        let isATicketValid = false;
+        for(let i = 0; i < tickets.length; i++) {
+            if(await this.isValidPass(tickets[i])) {
+                isATicketValid = true;
+                break;
+            }
+        }
+        if(!isATicketValid){
             res.status(400).end();
             return;
         }
-
-        if(visitor.ticketType.trim().length === 0) {
-            res.status(400).end();
-            return;
-        }
-
-        if(!isValidPass(visitor.ticketType)){
-            res.status(400).end();
-            return;
-        }
-
-        const name: string = visitor.name;
-        const email: string = visitor.email;
-        const ticketType: string = visitor.ticketType;
 
         try {
-            const visitorCount = await VisitorModel.countDocuments();
+            const visitorCount = await this.visitorModel.countDocuments();
             if (visitorCount >= this.maxVisitors) {
                 res.status(409).end();
                 return;
             }
 
-            const visitor = await VisitorModel.create({
+            const name = visitor.name;
+            const email = visitor.email;
+            const createdVisitor = await this.visitorModel.create({
                 name,
                 email,
-                ticketType
+                tickets
             });
             console.log(await this.getCurrentAttendanceRate() + "%")
             await this.updateHourlyAttendanceRate(await this.getCurrentAttendanceRate())
-            res.json(visitor);
+            res.json(createdVisitor);
         } catch(err: unknown) {
             const me = err as {[key: string]: unknown};
             if(me["name"] === 'MongoServerError' && me["code"] === 11000) {
@@ -280,7 +286,66 @@ export class VisitorService {
             throw Error("Couldn't update attendance rate")
         }
     }
-}
 
-startHourlyAttendanceRate()
- 
+    public async admin(res: Response) {
+        try {
+            const visitors = await VisitorModel.find().exec();
+            res.json(visitors).end();
+        }
+        catch(error) {
+            res.status(404).json({ error: error?.toString() }).end();
+        }
+    }
+
+    public async isValidPass(ticket: Ticket) {
+        const today = new Date();
+        if(ticket.start > today || ticket.expiration < today) {
+            return false;
+        }
+
+        if(ticket.name == Pass.PASS_NIGHT) {
+            return !StaffService.isNight(new Date());
+        }
+        if(StaffService.isNight(new Date())) {
+            return false;
+        }
+        if (ticket.name == Pass.PASS_DAYMONTH) {
+            try {
+                const result = await this.getTicketHelper(ticket);
+                if(!result) {
+                    return false;
+                }
+
+                if(today.getMonth() + 1 > 11) {
+                    ticket.start = new Date(today.getFullYear() + 1, 0, 1);
+                    return true;
+                }
+                ticket.start = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+
+                result.start = ticket.start;
+                await result.save();
+            }
+            catch (err) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private async getTicketHelper(ticket: Ticket): Promise<typeof TicketModel.prototype | null> {
+        if (!ticket) {
+            return null;
+        }
+        try {
+            return await TicketModel.findOne({
+                visitorEmail: ticket.visitorEmail,
+                name: Pass.PASS_DAYMONTH,
+                start: ticket.start,
+                expiration: ticket.expiration
+            }).exec();
+        }
+        catch (err: unknown) {
+            return null;
+        }
+    }
+}

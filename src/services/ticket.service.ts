@@ -1,44 +1,62 @@
 import {Request, Response} from "express";
 import {Model} from "mongoose";
-import {Ticket, TicketModel, User, UserModel} from "../models";
-import {UserService} from "./user.service";
-import {SecurityUtils} from "../utils";
+import {BuyTicketDto, Ticket, TicketModel, UserModel, Visitor, VisitorModel} from "../models";
+import {checkConversionToPass, SecurityUtils} from "../utils";
+import {VisitorService} from "./visitor.service";
 
 export class TicketService {
     readonly ticketModel: Model<Ticket>;
-    readonly userModel: Model<User>;
-    readonly userService: UserService;
+    readonly visitorModel: Model<Visitor>;
+    readonly visitorService: VisitorService;
 
     constructor() {
         this.ticketModel = TicketModel;
-        this.userModel = UserModel;
-        this.userService = new UserService();
+        this.visitorModel = VisitorModel;
+        this.visitorService = new VisitorService()
     }
 
-    async getTickets(req: Request, res: Response) {
-        if(!req.user) {
-            return res.status(401).json({message: "Unauthorized"}).end();
+    async getTicketsByEmail(email: string, res: Response) {
+        if(!email || typeof email !== "string") {
+            return res.status(400).json().end();
         }
-        res.json(req.user.tickets).status(200).end();
+
+        const tickets = await this.ticketModel.find({visitorEmail: email}).exec();
+        if (!tickets || tickets.length === 0) {
+            return res.status(404).end();
+        }
+
+        return res.json(tickets).status(200).end();
     }
 
-    async buyTicket(req: Request, res: Response) {
-        const reqUser = req.user;
-        if (!reqUser) {
-            return res.status(401).json({message: "Unauthorized"}).end();
+    async buyTicket(buyDto: BuyTicketDto, res: Response) {
+        if(!buyDto.email || typeof buyDto.email !== "string" || buyDto.email.trim().length === 0) {
+            res.status(400).end();
+            return;
         }
+        if(!buyDto.pass || typeof buyDto.pass !== "string" || buyDto.pass.trim().length === 0) {
+            res.status(400).end();
+            return;
+        }
+        if(!buyDto.year || typeof buyDto.year !== "number") {
+            res.status(400).end();
+            return;
+        }
+        if(!buyDto.month || typeof buyDto.month !== "number") {
+            res.status(400).end();
+            return;
+        }
+        if(!buyDto.day || typeof buyDto.day !== "number") {
+            res.status(400).end();
+            return;
+        }
+
         try {
-            const ticketBody = req.body.ticket;
-            const ticket = new Ticket(ticketBody.name, ticketBody.year, ticketBody.month, ticketBody.day);
-            await this.ticketModel.create(ticket);
-
-            const user = await this.userService.getUserByIdHelper(reqUser._id as string);
-            user.tickets.push(ticket);
-            await user.save();
-            return res.json(ticket).status(201).end();
+            const ticket = new Ticket(buyDto.email, buyDto.pass, buyDto.year, buyDto.month, buyDto.day);
+            const result = await this.ticketModel.create(ticket);
+            return res.json(result).status(201).end();
         }
         catch (error) {
-            return res.status(400).json({error: error?.toString()});
+            return res.status(400).json({error: error?.toString()}).end();
         }
     }
 
@@ -48,47 +66,82 @@ export class TicketService {
         try {
             SecurityUtils.checkIfIdIsCorrect(id);
         } catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
             return;
         }
 
         try {
             const ticket = await this.ticketModel.findById(id);
-            if (ticket) {
-                res.status(200).json(ticket);
-            } else {
-                res.status(404).json({ error: "Ticket not found" });
+            if (!ticket) {
+                res.status(404).json({ error: "Ticket not found" }).end();
+                return;
             }
+            res.status(200).json(ticket).end();
         }
         catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
         }
     }
 
 
     async updateTicketById(req: Request, res: Response) {
-        const { id } = req.params;
+        const id = req.params.id;
         try {
             SecurityUtils.checkIfIdIsCorrect(id);
         } catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            res.status(400).json({ error: error?.toString() }).end();
             return;
         }
 
-        try {
-            const ticket = await this.ticketModel.findById(id);
-            if (ticket) {
-                const bodyTicket = new Ticket(req.body.name || ticket.name, req.body.year, req.body.month, req.body.day);
-                ticket.name = bodyTicket.name;
+        const ticket = await this.getTicketByIdHelper(id);
+        if (!ticket) {
+            res.status(404).end();
+            return;
+        }
+
+        if(typeof req.body.email === "string" && req.body.email.trim().length !== 0) {
+            ticket.visitorEmail = req.body.email;
+        }
+        if(typeof req.body.pass === "string" && req.body.pass.trim().length !== 0 && checkConversionToPass(req.body.pass)) {
+            ticket.name = req.body.pass;
+        }
+        if(typeof req.body.year === "number" && typeof req.body.month === "number" && typeof req.body.day === "number") {
+            try {
+                const bodyTicket = new Ticket(ticket.visitorEmail, ticket.name, req.body.year, req.body.month, req.body.day);
                 ticket.start = bodyTicket.start;
                 ticket.expiration = bodyTicket.expiration;
-                await ticket.save();
-                res.status(200).json({ message: "Ticket exchanged" });
-            } else {
-                res.status(404).json({ error: "Ticket not found" });
             }
-        } catch (error) {
-            res.status(400).json({ error: error?.toString() });
+            catch (error) {
+                res.status(400).json({ error: error?.toString() }).end();
+                return;
+            }
+        }
+
+        await ticket.save();
+        res.json(ticket).status(200).end();
+    }
+
+
+    public async admin(req: Request, res: Response) {
+        try {
+            const tickets = await this.ticketModel.find().exec();
+            res.json(tickets).end();
+        }
+        catch(error) {
+            res.status(404).json({ error: error?.toString() }).end();
+        }
+    }
+
+
+    private async getTicketByIdHelper(id: string): Promise<typeof TicketModel.prototype | null> {
+        if (!id) {
+            return null;
+        }
+        try {
+            return await TicketModel.findById(id).exec();
+        }
+        catch (err: unknown) {
+            return null;
         }
     }
 }
