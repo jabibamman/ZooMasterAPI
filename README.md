@@ -60,6 +60,19 @@ To shut down your Docker environment:
 
 `npm run docker:down`
 
+## API Documentation
+
+Postman is used for API development and testing. A Postman collection of all the available endpoints is provided in the `/endpoints` folder. You can import this collection into Postman to get started with the API.
+
+To import the collection, follow these steps:
+
+1. Open Postman.
+2. Click on the `Import` button in the upper left corner.
+3. In the opened dialog, click `Upload Files`.
+4. Navigate to the `/endpoints` folder in the project directory, select the Postman collection file, and click `Open`.
+5. Click `Import` in the dialog.
+
+After importing the collection, you will see a list of all available endpoints. You can click on any endpoint to see the details, modify parameters, and send requests.
 
 ## Authors
 
