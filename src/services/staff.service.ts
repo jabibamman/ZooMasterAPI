@@ -1,21 +1,6 @@
-import {Staff, StaffModel, StaffRequest, User, UserModel} from "../models";
+import {Staff, StaffModel, StaffRequest} from "../models";
 import {Response} from "express";
 import { Model } from "mongoose";
-
-function isNight(dateString: Date): boolean {
-    const startNightHour = 20;
-    const endNightHour = 6;
-
-    const date = new Date(dateString);
-
-    const hour = date.getUTCHours();
-
-    if (hour >= startNightHour || hour < endNightHour) {
-        return true;
-    }
-
-    return false;
-}
 
 export class StaffService {
     readonly model: Model<Staff>;
@@ -94,14 +79,23 @@ export class StaffService {
     }
 
     public async openNightZoo(date: Date, res : Response) {
-
         if(!date) {
             res.status(400).end();
             return;
         }
 
-        if(!isNight(date)) res.json("Il ne fait pas encore nuit...");
+        if(!StaffService.isNight(date)) res.json("Il ne fait pas encore nuit...");
         else res.json("Le parc est ouvert cette nuit !");
     }
+
+    public static isNight(dateString: Date): boolean {
+        const startNightHour = 20;
+        const endNightHour = 6;
+
+        const date = new Date(dateString);
+
+        const hour = date.getHours();
+
+        return hour >= startNightHour || hour < endNightHour;
+    }
 }
- 

@@ -23,6 +23,7 @@ const userSchema = new Schema<User>({
 });
 
 export interface User extends Document {
+    _id: string;
     login: string;
     password: string;
     roles: string[] | Role[];

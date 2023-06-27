@@ -1,9 +1,8 @@
 import {Request, Response, Router} from "express";
 import * as express from "express";
 import { UserLoginDto, UserRegisterDto } from "../models";
-import { checkUserToken } from "../middlewares";
-import { checkUserRole } from "../middlewares/role.middleware";
-import { UserService } from "../services/user.service";
+import { checkUserToken, checkUserRole } from "../middlewares";
+import { UserService } from "../services";
 import { Roles } from "../utils";
 
 export class UserController {
@@ -14,7 +13,6 @@ export class UserController {
     constructor() {
         this.path = "/user";
         this.userService = new UserService();
-
     }
 
     async register(req: Request, res: Response) {
@@ -41,22 +39,22 @@ export class UserController {
     }
 
     async admin(req: Request, res: Response) {
-        this.userService.admin(req, res);
+        await this.userService.admin(req, res);
     }
 
     async getUserById(req: Request, res: Response) {
-        this.userService.getUserById(req, res);
+        await this.userService.getUserById(req, res);
     }
 
     async putUserById(req: Request, res: Response) {
-       this.userService.putUserById(req, res);
+        await this.userService.putUserById(req, res);
     }
 
     async deleteUserById(req: Request, res: Response) {
-        this.userService.deleteUserById(req, res);
+        await this.userService.deleteUserById(req, res);
     }
 
-     updateRole(req: Request, res: Response) {
+    updateRole(req: Request, res: Response) {
          this.userService.updateRoles(req, res);
     }
 
@@ -65,9 +63,9 @@ export class UserController {
         router.post('/register', express.json(), this.register.bind(this));
         router.post('/login', express.json(), this.login.bind(this));
         router.get('/me', checkUserToken(), this.me.bind(this));
-        router.get('/admin', checkUserToken(), checkUserRole([Roles.ADMIN]), this.admin.bind(this))
+        router.get('/admin', checkUserToken(), checkUserRole([Roles.ADMIN]), this.admin.bind(this));
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.getUserById.bind(this));
-        router.put('/:id',  express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.putUserById.bind(this));
+        router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.putUserById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteUserById.bind(this));
         router.put('/:id/role', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.updateRole.bind(this));
         return router;

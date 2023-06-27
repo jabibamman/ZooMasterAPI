@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { SecurityUtils } from "../utils";
-import { ITreatmentRecord, TreatmentRecord } from "../models";
+import { Roles, SecurityUtils, checkUserRole } from "../utils";
+import { ITreatmentRecord, TreatmentRecord, UserModel } from "../models";
 import { Model } from "mongoose";
 import { EnclosureService } from "./enclosure.service";
 export class TreatmentService {
@@ -18,6 +18,18 @@ export class TreatmentService {
             SecurityUtils.checkIfIdIsCorrect(req.body.veterinarian);
         } catch (error) {
             res.status(400).json({ error: error?.toString() });
+            return;
+        }
+
+        const veterinarian = await UserModel.findById(req.body.veterinarian).populate('roles');
+        
+        if (!veterinarian) {
+            res.status(400).json({ error: 'Zookeeper not found.' });
+            return;
+        }
+
+        if(!checkUserRole(veterinarian, Roles.VETERINARIAN)) {
+            res.status(403).json({ error: 'Veterinarian does not have the required role.' });
             return;
         }
 
@@ -56,6 +68,19 @@ export class TreatmentService {
         try {
             SecurityUtils.checkIfIdIsCorrect(req.params.id);
             const treatment = await TreatmentRecord.findById(req.params.id);
+
+            const veterinarian = await UserModel.findById(req.body.id).populate('roles');
+        
+            if (!veterinarian) {
+                res.status(400).json({ error: 'Zookeeper not found.' });
+                return;
+            }
+    
+            if(!checkUserRole(veterinarian, Roles.VETERINARIAN)) {
+                res.status(403).json({ error: 'Veterinarian does not have the required role.' });
+                return;
+            }
+
             if (treatment) {
                 treatment.animal = req.body.animal || treatment.animal;
                 treatment.veterinarian = req.body.veterinarian || treatment.veterinarian;
@@ -135,6 +160,5 @@ export class TreatmentService {
         }catch (error) {
             res.status(500).json({ error: error?.toString() });
         }
-
     }
 }

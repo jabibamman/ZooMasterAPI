@@ -1,8 +1,7 @@
 import { SecurityUtils } from '../utils';
-import { Maintenance } from './../models/maintenance.model';
+import { Maintenance, MaintenanceLog } from '../models';
 import { Request, Response } from 'express';
 import { EnclosureService } from './enclosure.service';
-import { MaintenanceLog } from '../models/maintenanceLog.model';
 export class MaintenanceService {
     
     constructor() { }
@@ -60,8 +59,10 @@ export class MaintenanceService {
 
         const maintenanceLog = new MaintenanceLog({
             maintenance: maintenance._id,
+            enclosure: id,
             createdBy: req.user?.login,
-            reason: req.body.reason ? req.body.description : "No reason"
+            createdAt: new Date(),
+            reason: req.body.description ? req.body.description : "No description"
         });
 
         await maintenanceLog.save();
@@ -83,7 +84,9 @@ export class MaintenanceService {
             await Maintenance.deleteOne({ _id: id }).exec();
             const maintenanceLog = new MaintenanceLog({
                 maintenance: id,
+                enclosure: maintenance.enclosure,
                 deletedBy: req.user?.login,
+                deletedAt: new Date(),
                 reason: req.body.reason
             });
             await maintenanceLog.save();
@@ -143,13 +146,15 @@ export class MaintenanceService {
         maintenance.date = req.body.date ? req.body.date : maintenance.date;
         maintenance.description = req.body.description ? req.body.description : maintenance.description;
 
-        const maintenanceLog = new MaintenanceLog({
+        const updatedMaintenanceLog = {
             maintenance: maintenance._id,
-            editedBy: req.user?.login,
+            enclosure: maintenance.enclosure,
+            updatedBy: req.user?.login,
+            updatedAt: new Date(),
             reason: req.body.reason ? req.body.reason : "No reason"
-        });
+        };
 
-        await maintenanceLog.save();
+        await MaintenanceLog.updateOne({ maintenance: maintenance._id }, { $set: updatedMaintenanceLog }).exec();
         await maintenance.save();
         res.json(maintenance).status(200).end();
     }

@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "6c09187c-6a19-43cf-ab3c-72765dca6926",
+		"_postman_id": "7e89a564-7654-45ba-bec2-4567d797c571",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25694887",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-6c09187c-6a19-43cf-ab3c-72765dca6926?action=share&creator=25694887&source=collection_link"
+		"_exporter_id": "25875093",
+		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-7e89a564-7654-45ba-bec2-4567d797c571?action=share&creator=25875093&source=collection_link"
 	},
 	"item": [
 		{
@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\":\"zoookeper\",\n    \"password\":\"password\"\n}",
+							"raw": "{\n    \"login\":\"s\",\n    \"password\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -91,15 +91,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/6471c753e1e2779b1ca09241/role",
+							"raw": "{{HOST}}:{{PORT}}/user/:id/role",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"6471c753e1e2779b1ca09241",
+								":id",
 								"role"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -212,14 +218,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/6457a91d706eb219db128410",
+							"raw": "{{HOST}}:{{PORT}}/user/:",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"6457a91d706eb219db128410"
+								":"
 							]
 						}
 					},
@@ -250,14 +256,14 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/64709840fc3d177fc2881429",
+							"raw": "{{HOST}}:{{PORT}}/user/:",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"64709840fc3d177fc2881429"
+								":"
 							]
 						}
 					},
@@ -288,14 +294,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/6457b69367d1fb1ac77e3b2d",
+							"raw": "{{HOST}}:{{PORT}}/user/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"user",
-								"6457b69367d1fb1ac77e3b2d"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -314,7 +326,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -323,7 +335,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"Bassem\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\",\n    \"logBook\":\"null\"\n}",
+							"raw": "{\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\"\n    },\n    \"name\":\"corbisord\",\n    \"age\":\"10\",\n    \"healthStatus\":\"Good\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -351,7 +363,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -359,14 +371,20 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
+							"raw": "{{HOST}}:{{PORT}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6470a10d7a225e198ed84cd5"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -380,7 +398,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -389,7 +407,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"Simba\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\"\n}",
+							"raw": "{\n    \"name\":\"Simbas\",\n    \"age\":\"16\",\n    \"healthStatus\":\"Not good\",\n    \"species\":{\n        \"name\": \"oiseau\",\n        \"lifespan\": \"20\",\n        \"diet\": \"grain\",\n        \"habitat\": \"mountains\"\n    }\n    \n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -397,14 +415,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/6470a10d7a225e198ed84cd5",
+							"raw": "{{HOST}}:{{PORT}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								"6470a10d7a225e198ed84cd5"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -418,7 +442,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -426,18 +450,18 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/:6471c2ad52d043eb436ca56f",
+							"raw": "{{HOST}}:{{PORT}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"animal",
-								":6471c2ad52d043eb436ca56f"
+								":id"
 							],
 							"variable": [
 								{
-									"key": "6471c2ad52d043eb436ca56f",
+									"key": "id",
 									"value": null
 								}
 							]
@@ -458,7 +482,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -467,7 +491,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\":\"HAITI\",\n    \"maxCapacity\":\"50\",\n    \"animals\":[\"6471bfb7aabfe4fd821d0516\"],\n    \"zooKeeper\":\"6471c753e1e2779b1ca09241\"\n}",
+							"raw": "{\n  \"name\": \"Enclos des lions\",\n  \"description\": \"Cet enclos abrite les majestueux lions.\",\n  \"maxCapacity\": 10,\n  \"images\": [\n    \"https://example.com/image1.jpg\",\n    \"https://example.com/image2.jpg\"\n  ],\n  \"type\": \"Savane\",\n  \"duration\": \"120\",\n  \"openingHours\": \"9:00 - 18:00\",\n  \"accessibility\": true,\n  \"animals\": [\"6496f8bd858483c2d45ab0df\"],\n  \"zooKeeper\": \"6496f723834d73200b5e9e48\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -475,13 +499,65 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
-								"enclosure"
+								"enclosure",
+								""
+							],
+							"query": [
+								{
+									"key": null,
+									"value": "gg",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"\",\n  \"description\": \".\",\n  \"maxCapacity\": 50,\n  \"images\": [],\n  \"type\": \"\",\n  \"duration\": \"\",\n  \"openingHours\": \"\",\n  \"accessibility\": false,\n  \"animals\": [\"6496f8bd858483c2d45ab0df\", \"6496f784834d73200b5e9e51\"],\n  \"zooKeeper\": \"6496f723834d73200b5e9e48\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -512,15 +588,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471fd0eabb2e0f0f3a01c82/animal",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82",
+								":id",
 								"animal"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -534,7 +616,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -551,15 +633,21 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471c85a919f3b33271b0152",
+								":id",
 								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -573,7 +661,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "647098de00c91b19982f02d4",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -604,11 +692,11 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "649702557af121b2100ccf71"
 								},
 								{
 									"key": "animalId",
-									"value": null
+									"value": "6496f784834d73200b5e9e51"
 								}
 							]
 						}
@@ -616,7 +704,7 @@
 					"response": []
 				},
 				{
-					"name": "/enclosure/:id/animal/:animalId Copy",
+					"name": "/enclosure/:id/animal/:animalId",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -626,7 +714,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -643,16 +731,22 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/animal/",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471c85a919f3b33271b0152",
+								":id",
 								"animal",
 								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								}
 							]
 						}
 					},
@@ -669,7 +763,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -686,15 +780,75 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/6471c85a919f3b33271b0152/",
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
-								"6471c85a919f3b33271b0152",
+								":id",
+								"animal",
+								":animalId"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								},
+								{
+									"key": "animalId",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/enclosure/:id/best-month-for-maintenance",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/best-month-for-maintenance/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"enclosure",
+								":id",
+								"best-month-for-maintenance",
 								""
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6496f72a834d73200b5e9e4b"
+								}
 							]
 						}
 					},
@@ -706,14 +860,14 @@
 			"name": "/maintenance",
 			"item": [
 				{
-					"name": "/maintenance/enclosure",
+					"name": "/maintenance/enclosure/:id",
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -730,7 +884,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
@@ -738,7 +892,13 @@
 							"path": [
 								"maintenance",
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								}
 							]
 						}
 					},
@@ -755,7 +915,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -772,7 +932,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
@@ -780,7 +940,13 @@
 							"path": [
 								"maintenance",
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649702557af121b2100ccf71"
+								}
 							]
 						}
 					},
@@ -797,7 +963,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -835,7 +1001,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -845,44 +1011,6 @@
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n    \"reason\":\"Water fixed\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/647370df8eb8fff7a4237001",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"maintenance",
-								"647370df8eb8fff7a4237001"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/maintenance/:id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"name\":\"Alerte\",\r\n    \"description\":\"Attention eau par terre\",\r\n    \"enclosure\":\"\",\r\n    \"reason\":\"I've lost my key\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -902,7 +1030,51 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "649703a47af121b2100ccf94"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/maintenance/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Alerte\",\r\n    \"description\":\"Attention eau par haut\",\r\n    \"enclosure\":\"\",\r\n    \"reason\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/maintenance/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"maintenance",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497041f7af121b2100ccfb1"
 								}
 							]
 						}
@@ -922,7 +1094,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -931,7 +1103,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"animal\": \"6471bfb7aabfe4fd821d0516\",\r\n    \"veterinarian\": \"6471c753e1e2779b1ca09241\",\r\n    \"enclosure\": \"6471fd0eabb2e0f0f3a01c82\",\r\n    \"description\": \"The animal was suffering from a minor injury. Cleaned and applied medication.\",\r\n    \"medication\": [\r\n        {\r\n            \"name\": \"Pain Reliever\",\r\n            \"dosage\": \"2 pills per day for 5 days\"\r\n        },\r\n        {\r\n            \"name\": \"Antibiotics\",\r\n            \"dosage\": \"1 pill per day for 10 days\"\r\n        }\r\n    ]\r\n}",
+							"raw": "{\r\n    \"animal\": \"6496f8bd858483c2d45ab0df\",\r\n    \"veterinarian\": \"6496f723834d73200b5e9e48\",\r\n    \"enclosure\": \"6497091172faed7aa4046a03\",\r\n    \"description\": \"The animal was suffering from a minor injury. Cleaned and applied medication.\",\r\n    \"medication\": [\r\n        {\r\n            \"name\": \"Pain Reliever\",\r\n            \"dosage\": \"2 pills per day for 5 days\"\r\n        },\r\n        {\r\n            \"name\": \"Antibiotics\",\r\n            \"dosage\": \"1 pill per day for 10 days\"\r\n        }\r\n    ]\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -962,7 +1134,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -979,14 +1151,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/647364b301c6ab734a1513db",
+							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
 							"host": [
 								"{{HOST}}"
 							],
 							"port": "{{PORT}}",
 							"path": [
 								"treatment",
-								"647364b301c6ab734a1513db"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497094d72faed7aa4046a0d"
+								}
 							]
 						}
 					},
@@ -1003,166 +1181,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/647364b301c6ab734a1513db",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"647364b301c6ab734a1513db"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/treatment/:id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "PUT",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n        \"enclosure\": \"6471fd0eabb2e0f0f3a01c82\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/6473690c656502814d813e23",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"6473690c656502814d813e23"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/treatment/:id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/647366f1285ca5e33964bbdb",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"647366f1285ca5e33964bbdb"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/treatment/animal/:id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/animal/6471bfb7aabfe4fd821d0516",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"treatment",
-								"animal",
-								"6471bfb7aabfe4fd821d0516"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "treatment/veterinarian/:id",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -1194,7 +1213,95 @@
 					"response": []
 				},
 				{
-					"name": "treatment/enclosure/:id",
+					"name": "/treatment/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"description\": \"anything\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497094d72faed7aa4046a0d"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "649709ed28acd919b0bb9e6f"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/treatment/animal/:id",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1204,7 +1311,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6471bf5c2b3272fb08a1468e",
+									"value": "6496f72a834d73200b5e9e4b",
 									"type": "string"
 								}
 							]
@@ -1221,7 +1328,103 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/enclosure/6471fd0eabb2e0f0f3a01c82",
+							"raw": "{{HOST}}:{{PORT}}/treatment/animal/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"animal",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6496f8bd858483c2d45ab0df"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment/veterinarian/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/veterinarian/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"treatment",
+								"veterinarian",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497092872faed7aa4046a08"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "treatment/enclosure/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/treatment/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
@@ -1229,13 +1432,685 @@
 							"path": [
 								"treatment",
 								"enclosure",
-								"6471fd0eabb2e0f0f3a01c82"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6497091172faed7aa4046a03"
+								}
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "/staff",
+			"item": [
+				{
+					"name": "/staff/register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"hosts\":[\"646d14703e3301e68e01c58c\"],\r\n    \"healers\":[\"646d14743e3301e68e01c58e\"],\r\n    \"sellers\":[\"646d14703e3301e68e01c58c\"],\r\n    \"cleaners\":[\"646d147d3e3301e68e01c592\"],\r\n    \"date\":\"2020-05-20T22:36:22.353+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/register",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/staff/open",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-05-20T22:36:22.353+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/open",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"open"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/staff/open/night/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "646e9739407019a64c0613b1",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-05-20T07:00:00.000+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/staff/open/night/646d14703e3301e68e01c58c",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"staff",
+								"open",
+								"night",
+								"646d14703e3301e68e01c58c"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/visitor",
+			"item": [
+				{
+					"name": "/visitor/add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Ronan\",\r\n    \"email\":\"ronan.crampte@gmail.com\",\r\n    \"ticketType\":\"PASS_DAY\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/add",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/remove",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"visitorID\":\"64949053aebb0cdde0f8692b\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/remove",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"remove"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/admin",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/rate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/rate",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"rate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/month",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/month",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"month"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/week",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/week",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"week"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/day",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/day",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"day"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/visitor/hour",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"date\":\"2023-06-22T18:34:57.366+00:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/visitor/hour",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"visitor",
+								"hour"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/ticket",
+			"item": [
+				{
+					"name": "/ticket/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ticket\": {\r\n        \"name\": \"PASS_DAYMONTH\",\r\n        \"year\": \"2023\",\r\n        \"month\": \"5\",\r\n        \"day\": \"29\"\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6475178d84eeb505e88141f8"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6474d65ef40a40dde1fefba4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"PASS_NIGHT\",\r\n    \"year\": \"2023\",\r\n    \"month\": \"05\",\r\n    \"day\": \"29\"\r\n}"
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"ticket",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "6474ec55fcf3e62d4adf1b83"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/ticket/admin",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6457a5746bfd430b7117ade3",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/user/admin",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"admin"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "/species",
+			"item": [
+				{
+					"name": "/species",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"birdo\",\n    \"lifespan\": \"20\",\n    \"habitat\":\"mountains\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/species",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"species"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/species/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/species/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"species",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/species/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"Simbas\",\n    \"lifespan\": \"20\",\n    \"diet\": \"meat\",\n    \"habitat\": \"jungle\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/species/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"species",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/species/:id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "6496f72a834d73200b5e9e4b",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}:{{PORT}}/species/:id",
+							"host": [
+								"{{HOST}}"
+							],
+							"port": "{{PORT}}",
+							"path": [
+								"species",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "localhost"
+		},
+		{
+			"key": "PORT",
+			"value": "3000"
 		}
 	]
 }

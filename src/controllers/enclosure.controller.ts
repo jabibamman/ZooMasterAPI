@@ -1,14 +1,13 @@
 import {Request, Response, Router} from "express";
 import * as express from "express";
-import { checkUserToken } from "../middlewares";
-import { checkUserRole } from "../middlewares/role.middleware";
-import { EnclosureService } from "../services/enclosure.service";
+import { checkUserToken, checkUserRole } from "../middlewares";
+import { EnclosureService } from "../services";
 import { Roles } from "../utils";
 
 export class EnclosureController {
 
     readonly path: string;
-    private enclosureService: EnclosureService;
+    private readonly enclosureService: EnclosureService;
 
     constructor() {
         this.path = "/enclosure";
@@ -16,27 +15,35 @@ export class EnclosureController {
     }
 
     async createEnclosure(req: Request, res: Response) {
-        this.enclosureService.createEnclosure(req, res);
+        await this.enclosureService.createEnclosure(req, res);
+    }
+
+    async updateEnclosure(req: Request, res: Response) {
+        await this.enclosureService.updateEnclosureById(req, res);
     }
 
     async getEnclosureById(req: Request, res: Response) {
-        this.enclosureService.getEnclosureById(req, res);
+        await this.enclosureService.getEnclosureById(req, res);
     }
 
     async addAnimalToEnclosure(req: Request, res: Response) {
-        this.enclosureService.addAnimalToEnclosure(req, res);
+        await this.enclosureService.addAnimalToEnclosure(req, res);
     }
 
     async removeAnimalFromEnclosure(req: Request, res: Response) {
-        this.enclosureService.removeAnimalFromEnclosure(req, res);
+        await this.enclosureService.removeAnimalFromEnclosure(req, res);
     }
 
     async getAnimalsInEnclosure(req: Request, res: Response) {
-        this.enclosureService.getAnimalsInEnclosure(req, res);
+        await this.enclosureService.getAnimalsInEnclosure(req, res);
     }
  
     async deleteEnclosureById(req: Request, res: Response) {
-        this.enclosureService.deleteEnclosureById(req, res);
+        await this.enclosureService.deleteEnclosureById(req, res);
+    }
+
+    async getBestMonthForMaintenance(req: Request, res: Response) {        
+        await this.enclosureService.getBestMonthForMaintenance(req, res);
     }
 
 
@@ -48,8 +55,11 @@ export class EnclosureController {
         router.get('/:id/animal', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.ADMIN]), this.getAnimalsInEnclosure.bind(this));
         // Enclosure
         router.post('/', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.createEnclosure.bind(this));
+        router.put('/:id', express.json(), checkUserToken(), checkUserRole([Roles.ADMIN]), this.updateEnclosure.bind(this));
         router.get('/:id', checkUserToken(), checkUserRole([Roles.ANIMAL_CARETAKER, Roles.VETERINARIAN, Roles.ADMIN]), this.getEnclosureById.bind(this));
         router.delete('/:id', checkUserToken(), checkUserRole([Roles.ADMIN]), this.deleteEnclosureById.bind(this));
+        // Maintenance
+        router.get('/:id/best-month-for-maintenance', checkUserToken(), checkUserRole([Roles.ADMIN]), this.enclosureService.getBestMonthForMaintenance.bind(this.enclosureService));
         return router;
     }
 }

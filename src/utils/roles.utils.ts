@@ -1,3 +1,4 @@
+import { User } from "../models";
 
 export enum Roles {
     ADMIN = "admin",
@@ -9,7 +10,6 @@ export enum Roles {
     GUEST = "guest"
 }
 
-
 export const roles = [
     Roles.ADMIN,
     Roles.VETERINARIAN,
@@ -19,3 +19,14 @@ export const roles = [
     Roles.RECEPTION_STAFF,
     Roles.GUEST
 ];
+
+
+export function checkUserRole(user:User, requiredRole: Roles): boolean {    
+    if (user.roles.some(role => {
+        return typeof role === "object" && role.name === requiredRole;
+    })) {
+        return true;
+    }
+
+    return false;
+}
