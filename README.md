@@ -15,7 +15,7 @@ Here's a quick guide to get you started:
 
 First, clone the repository:
 
-`git clone https://github.com/<YOUR_GITHUB_USERNAME>/zoomasterapi.git`
+`git clone https://github.com/jabibamman/zoomasterapi.git`
 
 Next, navigate into the project directory:
 
