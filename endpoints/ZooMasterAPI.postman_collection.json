@@ -1,10 +1,9 @@
 {
 	"info": {
-		"_postman_id": "7e89a564-7654-45ba-bec2-4567d797c571",
+		"_postman_id": "0fcacca2-6050-45e1-b1a7-e0d00e053ed2",
 		"name": "ZooMasterAPI",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "25875093",
-		"_collection_link": "https://solar-star-791060.postman.co/workspace/PA2023~6e25e7c8-958d-457f-8bab-0252194633c9/collection/25694887-7e89a564-7654-45ba-bec2-4567d797c571?action=share&creator=25875093&source=collection_link"
+		"_exporter_id": "25694887"
 	},
 	"item": [
 		{
@@ -17,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\":\"s\",\n    \"password\":\"password\"\n}",
+							"raw": "{\n    \"login\":\"admin\",\n    \"password\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -25,11 +24,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/register",
+							"raw": "{{HOST}}/user/register",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
 								"register"
@@ -45,7 +43,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\":\"jamess\",\n    \"password\":\"password\"\n}",
+							"raw": "{\n    \"login\":\"admin\",\n    \"password\":\"password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -53,11 +51,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/login",
+							"raw": "{{HOST}}/user/login",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
 								"login"
@@ -91,11 +88,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/:id/role",
+							"raw": "{{HOST}}/user/:id/role",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
 								":id",
@@ -117,43 +113,12 @@
 						"disableBodyPruning": true
 					},
 					"request": {
-						"method": "GET",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/login",
-							"host": [
-								"{{HOST}}"
-							],
-							"port": "{{PORT}}",
-							"path": [
-								"user",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "/user/admin",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
-					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6457a5746bfd430b7117ade3",
+									"value": "649bf1b7b6e8ac9e71e6d866",
 									"type": "string"
 								}
 							]
@@ -162,7 +127,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"login\":\"james\",\n    \"password\":\"password\"\n}",
+							"raw": "",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -170,11 +135,45 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/admin",
+							"raw": "{{HOST}}/user/me",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
+							"path": [
+								"user",
+								"me"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "/user/admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "649bf914844ee6c4f5646e30",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Bearer",
+								"value": "649beece5c8abfc9192c554d",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{HOST}}/user/admin",
+							"host": [
+								"{{HOST}}"
+							],
 							"path": [
 								"user",
 								"admin"
@@ -218,14 +217,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/:",
+							"raw": "{{HOST}}/user/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
-								":"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -256,14 +260,19 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/:",
+							"raw": "{{HOST}}/user/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
-								":"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -294,11 +303,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/:id",
+							"raw": "{{HOST}}/user/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
 								":id"
@@ -326,7 +334,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6496f72a834d73200b5e9e4b",
+									"value": "649bf1b7b6e8ac9e71e6d866",
 									"type": "string"
 								}
 							]
@@ -343,11 +351,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal",
+							"raw": "{{HOST}}/animal",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"animal"
 							]
@@ -363,7 +370,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "6496f72a834d73200b5e9e4b",
+									"value": "649bf914844ee6c4f5646e30",
 									"type": "string"
 								}
 							]
@@ -371,11 +378,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/:id",
+							"raw": "{{HOST}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"animal",
 								":id"
@@ -383,7 +389,7 @@
 							"variable": [
 								{
 									"key": "id",
-									"value": null
+									"value": "649bf9f0844ee6c4f5646e3c"
 								}
 							]
 						}
@@ -415,11 +421,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/:id",
+							"raw": "{{HOST}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"animal",
 								":id"
@@ -450,11 +455,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/animal/:id",
+							"raw": "{{HOST}}/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"animal",
 								":id"
@@ -499,11 +503,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/",
+							"raw": "{{HOST}}/enclosure/",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								""
@@ -544,11 +547,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id",
+							"raw": "{{HOST}}/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id"
@@ -588,11 +590,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal",
+							"raw": "{{HOST}}/enclosure/:id/animal",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id",
@@ -633,11 +634,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/",
+							"raw": "{{HOST}}/enclosure/:id/",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id",
@@ -678,11 +678,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
+							"raw": "{{HOST}}/enclosure/:id/animal/:animalId",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id",
@@ -731,11 +730,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/",
+							"raw": "{{HOST}}/enclosure/:id/animal/",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id",
@@ -780,11 +778,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/animal/:animalId",
+							"raw": "{{HOST}}/enclosure/:id/animal/:animalId",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id",
@@ -833,11 +830,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/enclosure/:id/best-month-for-maintenance/",
+							"raw": "{{HOST}}/enclosure/:id/best-month-for-maintenance/",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"enclosure",
 								":id",
@@ -884,11 +880,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/:id",
+							"raw": "{{HOST}}/maintenance/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
 								"enclosure",
@@ -932,11 +927,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure/:id",
+							"raw": "{{HOST}}/maintenance/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
 								"enclosure",
@@ -980,11 +974,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/enclosure",
+							"raw": "{{HOST}}/maintenance/enclosure",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
 								"enclosure"
@@ -1018,11 +1011,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/:id",
+							"raw": "{{HOST}}/maintenance/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
 								":id"
@@ -1039,6 +1031,9 @@
 				},
 				{
 					"name": "/maintenance/:id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -1050,7 +1045,7 @@
 								}
 							]
 						},
-						"method": "PUT",
+						"method": "GET",
 						"header": [],
 						"body": {
 							"mode": "raw",
@@ -1062,11 +1057,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/maintenance/:id",
+							"raw": "{{HOST}}/maintenance/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"maintenance",
 								":id"
@@ -1111,11 +1105,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment",
+							"raw": "{{HOST}}/treatment",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment"
 							]
@@ -1151,11 +1144,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"raw": "{{HOST}}/treatment/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								":id"
@@ -1171,7 +1163,7 @@
 					"response": []
 				},
 				{
-					"name": "/treatment/",
+					"name": "/treatment/veterinarian/:id",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true
 					},
@@ -1198,15 +1190,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/veterinarian/6471c753e1e2779b1ca09241",
+							"raw": "{{HOST}}/treatment/veterinarian/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								"veterinarian",
-								"6471c753e1e2779b1ca09241"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -1237,11 +1234,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"raw": "{{HOST}}/treatment/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								":id"
@@ -1281,11 +1277,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/:id",
+							"raw": "{{HOST}}/treatment/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								":id"
@@ -1328,11 +1323,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/animal/:id",
+							"raw": "{{HOST}}/treatment/animal/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								"animal",
@@ -1376,11 +1370,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/veterinarian/:id",
+							"raw": "{{HOST}}/treatment/veterinarian/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								"veterinarian",
@@ -1424,11 +1417,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/treatment/enclosure/:id",
+							"raw": "{{HOST}}/treatment/enclosure/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"treatment",
 								"enclosure",
@@ -1464,11 +1456,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/staff/register",
+							"raw": "{{HOST}}/staff/register",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"staff",
 								"register"
@@ -1492,11 +1483,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/staff/open",
+							"raw": "{{HOST}}/staff/open",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"staff",
 								"open"
@@ -1530,16 +1520,21 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/staff/open/night/646d14703e3301e68e01c58c",
+							"raw": "{{HOST}}/staff/open/night/:id",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"staff",
 								"open",
 								"night",
-								"646d14703e3301e68e01c58c"
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": null
+								}
 							]
 						}
 					},
@@ -1565,11 +1560,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/visitor/add",
+							"raw": "{{HOST}}/visitor/add",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"visitor",
 								"add"
@@ -1593,11 +1587,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/visitor/remove",
+							"raw": "{{HOST}}/visitor/remove",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"visitor",
 								"remove"
@@ -1610,7 +1603,17 @@
 					"name": "/visitor/admin",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "{{HOST}}/visitor/admin",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"visitor",
+								"admin"
+							]
+						}
 					},
 					"response": []
 				},
@@ -1632,11 +1635,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/visitor/rate",
+							"raw": "{{HOST}}/visitor/rate",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"visitor",
 								"rate"
@@ -1660,11 +1662,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/visitor/month",
+							"raw": "{{HOST}}/visitor/month",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"visitor",
 								"month"
@@ -1688,11 +1689,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/visitor/week",
+							"raw": "{{HOST}}/visitor/week",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"visitor",
 								"week"
@@ -1744,11 +1744,10 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:3000/visitor/hour",
+							"raw": "{{HOST}}/visitor/hour",
 							"host": [
-								"localhost"
+								"{{HOST}}"
 							],
-							"port": "3000",
 							"path": [
 								"visitor",
 								"hour"
@@ -1778,11 +1777,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"raw": "{{HOST}}/ticket/",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"ticket",
 								""
@@ -1816,11 +1814,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/",
+							"raw": "{{HOST}}/ticket/",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"ticket",
 								""
@@ -1845,11 +1842,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"raw": "{{HOST}}/ticket/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"ticket",
 								":id"
@@ -1884,11 +1880,10 @@
 							"raw": "{\r\n    \"name\": \"PASS_NIGHT\",\r\n    \"year\": \"2023\",\r\n    \"month\": \"05\",\r\n    \"day\": \"29\"\r\n}"
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/ticket/:id",
+							"raw": "{{HOST}}/ticket/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"ticket",
 								":id"
@@ -1931,11 +1926,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/user/admin",
+							"raw": "{{HOST}}/user/admin",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"user",
 								"admin"
@@ -1974,11 +1968,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/species",
+							"raw": "{{HOST}}/species",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"species"
 							]
@@ -2002,11 +1995,10 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/species/:id",
+							"raw": "{{HOST}}/species/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"species",
 								":id"
@@ -2046,11 +2038,10 @@
 							}
 						},
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/species/:id",
+							"raw": "{{HOST}}/species/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"species",
 								":id"
@@ -2081,11 +2072,10 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{HOST}}:{{PORT}}/species/:id",
+							"raw": "{{HOST}}/species/:id",
 							"host": [
 								"{{HOST}}"
 							],
-							"port": "{{PORT}}",
 							"path": [
 								"species",
 								":id"
@@ -2103,10 +2093,30 @@
 			]
 		}
 	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
 	"variable": [
 		{
 			"key": "HOST",
-			"value": "localhost"
+			"value": "176.134.7.134"
 		},
 		{
 			"key": "PORT",
