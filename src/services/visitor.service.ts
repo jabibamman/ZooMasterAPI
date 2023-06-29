@@ -15,6 +15,17 @@ import {StaffService} from "./staff.service";
 import {VisitorController} from "../controllers";
 
 
+async function runHourlyAttendanceRate() {
+    const visitorService = new VisitorService();
+    const currentRate = await visitorService.getCurrentAttendanceRate();
+    await visitorService.updateHourlyAttendanceRate(currentRate);
+}
+
+async function startHourlyAttendanceRate() {
+    await runHourlyAttendanceRate();
+    setInterval(runHourlyAttendanceRate, 60 * 60 * 1000);
+}
+
 export class VisitorService {
     readonly visitorModel: Model<Visitor>;
     readonly ticketModel: Model<Ticket>;
@@ -349,3 +360,5 @@ export class VisitorService {
         }
     }
 }
+
+startHourlyAttendanceRate()
