@@ -1,4 +1,5 @@
 # Zoomaster API
+[![wakatime](https://wakatime.com/badge/user/e52bef9d-e298-4ffd-b606-f63f36526478/project/cf5ebe9a-2943-4e03-96bf-42a06597287e.svg)](https://wakatime.com/badge/user/e52bef9d-e298-4ffd-b606-f63f36526478/project/cf5ebe9a-2943-4e03-96bf-42a06597287e)
 
 Zoomaster API is a powerful and flexible API built with [TypeScript](https://www.typescriptlang.org/), [Express](https://expressjs.com/), [Mongoose](https://mongoosejs.com/), and [Docker](https://www.docker.com/). It is designed to provide an interface for managing and interacting with a Zoo database.
 
